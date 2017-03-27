@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="STDATA_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="STDATAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ST_Collar">
           <Key>
             <PropertyRef Name="serno" />
@@ -154,7 +154,7 @@
           <Property Name="deleted_at" Type="datetime" />
           <Property Name="del_yn" Type="int" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="STDATA_ModelStoreContainer">
+        <EntityContainer Name="STDATAModelStoreContainer">
           <EntitySet Name="ST_Collar" EntityType="Self.ST_Collar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ST_Emp" EntityType="Self.ST_Emp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ST_InStock" EntityType="Self.ST_InStock" Schema="dbo" store:Type="Tables" />
@@ -169,7 +169,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="STDATA_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="STDATAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="ST_Collar">
           <Key>
             <PropertyRef Name="serno" />
@@ -319,7 +319,7 @@
           <Property Name="deleted_at" Type="DateTime" Precision="3" />
           <Property Name="del_yn" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="STDATAEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ST_Collar" EntityType="Self.ST_Collar" />
           <EntitySet Name="ST_Emp" EntityType="Self.ST_Emp" />
           <EntitySet Name="ST_InStock" EntityType="Self.ST_InStock" />
@@ -335,9 +335,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="STDATA_ModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="STDATAModelStoreContainer" CdmEntityContainer="STDATAEntities">
           <EntitySetMapping Name="ST_Collar">
-            <EntityTypeMapping TypeName="STDATA_Model.ST_Collar">
+            <EntityTypeMapping TypeName="STDATAModel.ST_Collar">
               <MappingFragment StoreEntitySet="ST_Collar">
                 <ScalarProperty Name="serno" ColumnName="serno" />
                 <ScalarProperty Name="guid" ColumnName="guid" />
@@ -352,7 +352,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ST_Emp">
-            <EntityTypeMapping TypeName="STDATA_Model.ST_Emp">
+            <EntityTypeMapping TypeName="STDATAModel.ST_Emp">
               <MappingFragment StoreEntitySet="ST_Emp">
                 <ScalarProperty Name="serno" ColumnName="serno" />
                 <ScalarProperty Name="guid" ColumnName="guid" />
@@ -375,7 +375,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ST_InStock">
-            <EntityTypeMapping TypeName="STDATA_Model.ST_InStock">
+            <EntityTypeMapping TypeName="STDATAModel.ST_InStock">
               <MappingFragment StoreEntitySet="ST_InStock">
                 <ScalarProperty Name="serno" ColumnName="serno" />
                 <ScalarProperty Name="guid" ColumnName="guid" />
@@ -388,7 +388,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ST_Material">
-            <EntityTypeMapping TypeName="STDATA_Model.ST_Material">
+            <EntityTypeMapping TypeName="STDATAModel.ST_Material">
               <MappingFragment StoreEntitySet="ST_Material">
                 <ScalarProperty Name="serno" ColumnName="serno" />
                 <ScalarProperty Name="guid" ColumnName="guid" />
@@ -402,7 +402,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ST_Personal_Cost">
-            <EntityTypeMapping TypeName="STDATA_Model.ST_Personal_Cost">
+            <EntityTypeMapping TypeName="STDATAModel.ST_Personal_Cost">
               <MappingFragment StoreEntitySet="ST_Personal_Cost">
                 <ScalarProperty Name="serno" ColumnName="serno" />
                 <ScalarProperty Name="guid" ColumnName="guid" />
@@ -416,7 +416,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ST_Purchase">
-            <EntityTypeMapping TypeName="STDATA_Model.ST_Purchase">
+            <EntityTypeMapping TypeName="STDATAModel.ST_Purchase">
               <MappingFragment StoreEntitySet="ST_Purchase">
                 <ScalarProperty Name="serno" ColumnName="serno" />
                 <ScalarProperty Name="guid" ColumnName="guid" />
@@ -435,7 +435,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ST_Surplus_Month">
-            <EntityTypeMapping TypeName="STDATA_Model.ST_Surplus_Month">
+            <EntityTypeMapping TypeName="STDATAModel.ST_Surplus_Month">
               <MappingFragment StoreEntitySet="ST_Surplus_Month">
                 <ScalarProperty Name="serno" ColumnName="serno" />
                 <ScalarProperty Name="guid" ColumnName="guid" />
@@ -458,7 +458,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ST_SurplusDay">
-            <EntityTypeMapping TypeName="STDATA_Model.ST_SurplusDay">
+            <EntityTypeMapping TypeName="STDATAModel.ST_SurplusDay">
               <MappingFragment StoreEntitySet="ST_SurplusDay">
                 <ScalarProperty Name="serno" ColumnName="serno" />
                 <ScalarProperty Name="guid" ColumnName="guid" />
@@ -477,7 +477,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ST_Vendor">
-            <EntityTypeMapping TypeName="STDATA_Model.ST_Vendor">
+            <EntityTypeMapping TypeName="STDATAModel.ST_Vendor">
               <MappingFragment StoreEntitySet="ST_Vendor">
                 <ScalarProperty Name="serno" ColumnName="serno" />
                 <ScalarProperty Name="guid" ColumnName="guid" />

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="STDATA_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="STDATAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="ST_Collar">
     <Key>
       <PropertyRef Name="serno" />
@@ -149,7 +149,7 @@
     <Property Name="deleted_at" Type="datetime" />
     <Property Name="del_yn" Type="int" Nullable="false" />
   </EntityType>
-  <EntityContainer Name="STDATA_ModelStoreContainer">
+  <EntityContainer Name="STDATAModelStoreContainer">
     <EntitySet Name="ST_Collar" EntityType="Self.ST_Collar" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ST_Emp" EntityType="Self.ST_Emp" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ST_InStock" EntityType="Self.ST_InStock" Schema="dbo" store:Type="Tables" />

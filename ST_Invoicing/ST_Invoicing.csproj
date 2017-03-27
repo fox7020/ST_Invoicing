@@ -122,50 +122,51 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ST_EmpController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ST_Collar.cs">
-      <DependentUpon>ST_DATA.tt</DependentUpon>
+      <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ST_DATA.Context.cs">
+    <Compile Include="Models\ST_Data.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ST_DATA.Context.tt</DependentUpon>
+      <DependentUpon>ST_Data.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ST_DATA.cs">
+    <Compile Include="Models\ST_Data.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ST_DATA.tt</DependentUpon>
+      <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ST_DATA.Designer.cs">
+    <Compile Include="Models\ST_Data.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ST_DATA.edmx</DependentUpon>
+      <DependentUpon>ST_Data.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ST_Emp.cs">
-      <DependentUpon>ST_DATA.tt</DependentUpon>
+      <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ST_InStock.cs">
-      <DependentUpon>ST_DATA.tt</DependentUpon>
+      <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ST_Material.cs">
-      <DependentUpon>ST_DATA.tt</DependentUpon>
+      <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ST_Personal_Cost.cs">
-      <DependentUpon>ST_DATA.tt</DependentUpon>
+      <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ST_Purchase.cs">
-      <DependentUpon>ST_DATA.tt</DependentUpon>
+      <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ST_SurplusDay.cs">
-      <DependentUpon>ST_DATA.tt</DependentUpon>
+      <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ST_Surplus_Month.cs">
-      <DependentUpon>ST_DATA.tt</DependentUpon>
+      <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ST_Vendor.cs">
-      <DependentUpon>ST_DATA.tt</DependentUpon>
+      <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -223,22 +224,22 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <EntityDeploy Include="Models\ST_DATA.edmx">
+    <EntityDeploy Include="Models\ST_Data.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ST_DATA.Designer.cs</LastGenOutput>
+      <LastGenOutput>ST_Data.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ST_DATA.Context.tt">
+    <Content Include="Models\ST_Data.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ST_DATA.edmx</DependentUpon>
-      <LastGenOutput>ST_DATA.Context.cs</LastGenOutput>
+      <DependentUpon>ST_Data.edmx</DependentUpon>
+      <LastGenOutput>ST_Data.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ST_DATA.edmx.diagram">
-      <DependentUpon>ST_DATA.edmx</DependentUpon>
+    <Content Include="Models\ST_Data.edmx.diagram">
+      <DependentUpon>ST_Data.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\ST_DATA.tt">
+    <Content Include="Models\ST_Data.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ST_DATA.edmx</DependentUpon>
-      <LastGenOutput>ST_DATA.cs</LastGenOutput>
+      <DependentUpon>ST_Data.edmx</DependentUpon>
+      <LastGenOutput>ST_Data.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -278,6 +279,11 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\ST_Emp\Create.cshtml" />
+    <Content Include="Views\ST_Emp\Delete.cshtml" />
+    <Content Include="Views\ST_Emp\Details.cshtml" />
+    <Content Include="Views\ST_Emp\Edit.cshtml" />
+    <Content Include="Views\ST_Emp\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="STDATA_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="STDATAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="ST_Collar">
     <Key>
       <PropertyRef Name="serno" />
@@ -149,7 +149,7 @@
     <Property Name="deleted_at" Type="DateTime" Precision="3" />
     <Property Name="del_yn" Type="Int32" Nullable="false" />
   </EntityType>
-  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="STDATAEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ST_Collar" EntityType="Self.ST_Collar" />
     <EntitySet Name="ST_Emp" EntityType="Self.ST_Emp" />
     <EntitySet Name="ST_InStock" EntityType="Self.ST_InStock" />

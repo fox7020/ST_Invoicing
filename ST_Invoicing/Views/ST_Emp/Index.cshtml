@@ -1,0 +1,123 @@
+﻿@model IEnumerable<ST_Invoicing.Models.ST_Emp>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.guid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_birthday)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_identity_num)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_tel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.salary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.in_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.out_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.remark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.deleted_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.del_yn)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.guid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_birthday)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_identity_num)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_tel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.salary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.in_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.out_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.remark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.deleted_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.del_yn)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.serno }) |
+            @Html.ActionLink("Details", "Details", new { id=item.serno }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.serno })
+        </td>
+    </tr>
+}
+
+</table>

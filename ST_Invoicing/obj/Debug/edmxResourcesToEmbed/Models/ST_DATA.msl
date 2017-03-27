@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="STDATA_ModelStoreContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="STDATAModelStoreContainer" CdmEntityContainer="STDATAEntities">
     <EntitySetMapping Name="ST_Collar">
-      <EntityTypeMapping TypeName="STDATA_Model.ST_Collar">
+      <EntityTypeMapping TypeName="STDATAModel.ST_Collar">
         <MappingFragment StoreEntitySet="ST_Collar">
           <ScalarProperty Name="serno" ColumnName="serno" />
           <ScalarProperty Name="guid" ColumnName="guid" />
@@ -17,7 +17,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ST_Emp">
-      <EntityTypeMapping TypeName="STDATA_Model.ST_Emp">
+      <EntityTypeMapping TypeName="STDATAModel.ST_Emp">
         <MappingFragment StoreEntitySet="ST_Emp">
           <ScalarProperty Name="serno" ColumnName="serno" />
           <ScalarProperty Name="guid" ColumnName="guid" />
@@ -40,7 +40,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ST_InStock">
-      <EntityTypeMapping TypeName="STDATA_Model.ST_InStock">
+      <EntityTypeMapping TypeName="STDATAModel.ST_InStock">
         <MappingFragment StoreEntitySet="ST_InStock">
           <ScalarProperty Name="serno" ColumnName="serno" />
           <ScalarProperty Name="guid" ColumnName="guid" />
@@ -53,7 +53,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ST_Material">
-      <EntityTypeMapping TypeName="STDATA_Model.ST_Material">
+      <EntityTypeMapping TypeName="STDATAModel.ST_Material">
         <MappingFragment StoreEntitySet="ST_Material">
           <ScalarProperty Name="serno" ColumnName="serno" />
           <ScalarProperty Name="guid" ColumnName="guid" />
@@ -67,7 +67,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ST_Personal_Cost">
-      <EntityTypeMapping TypeName="STDATA_Model.ST_Personal_Cost">
+      <EntityTypeMapping TypeName="STDATAModel.ST_Personal_Cost">
         <MappingFragment StoreEntitySet="ST_Personal_Cost">
           <ScalarProperty Name="serno" ColumnName="serno" />
           <ScalarProperty Name="guid" ColumnName="guid" />
@@ -81,7 +81,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ST_Purchase">
-      <EntityTypeMapping TypeName="STDATA_Model.ST_Purchase">
+      <EntityTypeMapping TypeName="STDATAModel.ST_Purchase">
         <MappingFragment StoreEntitySet="ST_Purchase">
           <ScalarProperty Name="serno" ColumnName="serno" />
           <ScalarProperty Name="guid" ColumnName="guid" />
@@ -100,7 +100,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ST_Surplus_Month">
-      <EntityTypeMapping TypeName="STDATA_Model.ST_Surplus_Month">
+      <EntityTypeMapping TypeName="STDATAModel.ST_Surplus_Month">
         <MappingFragment StoreEntitySet="ST_Surplus_Month">
           <ScalarProperty Name="serno" ColumnName="serno" />
           <ScalarProperty Name="guid" ColumnName="guid" />
@@ -123,7 +123,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ST_SurplusDay">
-      <EntityTypeMapping TypeName="STDATA_Model.ST_SurplusDay">
+      <EntityTypeMapping TypeName="STDATAModel.ST_SurplusDay">
         <MappingFragment StoreEntitySet="ST_SurplusDay">
           <ScalarProperty Name="serno" ColumnName="serno" />
           <ScalarProperty Name="guid" ColumnName="guid" />
@@ -142,7 +142,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ST_Vendor">
-      <EntityTypeMapping TypeName="STDATA_Model.ST_Vendor">
+      <EntityTypeMapping TypeName="STDATAModel.ST_Vendor">
         <MappingFragment StoreEntitySet="ST_Vendor">
           <ScalarProperty Name="serno" ColumnName="serno" />
           <ScalarProperty Name="guid" ColumnName="guid" />

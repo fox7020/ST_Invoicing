@@ -51,6 +51,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -123,6 +125,48 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ST_Collar.cs">
+      <DependentUpon>ST_DATA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ST_DATA.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ST_DATA.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ST_DATA.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ST_DATA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ST_DATA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ST_DATA.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ST_Emp.cs">
+      <DependentUpon>ST_DATA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ST_InStock.cs">
+      <DependentUpon>ST_DATA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ST_Material.cs">
+      <DependentUpon>ST_DATA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ST_Personal_Cost.cs">
+      <DependentUpon>ST_DATA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ST_Purchase.cs">
+      <DependentUpon>ST_DATA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ST_SurplusDay.cs">
+      <DependentUpon>ST_DATA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ST_Surplus_Month.cs">
+      <DependentUpon>ST_DATA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ST_Vendor.cs">
+      <DependentUpon>ST_DATA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +223,23 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <EntityDeploy Include="Models\ST_DATA.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ST_DATA.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ST_DATA.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ST_DATA.edmx</DependentUpon>
+      <LastGenOutput>ST_DATA.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ST_DATA.edmx.diagram">
+      <DependentUpon>ST_DATA.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ST_DATA.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ST_DATA.edmx</DependentUpon>
+      <LastGenOutput>ST_DATA.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -220,7 +281,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -228,6 +288,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

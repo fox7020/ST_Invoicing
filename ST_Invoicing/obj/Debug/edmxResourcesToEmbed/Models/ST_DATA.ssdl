@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="STDATA_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ST_Collar">
+    <Key>
+      <PropertyRef Name="serno" />
+    </Key>
+    <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="collar_date" Type="datetime" Nullable="false" />
+    <Property Name="material_guid" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="collar_count" Type="float" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+    <Property Name="deleted_at" Type="datetime" />
+    <Property Name="del_yn" Type="int" Nullable="false" />
+    <Property Name="emp_guid" Type="nchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_Emp">
+    <Key>
+      <PropertyRef Name="serno" />
+    </Key>
+    <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="emp_name" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="emp_gender" Type="nchar" MaxLength="5" Nullable="false" />
+    <Property Name="emp_birthday" Type="datetime" Nullable="false" />
+    <Property Name="emp_identity_num" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="emp_tel" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="emp_phone" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="emp_address" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="salary" Type="int" Nullable="false" />
+    <Property Name="id" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="password" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="in_date" Type="datetime" Nullable="false" />
+    <Property Name="out_date" Type="datetime" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+    <Property Name="deleted_at" Type="datetime" />
+    <Property Name="del_yn" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_InStock">
+    <Key>
+      <PropertyRef Name="serno" />
+    </Key>
+    <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="material_guid" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="count" Type="float" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+    <Property Name="deleted_at" Type="datetime" />
+    <Property Name="del_yn" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_Material">
+    <Key>
+      <PropertyRef Name="serno" />
+    </Key>
+    <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="item_name" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="utem_unit" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="item_species" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="reamrk" Type="nvarchar(max)" />
+    <Property Name="deleted_at" Type="datetime2" Precision="7" />
+    <Property Name="del_yn" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_Personal_Cost">
+    <Key>
+      <PropertyRef Name="serno" />
+    </Key>
+    <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="month" Type="datetime" Nullable="false" />
+    <Property Name="emp_guid" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="pay" Type="int" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+    <Property Name="deleted_at" Type="datetime" />
+    <Property Name="del_yn" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_Purchase">
+    <Key>
+      <PropertyRef Name="serno" />
+    </Key>
+    <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="purchase_date" Type="datetime" Nullable="false" />
+    <Property Name="purchase_num" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="vendor_guid" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="material_guid" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="purchase_count" Type="float" Nullable="false" />
+    <Property Name="purchase_price" Type="int" Nullable="false" />
+    <Property Name="in_stock" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+    <Property Name="deleted_at" Type="datetime" />
+    <Property Name="del_yn" Type="int" Nullable="false" />
+    <Property Name="emp_guid" Type="nchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_Surplus_Month">
+    <Key>
+      <PropertyRef Name="serno" />
+    </Key>
+    <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="rec_month" Type="datetime" Nullable="false" />
+    <Property Name="expenditure_month" Type="int" Nullable="false" />
+    <Property Name="income_month" Type="int" Nullable="false" />
+    <Property Name="rice_month" Type="float" Nullable="false" />
+    <Property Name="soup_month" Type="float" Nullable="false" />
+    <Property Name="month_700" Type="int" Nullable="false" />
+    <Property Name="month_850" Type="int" Nullable="false" />
+    <Property Name="month_meal" Type="int" Nullable="false" />
+    <Property Name="personal_month" Type="int" Nullable="false" />
+    <Property Name="food_month" Type="int" Nullable="false" />
+    <Property Name="supplie_month" Type="int" Nullable="false" />
+    <Property Name="other_month" Type="int" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+    <Property Name="deleted_at" Type="datetime" />
+    <Property Name="del_yn" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_SurplusDay">
+    <Key>
+      <PropertyRef Name="serno" />
+    </Key>
+    <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="rec_date" Type="date" Nullable="false" />
+    <Property Name="turnover" Type="int" Nullable="false" />
+    <Property Name="count_850" Type="int" Nullable="false" />
+    <Property Name="count_700" Type="int" Nullable="false" />
+    <Property Name="count_meal" Type="int" Nullable="false" />
+    <Property Name="count_rice" Type="float" Nullable="false" />
+    <Property Name="count_soup" Type="float" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+    <Property Name="deleted_at" Type="datetime" />
+    <Property Name="del_yn" Type="int" Nullable="false" />
+    <Property Name="emp_guid" Type="nchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_Vendor">
+    <Key>
+      <PropertyRef Name="serno" />
+    </Key>
+    <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="vendor_name" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="contact_person" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="vendor_tel1" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="vendor_tel2" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="address" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="uniform_num" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="payment_mathod" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+    <Property Name="deleted_at" Type="datetime" />
+    <Property Name="del_yn" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="STDATA_ModelStoreContainer">
+    <EntitySet Name="ST_Collar" EntityType="Self.ST_Collar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ST_Emp" EntityType="Self.ST_Emp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ST_InStock" EntityType="Self.ST_InStock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ST_Material" EntityType="Self.ST_Material" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ST_Personal_Cost" EntityType="Self.ST_Personal_Cost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ST_Purchase" EntityType="Self.ST_Purchase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ST_Surplus_Month" EntityType="Self.ST_Surplus_Month" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ST_SurplusDay" EntityType="Self.ST_SurplusDay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ST_Vendor" EntityType="Self.ST_Vendor" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

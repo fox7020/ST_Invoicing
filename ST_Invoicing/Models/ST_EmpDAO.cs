@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -16,6 +17,44 @@ namespace ST_Invoicing.Models
             dao.SaveChanges();
 
             return data;
+        }
+
+        public List<ST_Emp> GetDataList_NotDel()
+        {
+            List<ST_Emp> rslt = new List<ST_Emp>();
+
+            rslt = dao.ST_Emp.Where(currEmp => currEmp.del_yn == 0).ToList();
+
+            return rslt;
+        }
+
+        public ST_Emp Update(ST_Emp data)
+        {
+            dao.Entry(data).State = EntityState.Modified;
+
+            dao.SaveChanges();
+
+            return data;
+        }
+
+        public void Soft_Delete(ST_Emp data)
+        {
+            data.password2 = data.password;
+
+            data.del_yn = 1;
+
+            data.deleted_at = DateTime.Now;        
+
+            dao.Entry(data).State = EntityState.Modified;
+
+            try
+            {
+                dao.SaveChanges();
+            }
+            catch (Exception ee)
+            {
+                throw;
+            }       
         }
 
         public bool IsUniID(string account)

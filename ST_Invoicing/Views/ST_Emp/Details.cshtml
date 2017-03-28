@@ -1,23 +1,15 @@
 ﻿@model ST_Invoicing.Models.ST_Emp
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "南臺灣-員工資料";
 }
 
-<h2>Details</h2>
+<h2>員工資料</h2>
 
 <div>
-    <h4>ST_Emp</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.guid)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.guid)
-        </dd>
-
+      
         <dt>
             @Html.DisplayNameFor(model => model.emp_name)
         </dt>
@@ -91,14 +83,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.password)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.in_date)
         </dt>
 
@@ -122,25 +106,9 @@
             @Html.DisplayFor(model => model.remark)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.deleted_at)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.deleted_at)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.del_yn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.del_yn)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.serno }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("編輯員工資料", "Edit", new { id = Model.serno }) |
+    @Html.ActionLink("返回員工列表", "Index")
 </p>

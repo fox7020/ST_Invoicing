@@ -20,7 +20,9 @@ namespace ST_Invoicing.Controllers
         // GET: ST_Emp
         public ActionResult Index()
         {
-            return View(db.ST_Emp.ToList());
+            //return View(db.ST_Emp.ToList());
+
+            return View(mST_EmpDAO.GetDataList_NotDel());
         }
 
         // GET: ST_Emp/Details/5
@@ -97,10 +99,8 @@ namespace ST_Invoicing.Controllers
         {
 
             if (ModelState.IsValid)
-            {
-                db.Entry(sT_Emp).State = EntityState.Modified;
-
-                db.SaveChanges();
+            {             
+                mST_EmpDAO.Update(sT_Emp);
 
                 return RedirectToAction("Index");
             }
@@ -128,9 +128,12 @@ namespace ST_Invoicing.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ST_Emp sT_Emp = db.ST_Emp.Find(id);
-            db.ST_Emp.Remove(sT_Emp);
-            db.SaveChanges();
+            ST_Emp data = db.ST_Emp.Find(id);
+            //db.ST_Emp.Remove(sT_Emp);
+           // db.SaveChanges();
+
+            mST_EmpDAO.Soft_Delete(data);
+
             return RedirectToAction("Index");
         }
 

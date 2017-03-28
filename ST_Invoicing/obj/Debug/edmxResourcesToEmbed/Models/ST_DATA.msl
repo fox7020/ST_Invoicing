@@ -19,6 +19,7 @@
     <EntitySetMapping Name="ST_Emp">
       <EntityTypeMapping TypeName="STDATAModel.ST_Emp">
         <MappingFragment StoreEntitySet="ST_Emp">
+          <ScalarProperty Name="account" ColumnName="account" />
           <ScalarProperty Name="serno" ColumnName="serno" />
           <ScalarProperty Name="guid" ColumnName="guid" />
           <ScalarProperty Name="emp_name" ColumnName="emp_name" />
@@ -29,7 +30,6 @@
           <ScalarProperty Name="emp_phone" ColumnName="emp_phone" />
           <ScalarProperty Name="emp_address" ColumnName="emp_address" />
           <ScalarProperty Name="salary" ColumnName="salary" />
-          <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="in_date" ColumnName="in_date" />
           <ScalarProperty Name="out_date" ColumnName="out_date" />

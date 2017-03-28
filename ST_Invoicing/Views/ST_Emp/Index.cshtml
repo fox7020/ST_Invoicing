@@ -10,10 +10,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.guid)
-        </th>
+    <tr>     
         <th>
             @Html.DisplayNameFor(model => model.emp_name)
         </th>
@@ -37,13 +34,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.salary)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.password)
-        </th>
+        </th>       
         <th>
             @Html.DisplayNameFor(model => model.in_date)
         </th>
@@ -52,21 +43,12 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.remark)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.deleted_at)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.del_yn)
-        </th>
+        </th>    
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.guid)
-        </td>
+    <tr>      
         <td>
             @Html.DisplayFor(modelItem => item.emp_name)
         </td>
@@ -90,13 +72,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.salary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.password)
-        </td>
+        </td>     
         <td>
             @Html.DisplayFor(modelItem => item.in_date)
         </td>
@@ -105,13 +81,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.remark)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.deleted_at)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.del_yn)
-        </td>
+        </td>      
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.serno }) |
             @Html.ActionLink("Details", "Details", new { id=item.serno }) |

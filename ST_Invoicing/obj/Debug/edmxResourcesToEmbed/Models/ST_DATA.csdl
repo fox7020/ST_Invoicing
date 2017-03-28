@@ -22,19 +22,19 @@
     <Property Name="guid" Type="Guid" Nullable="false" />
     <Property Name="emp_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="emp_gender" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="emp_birthday" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="emp_identity_num" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="emp_tel" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="emp_phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="emp_birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="emp_identity_num" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="emp_tel" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="emp_phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="emp_address" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="salary" Type="Int32" Nullable="false" />
-    <Property Name="id" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="in_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="out_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="in_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="out_date" Type="DateTime" Precision="0" />
     <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="deleted_at" Type="DateTime" Precision="3" />
     <Property Name="del_yn" Type="Int32" Nullable="false" />
+    <Property Name="account" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="ST_InStock">
     <Key>

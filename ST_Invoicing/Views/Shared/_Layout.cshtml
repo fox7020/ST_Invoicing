@@ -6,8 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+   
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -37,9 +36,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+   
 </body>
 </html>
 -->
@@ -53,6 +50,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>南臺灣土魠魚羹-進銷存管理</title>
+
+    @Styles.Render("~/Content/jqueryui")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
     <!-- Bootstrap Core CSS -->
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -67,8 +69,27 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
+   
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)
+
+    <script src=" ~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <!-- Morris Charts JavaScript -->
+    <script src="~/Scripts/plugins/morris/raphael.min.js"></script>
+    <script src="~/Scripts/plugins/morris/morris.min.js"></script>
+    <script src="~/Scripts/plugins/morris/morris.min.js"></script>
+    <script src="~/Scripts/plugins/morris/morris-data.js"></script>
 </head>
 <body>
+
+
     <div id="wrapper">
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -250,13 +271,6 @@
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="~/Scripts/js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="~/Scripts/js/bootstrap.min.js"></script>
-    <!-- Morris Charts JavaScript -->
-    <script src="~/Scripts/js/plugins/morris/raphael.min.js"></script>
-    <script src="~/Scripts/js/plugins/morris/morris.min.js"></script>
-    <script src="~/Scripts/js/plugins/morris/morris-data.js"></script>
+  
 </body>
 </html>

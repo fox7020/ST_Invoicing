@@ -22,16 +22,16 @@
     <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="emp_name" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="emp_gender" Type="nchar" MaxLength="5" Nullable="false" />
-    <Property Name="emp_birthday" Type="datetime" Nullable="false" />
-    <Property Name="emp_identity_num" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="emp_tel" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="emp_phone" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="emp_birthday" Type="date" Nullable="false" />
+    <Property Name="emp_identity_num" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="emp_tel" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="emp_phone" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="emp_address" Type="nchar" MaxLength="30" Nullable="false" />
     <Property Name="salary" Type="int" Nullable="false" />
-    <Property Name="id" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="password" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="in_date" Type="datetime" Nullable="false" />
-    <Property Name="out_date" Type="datetime" Nullable="false" />
+    <Property Name="account" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="password" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="in_date" Type="date" Nullable="false" />
+    <Property Name="out_date" Type="date" />
     <Property Name="remark" Type="nvarchar(max)" />
     <Property Name="deleted_at" Type="datetime" />
     <Property Name="del_yn" Type="int" Nullable="false" />

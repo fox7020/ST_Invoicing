@@ -7,12 +7,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ST_Invoicing.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace ST_Invoicing.Controllers
 {
     public class ST_EmpController : Controller
     {
         private STDATAEntities db = new STDATAEntities();
+
+        private ST_EmpDAO mST_EmpDAO = new ST_EmpDAO();
 
         // GET: ST_Emp
         public ActionResult Index()
@@ -46,10 +49,12 @@ namespace ST_Invoicing.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "serno,guid,emp_name,emp_gender,emp_birthday,emp_identity_num,emp_tel,emp_phone,emp_address,salary,id,password,in_date,out_date,remark,deleted_at,del_yn")] ST_Emp sT_Emp)
+        public ActionResult Create(ST_Emp sT_Emp)
         {
             if (ModelState.IsValid)
             {
+                sT_Emp.guid = Guid.NewGuid();
+
                 db.ST_Emp.Add(sT_Emp);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -70,6 +75,16 @@ namespace ST_Invoicing.Controllers
             {
                 return HttpNotFound();
             }
+
+            sT_Emp.emp_name = sT_Emp.emp_name.Trim();
+            sT_Emp.emp_gender = sT_Emp.emp_gender.Trim();
+            sT_Emp.emp_identity_num = sT_Emp.emp_identity_num.Trim();
+            sT_Emp.emp_tel = sT_Emp.emp_tel.Trim();
+            sT_Emp.emp_phone = sT_Emp.emp_phone.Trim();
+            sT_Emp.emp_address = sT_Emp.emp_address.Trim();
+            sT_Emp.account = sT_Emp.account.Trim();
+            sT_Emp.password = sT_Emp.password.Trim();
+            sT_Emp.password2 = sT_Emp.password.Trim();
             return View(sT_Emp);
         }
 
@@ -78,14 +93,18 @@ namespace ST_Invoicing.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "serno,guid,emp_name,emp_gender,emp_birthday,emp_identity_num,emp_tel,emp_phone,emp_address,salary,id,password,in_date,out_date,remark,deleted_at,del_yn")] ST_Emp sT_Emp)
+        public ActionResult Edit(ST_Emp sT_Emp)
         {
+
             if (ModelState.IsValid)
             {
                 db.Entry(sT_Emp).State = EntityState.Modified;
+
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
+
             return View(sT_Emp);
         }
 
@@ -113,6 +132,33 @@ namespace ST_Invoicing.Controllers
             db.ST_Emp.Remove(sT_Emp);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult CheckUniID(ST_Emp data)
+        {
+
+            if (data.account != null)
+            {
+                if (data.serno != 0)
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+
+                if (mST_EmpDAO.IsUniID(data.account) == true)
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+
+
+            }
+            else
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }        
         }
 
         protected override void Dispose(bool disposing)

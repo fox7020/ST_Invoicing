@@ -11,16 +11,36 @@ namespace ST_Invoicing.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ST_Material
     {
         public int serno { get; set; }
+
         public System.Guid guid { get; set; }
+
+       
+        [Display(Name = "原物料名稱")]
+        [Required]
+        [System.Web.Mvc.Remote("CheckUniItem", "ST_Material", ErrorMessage = "此名稱已輸入過", AdditionalFields = "serno")]
+        [MaxLength(10, ErrorMessage = "原物料名稱長度不可大於{1}個字元")]
         public string item_name { get; set; }
+
+       
+        [Display(Name = "單位")]
+        [Required]
         public string utem_unit { get; set; }
+
+     
+        [Display(Name = "種類")]
+        [Required]
         public string item_species { get; set; }
+
+        [Display(Name = "備註")]
         public string reamrk { get; set; }
+
         public Nullable<System.DateTime> deleted_at { get; set; }
+
         public int del_yn { get; set; }
     }
 }

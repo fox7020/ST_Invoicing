@@ -43,18 +43,13 @@ namespace ST_Invoicing.Models
 
             data.del_yn = 1;
 
-            data.deleted_at = DateTime.Now;        
+            data.deleted_at = DateTime.Now;
 
             dao.Entry(data).State = EntityState.Modified;
 
-            try
-            {
-                dao.SaveChanges();
-            }
-            catch (Exception ee)
-            {
-                throw;
-            }       
+
+            dao.SaveChanges();
+
         }
 
         public bool IsUniID(string account)
@@ -75,7 +70,7 @@ namespace ST_Invoicing.Models
             }
             else
             {
-                throw new Exception("兩筆以上的ID");
+                throw new Exception("兩筆以上的account");
             }
 
             return isUni;

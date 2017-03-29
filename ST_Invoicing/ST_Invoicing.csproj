@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ST_EmpController.cs" />
+    <Compile Include="Controllers\ST_MaterialController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -154,6 +155,7 @@
     <Compile Include="Models\ST_Material.cs">
       <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ST_MaterialDAO.cs" />
     <Compile Include="Models\ST_Personal_Cost.cs">
       <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
@@ -328,6 +330,11 @@
     <Content Include="Views\ST_Emp\Index.cshtml" />
     <Content Include="Views\ST_Emp\Create.cshtml" />
     <Content Include="Views\ST_Emp\Edit.cshtml" />
+    <Content Include="Views\ST_Material\Delete.cshtml" />
+    <Content Include="Views\ST_Material\Details.cshtml" />
+    <Content Include="Views\ST_Material\Edit.cshtml" />
+    <Content Include="Views\ST_Material\Index.cshtml" />
+    <Content Include="Views\ST_Material\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,56 @@
+﻿@model ST_Invoicing.Models.ST_Material
+
+@{
+    ViewBag.Title = "南臺灣-刪除原物料";
+}
+
+<h2>刪除原物料</h2>
+
+<h3>確定刪除此筆資料?</h3>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.item_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.item_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.utem_unit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.utem_unit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.item_species)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.item_species)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reamrk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reamrk)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("返回原物料列表", "Index")
+        </div>
+    }
+</div>

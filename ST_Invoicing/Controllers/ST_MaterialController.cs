@@ -7,145 +7,142 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ST_Invoicing.Models;
-using System.Data.Entity.Infrastructure;
 
 namespace ST_Invoicing.Controllers
 {
-    public class ST_EmpController : Controller
+    public class ST_MaterialController : Controller
     {
         private STDATAEntities db = new STDATAEntities();
 
-        private ST_EmpDAO mST_EmpDAO = new ST_EmpDAO();
+        private ST_MaterialDAO mST_MaterialDAO = new ST_MaterialDAO();
 
-        // GET: ST_Emp
+        // GET: ST_Material
         public ActionResult Index()
-        {        
-            return View(mST_EmpDAO.GetDataList_NotDel());
+        {
+            return View(mST_MaterialDAO.GetDataList_NotDel());
         }
 
-        // GET: ST_Emp/Details/5
+        // GET: ST_Material/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ST_Emp sT_Emp = db.ST_Emp.Find(id);
-            if (sT_Emp == null)
+            ST_Material sT_Material = db.ST_Material.Find(id);
+            if (sT_Material == null)
             {
                 return HttpNotFound();
             }
-            return View(sT_Emp);
+            return View(sT_Material);
         }
 
-        // GET: ST_Emp/Create
+        // GET: ST_Material/Create
         public ActionResult Create()
         {
+            List<string> unit_Items = new List<string>();
+
+            unit_Items.Add("箱");
+            unit_Items.Add("公斤");
+            unit_Items.Add("臺斤");
+            unit_Items.Add("克");
+            unit_Items.Add("公升");
+            unit_Items.Add("桶");
+
+            ViewData["unit_Items"] = unit_Items;
+
             return View();
         }
 
-        // POST: ST_Emp/Create
+        // POST: ST_Material/Create
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ST_Emp data)
+        public ActionResult Create(ST_Material data)
         {
             if (ModelState.IsValid)
             {
                 data.guid = Guid.NewGuid();
 
-                mST_EmpDAO.Insert(data);
-             
+                db.ST_Material.Add(data);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View(data);
         }
 
-        // GET: ST_Emp/Edit/5
+        // GET: ST_Material/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ST_Emp sT_Emp = db.ST_Emp.Find(id);
-            if (sT_Emp == null)
+
+            ST_Material data = db.ST_Material.Find(id);
+
+            data.item_name = data.item_name.Trim();
+            data.item_species = data.item_species.Trim();
+            data.utem_unit = data.utem_unit.Trim();
+            
+
+            if (data == null)
             {
                 return HttpNotFound();
             }
-
-            sT_Emp.emp_name = sT_Emp.emp_name.Trim();
-            sT_Emp.emp_gender = sT_Emp.emp_gender.Trim();
-            sT_Emp.emp_identity_num = sT_Emp.emp_identity_num.Trim();
-            sT_Emp.emp_tel = sT_Emp.emp_tel.Trim();
-            sT_Emp.emp_phone = sT_Emp.emp_phone.Trim();
-            sT_Emp.emp_address = sT_Emp.emp_address.Trim();
-            sT_Emp.account = sT_Emp.account.Trim();
-            sT_Emp.password = sT_Emp.password.Trim();
-            sT_Emp.password2 = sT_Emp.password.Trim();
-            return View(sT_Emp);
+            return View(data);
         }
 
-        // POST: ST_Emp/Edit/5
+        // POST: ST_Material/Edit/5
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ST_Emp sT_Emp)
+        public ActionResult Edit( ST_Material data)
         {
-
             if (ModelState.IsValid)
-            {             
-                mST_EmpDAO.Update(sT_Emp);
-
+            {
+                mST_MaterialDAO.Update(data);
                 return RedirectToAction("Index");
             }
-
-            return View(sT_Emp);
+            return View(data);
         }
 
-        // GET: ST_Emp/Delete/5
+        // GET: ST_Material/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ST_Emp sT_Emp = db.ST_Emp.Find(id);
-            if (sT_Emp == null)
+            ST_Material data = db.ST_Material.Find(id);
+            if (data == null)
             {
                 return HttpNotFound();
             }
-            return View(sT_Emp);
+            return View(data);
         }
 
-        // POST: ST_Emp/Delete/5
+        // POST: ST_Material/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ST_Emp data = db.ST_Emp.Find(id);
-            //db.ST_Emp.Remove(sT_Emp);
-           // db.SaveChanges();
+            ST_Material data = db.ST_Material.Find(id);
 
-            mST_EmpDAO.Soft_Delete(data);
+            mST_MaterialDAO.Soft_Delete(data);
 
             return RedirectToAction("Index");
         }
 
-        public ActionResult CheckUniID(ST_Emp data)
+        public ActionResult CheckUniItem(ST_Material data)
         {
-
-            if (data.account != null)
+            if (data.item_name != null)
             {
-                if (data.serno != 0)
-                {
-                    return Json(true, JsonRequestBehavior.AllowGet);
-                }
-
-                if (mST_EmpDAO.IsUniID(data.account) == true)
+              
+                if (mST_MaterialDAO.IsUniItem(data) == true)
                 {
                     return Json(true, JsonRequestBehavior.AllowGet);
                 }
@@ -154,12 +151,12 @@ namespace ST_Invoicing.Controllers
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
 
-
             }
-            else
+            else                   
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
-            }        
+                   
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -1,0 +1,76 @@
+﻿@model ST_Invoicing.Models.ST_Material
+
+@{
+    ViewBag.Title = "南臺灣-編輯原物料";
+}
+
+<h2>編輯原物料</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+       
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.serno)
+        @Html.HiddenFor(model => model.guid)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.item_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.item_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.item_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.utem_unit, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.utem_unit, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.utem_unit, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.item_species, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.RadioButtonFor(model => model.item_species, "食材", new { @class = "text-danger" })
+                食材
+                @Html.RadioButtonFor(model => model.item_species, "耗材", new { @class = "text-danger" })
+                耗材
+                @Html.RadioButtonFor(model => model.item_species, "其他", new { @class = "text-danger" })
+                其他
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.reamrk, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.reamrk, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.reamrk, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.deleted_at)
+        
+        @Html.HiddenFor(model => model.del_yn)
+       
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

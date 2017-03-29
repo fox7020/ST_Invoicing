@@ -45,6 +45,7 @@ namespace ST_Invoicing.Models
         [Display(Name = "統一編號")]
         [MaxLength(8, ErrorMessage = "統一編號格式為{1}個字元")]
         [MinLength(8, ErrorMessage = "統一編號格式為{1}個字元")]
+        [System.Web.Mvc.Remote("CheckUniFormNum", "ST_Vendor", ErrorMessage = "重複的統一編號", AdditionalFields = "serno")]
         public string uniform_num { get; set; }
 
         [Required]

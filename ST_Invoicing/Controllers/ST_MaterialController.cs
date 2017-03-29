@@ -12,8 +12,6 @@ namespace ST_Invoicing.Controllers
 {
     public class ST_MaterialController : Controller
     {
-       // private STDATAEntities db = new STDATAEntities();
-
         private ST_MaterialDAO mST_MaterialDAO = new ST_MaterialDAO();
 
         // GET: ST_Material
@@ -40,7 +38,7 @@ namespace ST_Invoicing.Controllers
         // GET: ST_Material/Create
         public ActionResult Create()
         {
-          
+
             ViewData["unit_Items"] = GetUnitItem();
 
             return View();
@@ -134,7 +132,7 @@ namespace ST_Invoicing.Controllers
         {
             if (data.item_name != null)
             {
-              
+
                 if (mST_MaterialDAO.IsUniItem(data) == true)
                 {
                     return Json(true, JsonRequestBehavior.AllowGet);
@@ -145,17 +143,17 @@ namespace ST_Invoicing.Controllers
                 }
 
             }
-            else                   
+            else
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
-                   
+
             }
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {              
+            {
                 mST_MaterialDAO.Dispose();
             }
             base.Dispose(disposing);

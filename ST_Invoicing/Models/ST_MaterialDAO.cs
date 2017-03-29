@@ -86,10 +86,11 @@ namespace ST_Invoicing.Models
 
             List<ST_Material> rslt = new List<ST_Material>();
 
+            rslt = dao.ST_Material.Where(currMaterial => currMaterial.del_yn == 0).Where(currMaterial => currMaterial.item_name == data.item_name).ToList();
+
             if (data.serno == 0)
             {
-                rslt = dao.ST_Material.Where(currMaterial => currMaterial.del_yn == 0).Where(currMaterial => currMaterial.item_name == data.item_name).ToList();
-
+               
                 if (rslt.Count == 1)
                 {
                     isUni = false;
@@ -105,8 +106,7 @@ namespace ST_Invoicing.Models
             }
             else
             {
-                rslt = dao.ST_Material.Where(currMaterial => currMaterial.del_yn == 0).Where(currMaterial => currMaterial.item_name == data.item_name).ToList();
-
+                
                 if (rslt.Count == 1 && rslt[0].serno == data.serno)
                 {
                     isUni = true;

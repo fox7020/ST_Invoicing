@@ -136,6 +136,25 @@ namespace ST_Invoicing.Controllers
             base.Dispose(disposing);
         }
 
+        public JsonResult CheckUniFormNum(ST_Vendor data)
+        {
+            if (data.uniform_num != null)
+            {
+                if (mST_VendorDAO.IsUniform_Num(data) == true)
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         private void CleanData(ref ST_Vendor data)
         {
             data.vendor_name = data.vendor_name.Trim();

@@ -76,6 +76,49 @@ namespace ST_Invoicing.Models
 
         }
 
+        public bool IsUniform_Num(ST_Vendor data)
+        {
+            bool isUni = false;
+
+            List<ST_Vendor> rslt = new List<ST_Vendor>();
+
+            rslt = dao.ST_Vendor.Where(currVendor => currVendor.del_yn == 0).Where(currVendor => currVendor.uniform_num == data.uniform_num).ToList();
+
+            if (data.serno == 0)
+            {
+
+                if (rslt.Count == 1)
+                {
+                    isUni = false;
+                }
+                else if (rslt.Count == 0)
+                {
+                    isUni = true;
+                }
+                else if (rslt.Count > 1)
+                {
+                    throw new Exception("兩筆以上的統一編號 in IsUniform_Num");
+                }
+            }
+            else
+            {
+                if (rslt.Count == 1 && rslt[0].serno == data.serno)
+                {
+                    isUni = true;
+                }
+                else if (rslt.Count == 1 && rslt[0].serno != data.serno)
+                {
+                    isUni = false;
+                }
+                else if (rslt.Count == 0)
+                {
+                    isUni = true;
+                }
+            }
+
+            return isUni;
+        }
+
         public void Dispose()
         {
             dao.Dispose();

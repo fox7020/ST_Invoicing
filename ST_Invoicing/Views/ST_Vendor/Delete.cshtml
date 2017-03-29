@@ -1,0 +1,86 @@
+﻿@model ST_Invoicing.Models.ST_Vendor
+
+@{
+    ViewBag.Title = "南臺灣-刪除廠商";
+}
+
+<h2>刪除廠商</h2>
+
+<h3>確定刪除此筆資料?</h3>
+<div>  
+    <hr />
+    <dl class="dl-horizontal">   
+        <dt>
+            @Html.DisplayNameFor(model => model.vendor_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vendor_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contact_person)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contact_person)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vendor_tel1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vendor_tel1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vendor_tel2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vendor_tel2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uniform_num)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uniform_num)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.payment_mathod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.payment_mathod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remark)
+        </dd>     
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="刪除" class="btn btn-default" /> |
+            @Html.ActionLink("返回廠商列表", "Index")
+        </div>
+    }
+</div>

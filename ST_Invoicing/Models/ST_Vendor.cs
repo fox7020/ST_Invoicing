@@ -11,20 +11,50 @@ namespace ST_Invoicing.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ST_Vendor
     {
         public int serno { get; set; }
         public System.Guid guid { get; set; }
+
+        [Required]
+        [Display(Name = "廠商名稱")]
+        [MaxLength(10, ErrorMessage = "廠商名稱長度不可大於{1}個字元")]
         public string vendor_name { get; set; }
+
+        [Required]
+        [Display(Name = "聯絡人")]
+        [MaxLength(5, ErrorMessage = "聯絡人長度不可大於{1}個字元")]
         public string contact_person { get; set; }
+
+        [Required]
+        [Display(Name = "連絡電話1")]
+        [MaxLength(10, ErrorMessage = "連絡電話不可大於{1}個字元")]
         public string vendor_tel1 { get; set; }
+
+        [Display(Name = "連絡電話2")]
+        [MaxLength(10, ErrorMessage = "連絡電話不可大於{1}個字元")]
         public string vendor_tel2 { get; set; }
+
+        [Required]
+        [Display(Name = "聯絡地址")]
+        [MaxLength(30, ErrorMessage = "聯絡地址不可大於{1}個字元")]
         public string address { get; set; }
+
+        [Display(Name = "統一編號")]
+        [MaxLength(8, ErrorMessage = "統一編號格式為{1}個字元")]
+        [MinLength(8, ErrorMessage = "統一編號格式為{1}個字元")]
         public string uniform_num { get; set; }
+
+        [Required]
+        [Display(Name = "付款方式")]
         public string payment_mathod { get; set; }
+
+        [Display(Name = "備註")]
         public string remark { get; set; }
         public Nullable<System.DateTime> deleted_at { get; set; }
+
         public int del_yn { get; set; }
     }
 }

@@ -10,54 +10,50 @@ using ST_Invoicing.Models;
 
 namespace ST_Invoicing.Controllers
 {
-    public class ST_MaterialController : Controller
+    public class ST_VendorController : Controller
     {
-       // private STDATAEntities db = new STDATAEntities();
 
-        private ST_MaterialDAO mST_MaterialDAO = new ST_MaterialDAO();
+        private ST_VendorDAO mST_VendorDAO = new ST_VendorDAO();
 
-        // GET: ST_Material
+        // GET: ST_Vendor
         public ActionResult Index()
         {
-            return View(mST_MaterialDAO.GetDataList_NotDel());
+            return View(mST_VendorDAO.GetDataList_NotDel());
         }
 
-        // GET: ST_Material/Details/5
+        // GET: ST_Vendor/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ST_Material sT_Material = mST_MaterialDAO.FetchBySerno(id);
-            if (sT_Material == null)
+            ST_Vendor sT_Vendor = mST_VendorDAO.FetchBySerno(id);
+            if (sT_Vendor == null)
             {
                 return HttpNotFound();
             }
-            return View(sT_Material);
+            return View(sT_Vendor);
         }
 
-        // GET: ST_Material/Create
+        // GET: ST_Vendor/Create
         public ActionResult Create()
         {
-          
-            ViewData["unit_Items"] = GetUnitItem();
-
             return View();
         }
 
-        // POST: ST_Material/Create
+        // POST: ST_Vendor/Create
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ST_Material data)
+        public ActionResult Create(ST_Vendor data)
         {
             if (ModelState.IsValid)
             {
                 data.guid = Guid.NewGuid();
 
-                mST_MaterialDAO.Insert(data);
+                mST_VendorDAO.Insert(data);
 
                 return RedirectToAction("Index");
             }
@@ -65,7 +61,7 @@ namespace ST_Invoicing.Controllers
             return View(data);
         }
 
-        // GET: ST_Material/Edit/5
+        // GET: ST_Vendor/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,13 +69,9 @@ namespace ST_Invoicing.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            ST_Material data = mST_MaterialDAO.FetchBySerno(id);
+            ST_Vendor data = mST_VendorDAO.FetchBySerno(id);
 
-            data.item_name = data.item_name.Trim();
-            data.item_species = data.item_species.Trim();
-            data.utem_unit = data.utem_unit.Trim();
-
-            ViewData["unit_Items"] = GetUnitItem();
+            CleanData(ref data);
 
             if (data == null)
             {
@@ -88,29 +80,32 @@ namespace ST_Invoicing.Controllers
             return View(data);
         }
 
-        // POST: ST_Material/Edit/5
+        // POST: ST_Vendor/Edit/5
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ST_Material data)
+        public ActionResult Edit(ST_Vendor data)
         {
             if (ModelState.IsValid)
             {
-                mST_MaterialDAO.Update(data);
+                mST_VendorDAO.Update(data);
+
                 return RedirectToAction("Index");
             }
             return View(data);
         }
 
-        // GET: ST_Material/Delete/5
+        // GET: ST_Vendor/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ST_Material data = mST_MaterialDAO.FetchBySerno(id);
+
+            ST_Vendor data = mST_VendorDAO.FetchBySerno(id);      
+
             if (data == null)
             {
                 return HttpNotFound();
@@ -118,61 +113,53 @@ namespace ST_Invoicing.Controllers
             return View(data);
         }
 
-        // POST: ST_Material/Delete/5
+        // POST: ST_Vendor/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ST_Material data = mST_MaterialDAO.FetchBySerno(id);
+            ST_Vendor data = mST_VendorDAO.FetchBySerno(id);
 
-            mST_MaterialDAO.Soft_Delete(data);
+            CleanData(ref data);
+
+            mST_VendorDAO.Soft_Delete(data);
 
             return RedirectToAction("Index");
-        }
-
-        public ActionResult CheckUniItem(ST_Material data)
-        {
-            if (data.item_name != null)
-            {
-              
-                if (mST_MaterialDAO.IsUniItem(data) == true)
-                {
-                    return Json(true, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(false, JsonRequestBehavior.AllowGet);
-                }
-
-            }
-            else                   
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-                   
-            }
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {              
-                mST_MaterialDAO.Dispose();
+            {
+                mST_VendorDAO.Dispose();
             }
             base.Dispose(disposing);
         }
 
-        private List<string> GetUnitItem()
+        private void CleanData(ref ST_Vendor data)
         {
-            List<string> unit_Items = new List<string>();
+            data.vendor_name = data.vendor_name.Trim();
+            data.contact_person = data.contact_person.Trim();
+            data.vendor_tel1 = data.vendor_tel1.Trim();
 
-            unit_Items.Add("箱");
-            unit_Items.Add("公斤");
-            unit_Items.Add("臺斤");
-            unit_Items.Add("克");
-            unit_Items.Add("公升");
-            unit_Items.Add("桶");
+            if (data.vendor_tel2 != null)
+            {
+                data.vendor_tel2 = data.vendor_tel2.Trim();
+            }
 
-            return unit_Items;
+            data.address = data.address.Trim();
+
+            if (data.uniform_num != null)
+            {
+                data.uniform_num = data.uniform_num.Trim();
+            }
+
+            data.payment_mathod = data.payment_mathod.Trim();
+
+            if (data.remark != null)
+            {
+                data.remark = data.remark.Trim();
+            }
         }
     }
 }

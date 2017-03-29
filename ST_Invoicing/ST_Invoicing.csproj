@@ -124,6 +124,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ST_EmpController.cs" />
     <Compile Include="Controllers\ST_MaterialController.cs" />
+    <Compile Include="Controllers\ST_VendorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,6 +172,7 @@
     <Compile Include="Models\ST_Vendor.cs">
       <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ST_VendorDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -335,6 +337,11 @@
     <Content Include="Views\ST_Material\Edit.cshtml" />
     <Content Include="Views\ST_Material\Index.cshtml" />
     <Content Include="Views\ST_Material\Create.cshtml" />
+    <Content Include="Views\ST_Vendor\Create.cshtml" />
+    <Content Include="Views\ST_Vendor\Delete.cshtml" />
+    <Content Include="Views\ST_Vendor\Details.cshtml" />
+    <Content Include="Views\ST_Vendor\Edit.cshtml" />
+    <Content Include="Views\ST_Vendor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

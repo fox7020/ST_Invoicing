@@ -52,7 +52,7 @@ namespace ST_Invoicing.Models
         public int salary { get; set; }
 
         [Display(Name = "帳號")]
-        [System.Web.Mvc.Remote("CheckUniID", "ST_Emp",ErrorMessage = "此帳號已有人註冊")]
+        [System.Web.Mvc.Remote("CheckUniID", "ST_Emp", ErrorMessage = "此帳號已有人註冊")]
         public string account { get; set; }
 
         [Display(Name = "密碼")]

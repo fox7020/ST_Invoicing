@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ST_Invoicing.Models.ST_Vendor>
+
+@{
+    ViewBag.Title = "南臺灣-廠商列表";
+}
+
+<h2>廠商列表</h2>
+
+<p>
+    @Html.ActionLink("新增廠商", "Create")
+</p>
+<table class="table">
+    <tr>        
+        <th>
+            @Html.DisplayNameFor(model => model.vendor_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contact_person)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vendor_tel1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vendor_tel2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.uniform_num)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.payment_mathod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.remark)
+        </th>        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>    
+        <td>
+            @Html.DisplayFor(modelItem => item.vendor_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_person)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vendor_tel1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vendor_tel2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.uniform_num)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.payment_mathod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.remark)
+        </td>     
+        <td>
+            @Html.ActionLink("編輯", "Edit", new { id=item.serno }) |
+            @Html.ActionLink("查看", "Details", new { id=item.serno }) |
+            @Html.ActionLink("刪除", "Delete", new { id=item.serno })
+        </td>
+    </tr>
+}
+
+</table>

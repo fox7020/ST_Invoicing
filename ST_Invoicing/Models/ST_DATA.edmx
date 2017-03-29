@@ -146,9 +146,9 @@
           <Property Name="vendor_name" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="contact_person" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="vendor_tel1" Type="nchar" MaxLength="20" Nullable="false" />
-          <Property Name="vendor_tel2" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="vendor_tel2" Type="nchar" MaxLength="20" />
           <Property Name="address" Type="nchar" MaxLength="30" Nullable="false" />
-          <Property Name="uniform_num" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="uniform_num" Type="nchar" MaxLength="20" />
           <Property Name="payment_mathod" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
           <Property Name="deleted_at" Type="datetime" />
@@ -310,9 +310,9 @@
           <Property Name="vendor_name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="contact_person" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="vendor_tel1" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="vendor_tel2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="vendor_tel2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="address" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="uniform_num" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="uniform_num" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="payment_mathod" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="deleted_at" Type="DateTime" Precision="3" />

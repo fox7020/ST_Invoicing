@@ -19,6 +19,11 @@ namespace ST_Invoicing.Models
             return data;
         }
 
+        public ST_Emp FetchBySerno(int? serno)
+        {
+            return dao.ST_Emp.Find(serno);
+        }
+
         public List<ST_Emp> GetDataList_NotDel()
         {
             List<ST_Emp> rslt = new List<ST_Emp>();
@@ -74,6 +79,11 @@ namespace ST_Invoicing.Models
             }
 
             return isUni;
+        }
+
+        public void Dispose()
+        {
+            dao.Dispose();
         }
     }
 }

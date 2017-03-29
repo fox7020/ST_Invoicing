@@ -90,8 +90,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.in_date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.in_date, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-10">             
+                @Html.TextBoxFor(model => model.in_date, new { @class = "form-control date-picker" })
                 @Html.ValidationMessageFor(model => model.in_date, "", new { @class = "text-danger" })
             </div>
         </div>

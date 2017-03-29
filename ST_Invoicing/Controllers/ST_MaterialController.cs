@@ -12,7 +12,7 @@ namespace ST_Invoicing.Controllers
 {
     public class ST_MaterialController : Controller
     {
-        private STDATAEntities db = new STDATAEntities();
+       // private STDATAEntities db = new STDATAEntities();
 
         private ST_MaterialDAO mST_MaterialDAO = new ST_MaterialDAO();
 
@@ -29,7 +29,7 @@ namespace ST_Invoicing.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ST_Material sT_Material = db.ST_Material.Find(id);
+            ST_Material sT_Material = mST_MaterialDAO.FetchBySerno(id);
             if (sT_Material == null)
             {
                 return HttpNotFound();
@@ -65,8 +65,8 @@ namespace ST_Invoicing.Controllers
             {
                 data.guid = Guid.NewGuid();
 
-                db.ST_Material.Add(data);
-                db.SaveChanges();
+                mST_MaterialDAO.Insert(data);
+
                 return RedirectToAction("Index");
             }
 
@@ -81,12 +81,23 @@ namespace ST_Invoicing.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            ST_Material data = db.ST_Material.Find(id);
+            ST_Material data = mST_MaterialDAO.FetchBySerno(id);
 
             data.item_name = data.item_name.Trim();
             data.item_species = data.item_species.Trim();
             data.utem_unit = data.utem_unit.Trim();
-            
+
+            List<string> unit_Items = new List<string>();
+
+            unit_Items.Add("箱");
+            unit_Items.Add("公斤");
+            unit_Items.Add("臺斤");
+            unit_Items.Add("克");
+            unit_Items.Add("公升");
+            unit_Items.Add("桶");
+
+            ViewData["unit_Items"] = unit_Items;
+
 
             if (data == null)
             {
@@ -117,7 +128,7 @@ namespace ST_Invoicing.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ST_Material data = db.ST_Material.Find(id);
+            ST_Material data = mST_MaterialDAO.FetchBySerno(id);
             if (data == null)
             {
                 return HttpNotFound();
@@ -130,7 +141,7 @@ namespace ST_Invoicing.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ST_Material data = db.ST_Material.Find(id);
+            ST_Material data = mST_MaterialDAO.FetchBySerno(id);
 
             mST_MaterialDAO.Soft_Delete(data);
 
@@ -162,8 +173,8 @@ namespace ST_Invoicing.Controllers
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            {
-                db.Dispose();
+            {              
+                mST_MaterialDAO.Dispose();
             }
             base.Dispose(disposing);
         }

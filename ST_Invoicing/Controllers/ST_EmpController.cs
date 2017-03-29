@@ -13,7 +13,7 @@ namespace ST_Invoicing.Controllers
 {
     public class ST_EmpController : Controller
     {
-        private STDATAEntities db = new STDATAEntities();
+        //private STDATAEntities db = new STDATAEntities();
 
         private ST_EmpDAO mST_EmpDAO = new ST_EmpDAO();
 
@@ -30,7 +30,7 @@ namespace ST_Invoicing.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ST_Emp sT_Emp = db.ST_Emp.Find(id);
+            ST_Emp sT_Emp = mST_EmpDAO.FetchBySerno(id);
             if (sT_Emp == null)
             {
                 return HttpNotFound();
@@ -70,7 +70,7 @@ namespace ST_Invoicing.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ST_Emp sT_Emp = db.ST_Emp.Find(id);
+            ST_Emp sT_Emp = mST_EmpDAO.FetchBySerno(id);
             if (sT_Emp == null)
             {
                 return HttpNotFound();
@@ -113,7 +113,7 @@ namespace ST_Invoicing.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ST_Emp sT_Emp = db.ST_Emp.Find(id);
+            ST_Emp sT_Emp = mST_EmpDAO.FetchBySerno(id);
             if (sT_Emp == null)
             {
                 return HttpNotFound();
@@ -126,10 +126,8 @@ namespace ST_Invoicing.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ST_Emp data = db.ST_Emp.Find(id);
-            //db.ST_Emp.Remove(sT_Emp);
-           // db.SaveChanges();
-
+            ST_Emp data = mST_EmpDAO.FetchBySerno(id);
+           
             mST_EmpDAO.Soft_Delete(data);
 
             return RedirectToAction("Index");
@@ -154,7 +152,6 @@ namespace ST_Invoicing.Controllers
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
 
-
             }
             else
             {
@@ -166,7 +163,7 @@ namespace ST_Invoicing.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                mST_EmpDAO.Dispose();
             }
             base.Dispose(disposing);
         }

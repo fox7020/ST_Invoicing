@@ -18,14 +18,14 @@ namespace ST_Invoicing.Models
         public System.Guid guid { get; set; }
         public System.DateTime purchase_date { get; set; }
         public string purchase_num { get; set; }
-        public string vendor_guid { get; set; }
-        public string material_guid { get; set; }
+        public System.Guid vendor_guid { get; set; }
+        public System.Guid material_guid { get; set; }
         public double purchase_count { get; set; }
         public int purchase_price { get; set; }
         public string in_stock { get; set; }
         public string remark { get; set; }
         public Nullable<System.DateTime> deleted_at { get; set; }
         public int del_yn { get; set; }
-        public string emp_guid { get; set; }
+        public System.Guid emp_guid { get; set; }
     }
 }

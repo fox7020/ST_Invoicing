@@ -17,11 +17,11 @@ namespace ST_Invoicing.Models
         public int serno { get; set; }
         public System.Guid guid { get; set; }
         public System.DateTime collar_date { get; set; }
-        public string material_guid { get; set; }
+        public System.Guid material_guid { get; set; }
         public double collar_count { get; set; }
         public string remark { get; set; }
         public Nullable<System.DateTime> deleted_at { get; set; }
         public int del_yn { get; set; }
-        public string emp_guid { get; set; }
+        public System.Guid emp_guid { get; set; }
     }
 }

@@ -29,10 +29,10 @@ namespace ST_Invoicing.Models
         public virtual DbSet<ST_Emp> ST_Emp { get; set; }
         public virtual DbSet<ST_InStock> ST_InStock { get; set; }
         public virtual DbSet<ST_Material> ST_Material { get; set; }
+        public virtual DbSet<ST_Surplus_Month> ST_Surplus_Month { get; set; }
+        public virtual DbSet<ST_Vendor> ST_Vendor { get; set; }
         public virtual DbSet<ST_Personal_Cost> ST_Personal_Cost { get; set; }
         public virtual DbSet<ST_Purchase> ST_Purchase { get; set; }
-        public virtual DbSet<ST_Surplus_Month> ST_Surplus_Month { get; set; }
         public virtual DbSet<ST_SurplusDay> ST_SurplusDay { get; set; }
-        public virtual DbSet<ST_Vendor> ST_Vendor { get; set; }
     }
 }

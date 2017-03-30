@@ -12,12 +12,12 @@
           <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="collar_date" Type="datetime" Nullable="false" />
-          <Property Name="material_guid" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="material_guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="collar_count" Type="float" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
           <Property Name="deleted_at" Type="datetime" />
           <Property Name="del_yn" Type="int" Nullable="false" />
-          <Property Name="emp_guid" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="ST_Emp">
           <Key>
@@ -47,7 +47,7 @@
           </Key>
           <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="material_guid" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="material_guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="count" Type="float" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
           <Property Name="deleted_at" Type="datetime" />
@@ -60,10 +60,10 @@
           <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="item_name" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="utem_unit" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="item_unit" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="item_species" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="reamrk" Type="nvarchar(max)" />
-          <Property Name="deleted_at" Type="datetime2" Precision="7" />
+          <Property Name="deleted_at" Type="datetime" />
           <Property Name="del_yn" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ST_Personal_Cost">
@@ -73,7 +73,7 @@
           <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="month" Type="datetime" Nullable="false" />
-          <Property Name="emp_guid" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="pay" Type="int" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
           <Property Name="deleted_at" Type="datetime" />
@@ -87,15 +87,15 @@
           <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="purchase_date" Type="datetime" Nullable="false" />
           <Property Name="purchase_num" Type="nchar" MaxLength="20" Nullable="false" />
-          <Property Name="vendor_guid" Type="nchar" MaxLength="30" Nullable="false" />
-          <Property Name="material_guid" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="vendor_guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="material_guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="purchase_count" Type="float" Nullable="false" />
           <Property Name="purchase_price" Type="int" Nullable="false" />
           <Property Name="in_stock" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
           <Property Name="deleted_at" Type="datetime" />
           <Property Name="del_yn" Type="int" Nullable="false" />
-          <Property Name="emp_guid" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="ST_Surplus_Month">
           <Key>
@@ -135,7 +135,7 @@
           <Property Name="remark" Type="nvarchar(max)" />
           <Property Name="deleted_at" Type="datetime" />
           <Property Name="del_yn" Type="int" Nullable="false" />
-          <Property Name="emp_guid" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="ST_Vendor">
           <Key>
@@ -176,12 +176,12 @@
           <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="guid" Type="Guid" Nullable="false" />
           <Property Name="collar_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="material_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="material_guid" Type="Guid"  Nullable="false" />
           <Property Name="collar_count" Type="Double" Nullable="false" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="deleted_at" Type="DateTime" Precision="3" />
           <Property Name="del_yn" Type="Int32" Nullable="false" />
-          <Property Name="emp_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="emp_guid" Type="Guid"  Nullable="false" />
         </EntityType>
         <EntityType Name="ST_Emp">
           <Key>
@@ -211,7 +211,7 @@
           </Key>
           <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="guid" Type="Guid" Nullable="false" />
-          <Property Name="material_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="material_guid" Type="Guid"  Nullable="false" />
           <Property Name="count" Type="Double" Nullable="false" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="deleted_at" Type="DateTime" Precision="3" />
@@ -224,42 +224,11 @@
           <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="guid" Type="Guid" Nullable="false" />
           <Property Name="item_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="utem_unit" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="item_species" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="reamrk" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="deleted_at" Type="DateTime" Precision="7" />
-          <Property Name="del_yn" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ST_Personal_Cost">
-          <Key>
-            <PropertyRef Name="serno" />
-          </Key>
-          <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="guid" Type="Guid" Nullable="false" />
-          <Property Name="month" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="emp_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="pay" Type="Int32" Nullable="false" />
-          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="deleted_at" Type="DateTime" Precision="3" />
           <Property Name="del_yn" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ST_Purchase">
-          <Key>
-            <PropertyRef Name="serno" />
-          </Key>
-          <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="guid" Type="Guid" Nullable="false" />
-          <Property Name="purchase_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="purchase_num" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="vendor_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="material_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="purchase_count" Type="Double" Nullable="false" />
-          <Property Name="purchase_price" Type="Int32" Nullable="false" />
-          <Property Name="in_stock" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="deleted_at" Type="DateTime" Precision="3" />
-          <Property Name="del_yn" Type="Int32" Nullable="false" />
-          <Property Name="emp_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="item_unit" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="ST_Surplus_Month">
           <Key>
@@ -283,24 +252,6 @@
           <Property Name="deleted_at" Type="DateTime" Precision="3" />
           <Property Name="del_yn" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="ST_SurplusDay">
-          <Key>
-            <PropertyRef Name="serno" />
-          </Key>
-          <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="guid" Type="Guid" Nullable="false" />
-          <Property Name="rec_date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="turnover" Type="Int32" Nullable="false" />
-          <Property Name="count_850" Type="Int32" Nullable="false" />
-          <Property Name="count_700" Type="Int32" Nullable="false" />
-          <Property Name="count_meal" Type="Int32" Nullable="false" />
-          <Property Name="count_rice" Type="Double" Nullable="false" />
-          <Property Name="count_soup" Type="Double" Nullable="false" />
-          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="deleted_at" Type="DateTime" Precision="3" />
-          <Property Name="del_yn" Type="Int32" Nullable="false" />
-          <Property Name="emp_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="ST_Vendor">
           <Key>
             <PropertyRef Name="serno" />
@@ -323,12 +274,61 @@
           <EntitySet Name="ST_Emp" EntityType="Self.ST_Emp" />
           <EntitySet Name="ST_InStock" EntityType="Self.ST_InStock" />
           <EntitySet Name="ST_Material" EntityType="Self.ST_Material" />
-          <EntitySet Name="ST_Personal_Cost" EntityType="Self.ST_Personal_Cost" />
-          <EntitySet Name="ST_Purchase" EntityType="Self.ST_Purchase" />
           <EntitySet Name="ST_Surplus_Month" EntityType="Self.ST_Surplus_Month" />
-          <EntitySet Name="ST_SurplusDay" EntityType="Self.ST_SurplusDay" />
           <EntitySet Name="ST_Vendor" EntityType="Self.ST_Vendor" />
+          <EntitySet Name="ST_Personal_Cost" EntityType="STDATAModel.ST_Personal_Cost" />
+          <EntitySet Name="ST_Purchase" EntityType="STDATAModel.ST_Purchase" />
+          <EntitySet Name="ST_SurplusDay" EntityType="STDATAModel.ST_SurplusDay" />
         </EntityContainer>
+        <EntityType Name="ST_Personal_Cost">
+          <Key>
+            <PropertyRef Name="serno" />
+          </Key>
+          <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="guid" Type="Guid" Nullable="false" />
+          <Property Name="month" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="emp_guid" Type="Guid" Nullable="false" />
+          <Property Name="pay" Type="Int32" Nullable="false" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="deleted_at" Type="DateTime" Precision="3" />
+          <Property Name="del_yn" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ST_Purchase">
+          <Key>
+            <PropertyRef Name="serno" />
+          </Key>
+          <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="guid" Type="Guid" Nullable="false" />
+          <Property Name="purchase_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="purchase_num" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="vendor_guid" Type="Guid" Nullable="false" />
+          <Property Name="material_guid" Type="Guid" Nullable="false" />
+          <Property Name="purchase_count" Type="Double" Nullable="false" />
+          <Property Name="purchase_price" Type="Int32" Nullable="false" />
+          <Property Name="in_stock" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="deleted_at" Type="DateTime" Precision="3" />
+          <Property Name="del_yn" Type="Int32" Nullable="false" />
+          <Property Name="emp_guid" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ST_SurplusDay">
+          <Key>
+            <PropertyRef Name="serno" />
+          </Key>
+          <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="guid" Type="Guid" Nullable="false" />
+          <Property Name="rec_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="turnover" Type="Int32" Nullable="false" />
+          <Property Name="count_850" Type="Int32" Nullable="false" />
+          <Property Name="count_700" Type="Int32" Nullable="false" />
+          <Property Name="count_meal" Type="Int32" Nullable="false" />
+          <Property Name="count_rice" Type="Double" Nullable="false" />
+          <Property Name="count_soup" Type="Double" Nullable="false" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="deleted_at" Type="DateTime" Precision="3" />
+          <Property Name="del_yn" Type="Int32" Nullable="false" />
+          <Property Name="emp_guid" Type="Guid" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -389,47 +389,14 @@
           <EntitySetMapping Name="ST_Material">
             <EntityTypeMapping TypeName="STDATAModel.ST_Material">
               <MappingFragment StoreEntitySet="ST_Material">
+                <ScalarProperty Name="item_unit" ColumnName="item_unit" />
                 <ScalarProperty Name="serno" ColumnName="serno" />
                 <ScalarProperty Name="guid" ColumnName="guid" />
                 <ScalarProperty Name="item_name" ColumnName="item_name" />
-                <ScalarProperty Name="utem_unit" ColumnName="utem_unit" />
                 <ScalarProperty Name="item_species" ColumnName="item_species" />
                 <ScalarProperty Name="reamrk" ColumnName="reamrk" />
                 <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
                 <ScalarProperty Name="del_yn" ColumnName="del_yn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ST_Personal_Cost">
-            <EntityTypeMapping TypeName="STDATAModel.ST_Personal_Cost">
-              <MappingFragment StoreEntitySet="ST_Personal_Cost">
-                <ScalarProperty Name="serno" ColumnName="serno" />
-                <ScalarProperty Name="guid" ColumnName="guid" />
-                <ScalarProperty Name="month" ColumnName="month" />
-                <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
-                <ScalarProperty Name="pay" ColumnName="pay" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
-                <ScalarProperty Name="del_yn" ColumnName="del_yn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ST_Purchase">
-            <EntityTypeMapping TypeName="STDATAModel.ST_Purchase">
-              <MappingFragment StoreEntitySet="ST_Purchase">
-                <ScalarProperty Name="serno" ColumnName="serno" />
-                <ScalarProperty Name="guid" ColumnName="guid" />
-                <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
-                <ScalarProperty Name="purchase_num" ColumnName="purchase_num" />
-                <ScalarProperty Name="vendor_guid" ColumnName="vendor_guid" />
-                <ScalarProperty Name="material_guid" ColumnName="material_guid" />
-                <ScalarProperty Name="purchase_count" ColumnName="purchase_count" />
-                <ScalarProperty Name="purchase_price" ColumnName="purchase_price" />
-                <ScalarProperty Name="in_stock" ColumnName="in_stock" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
-                <ScalarProperty Name="del_yn" ColumnName="del_yn" />
-                <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -456,25 +423,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ST_SurplusDay">
-            <EntityTypeMapping TypeName="STDATAModel.ST_SurplusDay">
-              <MappingFragment StoreEntitySet="ST_SurplusDay">
-                <ScalarProperty Name="serno" ColumnName="serno" />
-                <ScalarProperty Name="guid" ColumnName="guid" />
-                <ScalarProperty Name="rec_date" ColumnName="rec_date" />
-                <ScalarProperty Name="turnover" ColumnName="turnover" />
-                <ScalarProperty Name="count_850" ColumnName="count_850" />
-                <ScalarProperty Name="count_700" ColumnName="count_700" />
-                <ScalarProperty Name="count_meal" ColumnName="count_meal" />
-                <ScalarProperty Name="count_rice" ColumnName="count_rice" />
-                <ScalarProperty Name="count_soup" ColumnName="count_soup" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
-                <ScalarProperty Name="del_yn" ColumnName="del_yn" />
-                <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ST_Vendor">
             <EntityTypeMapping TypeName="STDATAModel.ST_Vendor">
               <MappingFragment StoreEntitySet="ST_Vendor">
@@ -490,6 +438,58 @@
                 <ScalarProperty Name="remark" ColumnName="remark" />
                 <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
                 <ScalarProperty Name="del_yn" ColumnName="del_yn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ST_Personal_Cost">
+            <EntityTypeMapping TypeName="STDATAModel.ST_Personal_Cost">
+              <MappingFragment StoreEntitySet="ST_Personal_Cost">
+                <ScalarProperty Name="del_yn" ColumnName="del_yn" />
+                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="pay" ColumnName="pay" />
+                <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="guid" ColumnName="guid" />
+                <ScalarProperty Name="serno" ColumnName="serno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ST_Purchase">
+            <EntityTypeMapping TypeName="STDATAModel.ST_Purchase">
+              <MappingFragment StoreEntitySet="ST_Purchase">
+                <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
+                <ScalarProperty Name="del_yn" ColumnName="del_yn" />
+                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="in_stock" ColumnName="in_stock" />
+                <ScalarProperty Name="purchase_price" ColumnName="purchase_price" />
+                <ScalarProperty Name="purchase_count" ColumnName="purchase_count" />
+                <ScalarProperty Name="material_guid" ColumnName="material_guid" />
+                <ScalarProperty Name="vendor_guid" ColumnName="vendor_guid" />
+                <ScalarProperty Name="purchase_num" ColumnName="purchase_num" />
+                <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+                <ScalarProperty Name="guid" ColumnName="guid" />
+                <ScalarProperty Name="serno" ColumnName="serno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ST_SurplusDay">
+            <EntityTypeMapping TypeName="STDATAModel.ST_SurplusDay">
+              <MappingFragment StoreEntitySet="ST_SurplusDay">
+                <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
+                <ScalarProperty Name="del_yn" ColumnName="del_yn" />
+                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="count_soup" ColumnName="count_soup" />
+                <ScalarProperty Name="count_rice" ColumnName="count_rice" />
+                <ScalarProperty Name="count_meal" ColumnName="count_meal" />
+                <ScalarProperty Name="count_700" ColumnName="count_700" />
+                <ScalarProperty Name="count_850" ColumnName="count_850" />
+                <ScalarProperty Name="turnover" ColumnName="turnover" />
+                <ScalarProperty Name="rec_date" ColumnName="rec_date" />
+                <ScalarProperty Name="guid" ColumnName="guid" />
+                <ScalarProperty Name="serno" ColumnName="serno" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

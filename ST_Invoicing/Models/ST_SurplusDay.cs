@@ -26,6 +26,6 @@ namespace ST_Invoicing.Models
         public string remark { get; set; }
         public Nullable<System.DateTime> deleted_at { get; set; }
         public int del_yn { get; set; }
-        public string emp_guid { get; set; }
+        public System.Guid emp_guid { get; set; }
     }
 }

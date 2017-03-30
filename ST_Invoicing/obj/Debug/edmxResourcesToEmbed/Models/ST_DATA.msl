@@ -55,47 +55,14 @@
     <EntitySetMapping Name="ST_Material">
       <EntityTypeMapping TypeName="STDATAModel.ST_Material">
         <MappingFragment StoreEntitySet="ST_Material">
+          <ScalarProperty Name="item_unit" ColumnName="item_unit" />
           <ScalarProperty Name="serno" ColumnName="serno" />
           <ScalarProperty Name="guid" ColumnName="guid" />
           <ScalarProperty Name="item_name" ColumnName="item_name" />
-          <ScalarProperty Name="utem_unit" ColumnName="utem_unit" />
           <ScalarProperty Name="item_species" ColumnName="item_species" />
           <ScalarProperty Name="reamrk" ColumnName="reamrk" />
           <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
           <ScalarProperty Name="del_yn" ColumnName="del_yn" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ST_Personal_Cost">
-      <EntityTypeMapping TypeName="STDATAModel.ST_Personal_Cost">
-        <MappingFragment StoreEntitySet="ST_Personal_Cost">
-          <ScalarProperty Name="serno" ColumnName="serno" />
-          <ScalarProperty Name="guid" ColumnName="guid" />
-          <ScalarProperty Name="month" ColumnName="month" />
-          <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
-          <ScalarProperty Name="pay" ColumnName="pay" />
-          <ScalarProperty Name="remark" ColumnName="remark" />
-          <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
-          <ScalarProperty Name="del_yn" ColumnName="del_yn" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ST_Purchase">
-      <EntityTypeMapping TypeName="STDATAModel.ST_Purchase">
-        <MappingFragment StoreEntitySet="ST_Purchase">
-          <ScalarProperty Name="serno" ColumnName="serno" />
-          <ScalarProperty Name="guid" ColumnName="guid" />
-          <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
-          <ScalarProperty Name="purchase_num" ColumnName="purchase_num" />
-          <ScalarProperty Name="vendor_guid" ColumnName="vendor_guid" />
-          <ScalarProperty Name="material_guid" ColumnName="material_guid" />
-          <ScalarProperty Name="purchase_count" ColumnName="purchase_count" />
-          <ScalarProperty Name="purchase_price" ColumnName="purchase_price" />
-          <ScalarProperty Name="in_stock" ColumnName="in_stock" />
-          <ScalarProperty Name="remark" ColumnName="remark" />
-          <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
-          <ScalarProperty Name="del_yn" ColumnName="del_yn" />
-          <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -122,25 +89,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ST_SurplusDay">
-      <EntityTypeMapping TypeName="STDATAModel.ST_SurplusDay">
-        <MappingFragment StoreEntitySet="ST_SurplusDay">
-          <ScalarProperty Name="serno" ColumnName="serno" />
-          <ScalarProperty Name="guid" ColumnName="guid" />
-          <ScalarProperty Name="rec_date" ColumnName="rec_date" />
-          <ScalarProperty Name="turnover" ColumnName="turnover" />
-          <ScalarProperty Name="count_850" ColumnName="count_850" />
-          <ScalarProperty Name="count_700" ColumnName="count_700" />
-          <ScalarProperty Name="count_meal" ColumnName="count_meal" />
-          <ScalarProperty Name="count_rice" ColumnName="count_rice" />
-          <ScalarProperty Name="count_soup" ColumnName="count_soup" />
-          <ScalarProperty Name="remark" ColumnName="remark" />
-          <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
-          <ScalarProperty Name="del_yn" ColumnName="del_yn" />
-          <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ST_Vendor">
       <EntityTypeMapping TypeName="STDATAModel.ST_Vendor">
         <MappingFragment StoreEntitySet="ST_Vendor">
@@ -156,6 +104,58 @@
           <ScalarProperty Name="remark" ColumnName="remark" />
           <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
           <ScalarProperty Name="del_yn" ColumnName="del_yn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ST_Personal_Cost">
+      <EntityTypeMapping TypeName="STDATAModel.ST_Personal_Cost">
+        <MappingFragment StoreEntitySet="ST_Personal_Cost">
+          <ScalarProperty Name="del_yn" ColumnName="del_yn" />
+          <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="pay" ColumnName="pay" />
+          <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
+          <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="guid" ColumnName="guid" />
+          <ScalarProperty Name="serno" ColumnName="serno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ST_Purchase">
+      <EntityTypeMapping TypeName="STDATAModel.ST_Purchase">
+        <MappingFragment StoreEntitySet="ST_Purchase">
+          <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
+          <ScalarProperty Name="del_yn" ColumnName="del_yn" />
+          <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="in_stock" ColumnName="in_stock" />
+          <ScalarProperty Name="purchase_price" ColumnName="purchase_price" />
+          <ScalarProperty Name="purchase_count" ColumnName="purchase_count" />
+          <ScalarProperty Name="material_guid" ColumnName="material_guid" />
+          <ScalarProperty Name="vendor_guid" ColumnName="vendor_guid" />
+          <ScalarProperty Name="purchase_num" ColumnName="purchase_num" />
+          <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+          <ScalarProperty Name="guid" ColumnName="guid" />
+          <ScalarProperty Name="serno" ColumnName="serno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ST_SurplusDay">
+      <EntityTypeMapping TypeName="STDATAModel.ST_SurplusDay">
+        <MappingFragment StoreEntitySet="ST_SurplusDay">
+          <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
+          <ScalarProperty Name="del_yn" ColumnName="del_yn" />
+          <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="count_soup" ColumnName="count_soup" />
+          <ScalarProperty Name="count_rice" ColumnName="count_rice" />
+          <ScalarProperty Name="count_meal" ColumnName="count_meal" />
+          <ScalarProperty Name="count_700" ColumnName="count_700" />
+          <ScalarProperty Name="count_850" ColumnName="count_850" />
+          <ScalarProperty Name="turnover" ColumnName="turnover" />
+          <ScalarProperty Name="rec_date" ColumnName="rec_date" />
+          <ScalarProperty Name="guid" ColumnName="guid" />
+          <ScalarProperty Name="serno" ColumnName="serno" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -7,12 +7,12 @@
     <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="collar_date" Type="datetime" Nullable="false" />
-    <Property Name="material_guid" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="material_guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="collar_count" Type="float" Nullable="false" />
     <Property Name="remark" Type="nvarchar(max)" />
     <Property Name="deleted_at" Type="datetime" />
     <Property Name="del_yn" Type="int" Nullable="false" />
-    <Property Name="emp_guid" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="ST_Emp">
     <Key>
@@ -42,7 +42,7 @@
     </Key>
     <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="material_guid" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="material_guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="count" Type="float" Nullable="false" />
     <Property Name="remark" Type="nvarchar(max)" />
     <Property Name="deleted_at" Type="datetime" />
@@ -55,10 +55,10 @@
     <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="item_name" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="utem_unit" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="item_unit" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="item_species" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="reamrk" Type="nvarchar(max)" />
-    <Property Name="deleted_at" Type="datetime2" Precision="7" />
+    <Property Name="deleted_at" Type="datetime" />
     <Property Name="del_yn" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ST_Personal_Cost">
@@ -68,7 +68,7 @@
     <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="month" Type="datetime" Nullable="false" />
-    <Property Name="emp_guid" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="pay" Type="int" Nullable="false" />
     <Property Name="remark" Type="nvarchar(max)" />
     <Property Name="deleted_at" Type="datetime" />
@@ -82,15 +82,15 @@
     <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="purchase_date" Type="datetime" Nullable="false" />
     <Property Name="purchase_num" Type="nchar" MaxLength="20" Nullable="false" />
-    <Property Name="vendor_guid" Type="nchar" MaxLength="30" Nullable="false" />
-    <Property Name="material_guid" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="vendor_guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="material_guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="purchase_count" Type="float" Nullable="false" />
     <Property Name="purchase_price" Type="int" Nullable="false" />
     <Property Name="in_stock" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="remark" Type="nvarchar(max)" />
     <Property Name="deleted_at" Type="datetime" />
     <Property Name="del_yn" Type="int" Nullable="false" />
-    <Property Name="emp_guid" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="ST_Surplus_Month">
     <Key>
@@ -130,7 +130,7 @@
     <Property Name="remark" Type="nvarchar(max)" />
     <Property Name="deleted_at" Type="datetime" />
     <Property Name="del_yn" Type="int" Nullable="false" />
-    <Property Name="emp_guid" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="ST_Vendor">
     <Key>

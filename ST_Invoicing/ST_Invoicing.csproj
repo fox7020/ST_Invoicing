@@ -155,6 +155,7 @@
     <Compile Include="Models\ST_InStock.cs">
       <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ST_InStockDAO.cs" />
     <Compile Include="Models\ST_Material.cs">
       <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>

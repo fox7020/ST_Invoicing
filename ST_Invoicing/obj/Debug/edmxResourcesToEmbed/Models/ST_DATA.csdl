@@ -7,12 +7,12 @@
     <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="guid" Type="Guid" Nullable="false" />
     <Property Name="collar_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="material_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="material_guid" Type="Guid" Nullable="false" />
     <Property Name="collar_count" Type="Double" Nullable="false" />
     <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="deleted_at" Type="DateTime" Precision="3" />
     <Property Name="del_yn" Type="Int32" Nullable="false" />
-    <Property Name="emp_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="emp_guid" Type="Guid" Nullable="false" />
   </EntityType>
   <EntityType Name="ST_Emp">
     <Key>
@@ -42,7 +42,7 @@
     </Key>
     <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="guid" Type="Guid" Nullable="false" />
-    <Property Name="material_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="material_guid" Type="Guid" Nullable="false" />
     <Property Name="count" Type="Double" Nullable="false" />
     <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="deleted_at" Type="DateTime" Precision="3" />
@@ -55,42 +55,11 @@
     <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="guid" Type="Guid" Nullable="false" />
     <Property Name="item_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="utem_unit" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="item_species" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="reamrk" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="deleted_at" Type="DateTime" Precision="7" />
-    <Property Name="del_yn" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ST_Personal_Cost">
-    <Key>
-      <PropertyRef Name="serno" />
-    </Key>
-    <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="guid" Type="Guid" Nullable="false" />
-    <Property Name="month" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="emp_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="pay" Type="Int32" Nullable="false" />
-    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="deleted_at" Type="DateTime" Precision="3" />
     <Property Name="del_yn" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ST_Purchase">
-    <Key>
-      <PropertyRef Name="serno" />
-    </Key>
-    <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="guid" Type="Guid" Nullable="false" />
-    <Property Name="purchase_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="purchase_num" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="vendor_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="material_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="purchase_count" Type="Double" Nullable="false" />
-    <Property Name="purchase_price" Type="Int32" Nullable="false" />
-    <Property Name="in_stock" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="deleted_at" Type="DateTime" Precision="3" />
-    <Property Name="del_yn" Type="Int32" Nullable="false" />
-    <Property Name="emp_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="item_unit" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="ST_Surplus_Month">
     <Key>
@@ -114,24 +83,6 @@
     <Property Name="deleted_at" Type="DateTime" Precision="3" />
     <Property Name="del_yn" Type="Int32" Nullable="false" />
   </EntityType>
-  <EntityType Name="ST_SurplusDay">
-    <Key>
-      <PropertyRef Name="serno" />
-    </Key>
-    <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="guid" Type="Guid" Nullable="false" />
-    <Property Name="rec_date" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="turnover" Type="Int32" Nullable="false" />
-    <Property Name="count_850" Type="Int32" Nullable="false" />
-    <Property Name="count_700" Type="Int32" Nullable="false" />
-    <Property Name="count_meal" Type="Int32" Nullable="false" />
-    <Property Name="count_rice" Type="Double" Nullable="false" />
-    <Property Name="count_soup" Type="Double" Nullable="false" />
-    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="deleted_at" Type="DateTime" Precision="3" />
-    <Property Name="del_yn" Type="Int32" Nullable="false" />
-    <Property Name="emp_guid" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-  </EntityType>
   <EntityType Name="ST_Vendor">
     <Key>
       <PropertyRef Name="serno" />
@@ -154,10 +105,59 @@
     <EntitySet Name="ST_Emp" EntityType="Self.ST_Emp" />
     <EntitySet Name="ST_InStock" EntityType="Self.ST_InStock" />
     <EntitySet Name="ST_Material" EntityType="Self.ST_Material" />
-    <EntitySet Name="ST_Personal_Cost" EntityType="Self.ST_Personal_Cost" />
-    <EntitySet Name="ST_Purchase" EntityType="Self.ST_Purchase" />
     <EntitySet Name="ST_Surplus_Month" EntityType="Self.ST_Surplus_Month" />
-    <EntitySet Name="ST_SurplusDay" EntityType="Self.ST_SurplusDay" />
     <EntitySet Name="ST_Vendor" EntityType="Self.ST_Vendor" />
+    <EntitySet Name="ST_Personal_Cost" EntityType="STDATAModel.ST_Personal_Cost" />
+    <EntitySet Name="ST_Purchase" EntityType="STDATAModel.ST_Purchase" />
+    <EntitySet Name="ST_SurplusDay" EntityType="STDATAModel.ST_SurplusDay" />
   </EntityContainer>
+  <EntityType Name="ST_Personal_Cost">
+    <Key>
+      <PropertyRef Name="serno" />
+    </Key>
+    <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="guid" Type="Guid" Nullable="false" />
+    <Property Name="month" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="emp_guid" Type="Guid" Nullable="false" />
+    <Property Name="pay" Type="Int32" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="deleted_at" Type="DateTime" Precision="3" />
+    <Property Name="del_yn" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_Purchase">
+    <Key>
+      <PropertyRef Name="serno" />
+    </Key>
+    <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="guid" Type="Guid" Nullable="false" />
+    <Property Name="purchase_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="purchase_num" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="vendor_guid" Type="Guid" Nullable="false" />
+    <Property Name="material_guid" Type="Guid" Nullable="false" />
+    <Property Name="purchase_count" Type="Double" Nullable="false" />
+    <Property Name="purchase_price" Type="Int32" Nullable="false" />
+    <Property Name="in_stock" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="deleted_at" Type="DateTime" Precision="3" />
+    <Property Name="del_yn" Type="Int32" Nullable="false" />
+    <Property Name="emp_guid" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ST_SurplusDay">
+    <Key>
+      <PropertyRef Name="serno" />
+    </Key>
+    <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="guid" Type="Guid" Nullable="false" />
+    <Property Name="rec_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="turnover" Type="Int32" Nullable="false" />
+    <Property Name="count_850" Type="Int32" Nullable="false" />
+    <Property Name="count_700" Type="Int32" Nullable="false" />
+    <Property Name="count_meal" Type="Int32" Nullable="false" />
+    <Property Name="count_rice" Type="Double" Nullable="false" />
+    <Property Name="count_soup" Type="Double" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="deleted_at" Type="DateTime" Precision="3" />
+    <Property Name="del_yn" Type="Int32" Nullable="false" />
+    <Property Name="emp_guid" Type="Guid" Nullable="false" />
+  </EntityType>
 </Schema>

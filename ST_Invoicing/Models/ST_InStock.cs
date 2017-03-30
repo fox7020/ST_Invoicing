@@ -11,12 +11,19 @@ namespace ST_Invoicing.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class ST_InStock
     {
+        public ST_InStock(System.Guid material_guid)
+        {
+            this.guid = Guid.NewGuid();
+            this.count = 0;
+            this.material_guid = material_guid;
+        }
+
         public int serno { get; set; }
         public System.Guid guid { get; set; }
-        public string material_guid { get; set; }
+        public System.Guid material_guid { get; set; }
         public double count { get; set; }
         public string remark { get; set; }
         public Nullable<System.DateTime> deleted_at { get; set; }

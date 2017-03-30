@@ -17,7 +17,7 @@ namespace ST_Invoicing.Models
         public int serno { get; set; }
         public System.Guid guid { get; set; }
         public System.DateTime month { get; set; }
-        public string emp_guid { get; set; }
+        public System.Guid emp_guid { get; set; }
         public int pay { get; set; }
         public string remark { get; set; }
         public Nullable<System.DateTime> deleted_at { get; set; }

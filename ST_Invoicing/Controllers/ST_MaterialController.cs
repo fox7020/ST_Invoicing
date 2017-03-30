@@ -15,6 +15,8 @@ namespace ST_Invoicing.Controllers
     {
         private ST_MaterialDAO mST_MaterialDAO = new ST_MaterialDAO();
 
+        private ST_InStockDAO mST_InStockDAO = new ST_InStockDAO();
+
         // GET: ST_Material
         public ActionResult Index()
         {
@@ -59,6 +61,10 @@ namespace ST_Invoicing.Controllers
 
                 mST_MaterialDAO.Insert(data);
 
+                ST_InStock new_Stock = new ST_InStock(data.guid);
+
+                mST_InStockDAO.Insert(new_Stock);
+
                 return RedirectToAction("Index");
             }
 
@@ -77,7 +83,7 @@ namespace ST_Invoicing.Controllers
 
             data.item_name = data.item_name.Trim();
             data.item_species = data.item_species.Trim();
-            data.utem_unit = data.utem_unit.Trim();
+            data.item_unit = data.item_unit.Trim();
 
             ViewData["unit_Items"] = GetUnitItem();
 

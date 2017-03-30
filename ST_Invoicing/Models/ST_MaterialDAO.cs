@@ -72,7 +72,7 @@ namespace ST_Invoicing.Models
 
             data.item_species = data.item_species.Trim();
 
-            data.utem_unit = data.utem_unit.Trim();
+            data.item_unit = data.item_unit.Trim();
 
             dao.Entry(data).State = EntityState.Modified;
 

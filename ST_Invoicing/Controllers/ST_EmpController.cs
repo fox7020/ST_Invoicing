@@ -11,6 +11,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace ST_Invoicing.Controllers
 {
+    [Authorize]
     public class ST_EmpController : Controller
     {
         //private STDATAEntities db = new STDATAEntities();
@@ -19,7 +20,7 @@ namespace ST_Invoicing.Controllers
 
         // GET: ST_Emp
         public ActionResult Index()
-        {        
+        {
             return View(mST_EmpDAO.GetDataList_NotDel());
         }
 
@@ -56,7 +57,7 @@ namespace ST_Invoicing.Controllers
                 data.guid = Guid.NewGuid();
 
                 mST_EmpDAO.Insert(data);
-             
+
                 return RedirectToAction("Index");
             }
 
@@ -97,7 +98,7 @@ namespace ST_Invoicing.Controllers
         {
 
             if (ModelState.IsValid)
-            {             
+            {
                 mST_EmpDAO.Update(sT_Emp);
 
                 return RedirectToAction("Index");
@@ -127,7 +128,7 @@ namespace ST_Invoicing.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ST_Emp data = mST_EmpDAO.FetchBySerno(id);
-           
+
             mST_EmpDAO.Soft_Delete(data);
 
             return RedirectToAction("Index");
@@ -156,7 +157,7 @@ namespace ST_Invoicing.Controllers
             else
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
-            }        
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -166,6 +167,6 @@ namespace ST_Invoicing.Controllers
                 mST_EmpDAO.Dispose();
             }
             base.Dispose(disposing);
-        }      
+        }
     }
 }

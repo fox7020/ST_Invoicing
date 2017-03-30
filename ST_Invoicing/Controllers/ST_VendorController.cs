@@ -10,6 +10,7 @@ using ST_Invoicing.Models;
 
 namespace ST_Invoicing.Controllers
 {
+    [Authorize]
     public class ST_VendorController : Controller
     {
 

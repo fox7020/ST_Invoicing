@@ -24,6 +24,20 @@ namespace ST_Invoicing.Models
             return dao.ST_Emp.Find(serno);
         }
 
+        public ST_Emp FetchByAccount(string account)
+        {
+            List<ST_Emp> rslt = new List<ST_Emp>();
+
+            rslt = dao.ST_Emp.Where(currEmp => currEmp.account.Equals(account)).ToList();
+
+            if (rslt.Count == 1)
+            {
+                return rslt[0];
+            }
+
+            return null;
+        }
+
         public List<ST_Emp> GetDataList_NotDel()
         {
             List<ST_Emp> rslt = new List<ST_Emp>();
@@ -79,6 +93,26 @@ namespace ST_Invoicing.Models
             }
 
             return isUni;
+        }
+
+        public bool isCurrentUser(string account, string password)
+        {
+            bool isCurrent = false;
+
+            List<ST_Emp> rslt = new List<ST_Emp>();
+
+            rslt = dao.ST_Emp.Where(currEmp => currEmp.del_yn == 0).Where(currEmp => currEmp.account.Equals(account)).Where(currEmp => currEmp.password.Equals(password)).ToList();
+
+            if (rslt.Count == 1)
+            {
+                isCurrent = true;
+            }
+            else
+            {
+                isCurrent = false;
+            }
+
+            return isCurrent;
         }
 
         public void Dispose()

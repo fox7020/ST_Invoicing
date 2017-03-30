@@ -1,0 +1,66 @@
+﻿@model ST_Invoicing.Models.ST_InStock
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ST_InStock</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.guid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.material_guid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.material_guid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.deleted_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deleted_at)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.del_yn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.del_yn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.serno }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

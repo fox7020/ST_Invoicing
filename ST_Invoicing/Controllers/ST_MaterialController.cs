@@ -10,6 +10,7 @@ using ST_Invoicing.Models;
 
 namespace ST_Invoicing.Controllers
 {
+    [Authorize]
     public class ST_MaterialController : Controller
     {
         private ST_MaterialDAO mST_MaterialDAO = new ST_MaterialDAO();
@@ -17,6 +18,7 @@ namespace ST_Invoicing.Controllers
         // GET: ST_Material
         public ActionResult Index()
         {
+            string account = User.Identity.Name;
             return View(mST_MaterialDAO.GetDataList_NotDel());
         }
 

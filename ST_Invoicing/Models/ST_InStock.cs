@@ -11,6 +11,7 @@ namespace ST_Invoicing.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class ST_InStock
     {
@@ -21,12 +22,23 @@ namespace ST_Invoicing.Models
             this.material_guid = material_guid;
         }
 
+        public ST_InStock()
+        {
+
+        }
+
         public int serno { get; set; }
         public System.Guid guid { get; set; }
         public System.Guid material_guid { get; set; }
+
+        [Required]
+        [Range(0,9999,ErrorMessage = "數量不可小於0")]
         public double count { get; set; }
         public string remark { get; set; }
         public Nullable<System.DateTime> deleted_at { get; set; }
         public int del_yn { get; set; }
+
+        [ScaffoldColumn(false)]
+        public string material_name { get; set; }
     }
 }

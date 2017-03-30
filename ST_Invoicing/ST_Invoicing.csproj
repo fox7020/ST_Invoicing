@@ -122,6 +122,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ST_CollarController.cs" />
     <Compile Include="Controllers\ST_EmpController.cs" />
     <Compile Include="Controllers\ST_InStockController.cs" />
     <Compile Include="Controllers\ST_MaterialController.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Models\ST_Collar.cs">
       <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ST_CollarDAO.cs" />
     <Compile Include="Models\ST_Data.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -354,6 +356,11 @@
     <Content Include="Views\ST_InStock\Edit.cshtml" />
     <Content Include="Views\ST_InStock\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\ST_Collar\Create.cshtml" />
+    <Content Include="Views\ST_Collar\Delete.cshtml" />
+    <Content Include="Views\ST_Collar\Details.cshtml" />
+    <Content Include="Views\ST_Collar\Edit.cshtml" />
+    <Content Include="Views\ST_Collar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

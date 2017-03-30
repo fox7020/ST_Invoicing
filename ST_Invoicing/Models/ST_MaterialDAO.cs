@@ -24,11 +24,11 @@ namespace ST_Invoicing.Models
             return dao.ST_Material.Find(serno);
         }
 
-        public ST_Material FetchByGuid(string guid)
+        public ST_Material FetchByGuid(Guid guid)
         {
             List<ST_Material> rslt = new List<ST_Material>();
 
-            rslt = dao.ST_Material.Where(currMaterial => currMaterial.guid == Guid.Parse(guid)).ToList();
+            rslt = dao.ST_Material.Where(currMaterial => currMaterial.guid.Equals(guid)).ToList();
 
             if (rslt.Count == 1)
             {         
@@ -40,6 +40,24 @@ namespace ST_Invoicing.Models
             
                 throw new Exception("兩筆以上的ST_Material in Fetch");
             }       
+
+            return null;
+        }
+    
+        public ST_Material FetchByItemName(string item_name)
+        {
+            List<ST_Material> rslt = new List<ST_Material>();
+
+            rslt = dao.ST_Material.Where(currMaterial => currMaterial.del_yn == 0).Where(currMaterial => currMaterial.item_name.Equals(item_name)).ToList();
+
+            if (rslt.Count == 1)
+            {
+                return rslt[0];
+            }
+            else if (rslt.Count > 1)
+            {
+                throw new Exception("2筆以上的原物料名稱!!!");
+            }
 
             return null;
         }

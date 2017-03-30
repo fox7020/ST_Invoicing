@@ -15,6 +15,10 @@ namespace ST_Invoicing.Controllers
     {
         private STDATAEntities db = new STDATAEntities();
 
+        private ST_InStockDAO mST_InStockDAO = new ST_InStockDAO();
+
+        private ST_MaterialDAO mST_MaterialDAO = new ST_MaterialDAO();
+
         // GET: ST_InStock
         public ActionResult Index()
         {
@@ -66,12 +70,15 @@ namespace ST_Invoicing.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ST_InStock sT_InStock = db.ST_InStock.Find(id);
-            if (sT_InStock == null)
+            ST_InStock data = db.ST_InStock.Find(id);
+
+            data.material_name = mST_MaterialDAO.FetchByGuid(data.material_guid).item_name;
+
+            if (data == null)
             {
                 return HttpNotFound();
             }
-            return View(sT_InStock);
+            return View(data);
         }
 
         // POST: ST_InStock/Edit/5
@@ -79,15 +86,15 @@ namespace ST_Invoicing.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "serno,guid,material_guid,count,remark,deleted_at,del_yn")] ST_InStock sT_InStock)
+        public ActionResult Edit(ST_InStock data)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sT_InStock).State = EntityState.Modified;
-                db.SaveChanges();
+                mST_InStockDAO.AddStockCount(data.material_guid, data.count);
+
                 return RedirectToAction("Index");
             }
-            return View(sT_InStock);
+            return View(data);
         }
 
         // GET: ST_InStock/Delete/5
@@ -120,6 +127,7 @@ namespace ST_Invoicing.Controllers
         {
             if (disposing)
             {
+                mST_InStockDAO.Dispose();
                 db.Dispose();
             }
             base.Dispose(disposing);

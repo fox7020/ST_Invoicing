@@ -1,23 +1,20 @@
 ﻿@model ST_Invoicing.Models.ST_Collar
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "南臺灣-提領檢視";
 }
 
-<h2>Details</h2>
+<script>
+    $(document).ready(function () {
+        $("#ST_Collar").addClass("active");
+    });
+</script>
 
-<div>
-    <h4>ST_Collar</h4>
+<h2>提領檢視</h2>
+
+<div>  
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.guid)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.guid)
-        </dd>
-
+    <dl class="dl-horizontal">    
         <dt>
             @Html.DisplayNameFor(model => model.collar_date)
         </dt>
@@ -27,11 +24,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.material_guid)
+            @Html.DisplayNameFor(model => model.material_name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.material_guid)
+            @Html.DisplayFor(model => model.material_name)
         </dd>
 
         <dt>
@@ -49,34 +46,16 @@
         <dd>
             @Html.DisplayFor(model => model.remark)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.deleted_at)
+            @Html.DisplayNameFor(model => model.emp_name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.deleted_at)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.del_yn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.del_yn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.emp_guid)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.emp_guid)
+            @Html.DisplayFor(model => model.emp_name)
         </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.serno }) |
-    @Html.ActionLink("Back to List", "Index")
+<p>    
+    @Html.ActionLink("返回提領列表", "Index")
 </p>

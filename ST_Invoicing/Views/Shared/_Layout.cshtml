@@ -60,7 +60,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">南臺灣土魠魚羹-進銷存管理</a>
+                <a class="navbar-brand" href="~/Home/Index">南臺灣土魠魚羹-進銷存管理</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -169,20 +169,26 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i>員工資料</a>
+                    <li id="Home">
+                        <a href="~/Home/Index"><i class="fa fa-fw fa-dashboard"></i>首頁</a>
+                    </li>
+                    <li id="ST_Emp">
+                        <a href="~/ST_Emp/Index"><i class="fa fa-fw fa-table"></i>員工資料</a>
+                    </li>                  
+                    <li id="ST_Vendor">
+                        <a href="~/ST_Vendor/Index"><i class="fa fa-fw fa-table"></i>廠商</a>
+                    </li>
+                    <li id="ST_Material">
+                        <a href="~/ST_Material/Index"><i class="fa fa-fw fa-table"></i>原物料</a>
+                    </li>
+                    <li id = "ST_Collar">
+                        <a href="~/ST_Collar/Index"><i class="fa fa-fw fa-table"></i>提領</a>
+                    </li>
+                    <li id="ST_InStock">
+                        <a href="~/ST_InStock/Index"><i class="fa fa-fw fa-table"></i>庫存</a>
                     </li>
                     <li>
-                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i>原物料</a>
-                    </li>
-                    <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i>採購紀錄</a>
-                    </li>
-                    <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i>廠商</a>
-                    </li>
-                    <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i>庫存</a>
+                        <a href="tables.html"><i class="fa fa-fw fa-table"></i>xxx</a>
                     </li>
                     <li>
                         <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>

@@ -1,13 +1,19 @@
 ﻿@model IEnumerable<ST_Invoicing.Models.ST_Emp>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "南臺灣-員工列表";
 }
 
-<h2>Index</h2>
+<script>
+    $(document).ready(function () {
+        $("#ST_Emp").addClass("active");
+    });
+</script>
+
+<h2>員工列表</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("新增員工", "Create")
 </p>
 <table class="table">
     <tr>     
@@ -83,9 +89,9 @@
             @Html.DisplayFor(modelItem => item.remark)
         </td>      
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.serno }) |
-            @Html.ActionLink("Details", "Details", new { id=item.serno }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.serno })
+            @Html.ActionLink("編輯", "Edit", new { id=item.serno }) |
+            @Html.ActionLink("查看", "Details", new { id=item.serno }) |
+            @Html.ActionLink("刪除", "Delete", new { id=item.serno })
         </td>
     </tr>
 }

@@ -354,9 +354,7 @@
     <Content Include="Views\ST_InStock\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\ST_Collar\Create.cshtml" />
-    <Content Include="Views\ST_Collar\Delete.cshtml" />
     <Content Include="Views\ST_Collar\Details.cshtml" />
-    <Content Include="Views\ST_Collar\Edit.cshtml" />
     <Content Include="Views\ST_Collar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

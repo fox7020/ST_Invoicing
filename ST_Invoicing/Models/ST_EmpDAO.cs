@@ -38,6 +38,20 @@ namespace ST_Invoicing.Models
             return null;
         }
 
+        public ST_Emp FetchByGuid(Guid guid)
+        {
+            List<ST_Emp> rslt = new List<ST_Emp>();
+
+            rslt = dao.ST_Emp.Where(currEmp => currEmp.guid.Equals(guid)).ToList();
+
+            if (rslt.Count == 1)
+            {
+                return rslt[0];
+            }
+
+            return null;
+        }
+
         public List<ST_Emp> GetDataList_NotDel()
         {
             List<ST_Emp> rslt = new List<ST_Emp>();

@@ -29,6 +29,7 @@ namespace ST_Invoicing.Models
 
         [Required]
         [Display(Name = "生日")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
         public System.DateTime emp_birthday { get; set; }
 
         [Required]
@@ -65,7 +66,11 @@ namespace ST_Invoicing.Models
 
         [Required]
         [Display(Name = "到職日")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
         public System.DateTime in_date { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
+        [Display(Name = "離職日")]
         public Nullable<System.DateTime> out_date { get; set; }
 
         [Display(Name = "備註")]

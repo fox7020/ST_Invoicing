@@ -1,73 +1,59 @@
 ﻿@model IEnumerable<ST_Invoicing.Models.ST_Collar>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "南臺灣-原物料提領";
 }
 
-<h2>Index</h2>
+<script>
+    $(document).ready(function () {
+        $("#ST_Collar").addClass("active");
+    });
+</script>
+
+<h2>原物料提領清單</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("提領", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.guid)
-        </th>
+    <tr>     
         <th>
             @Html.DisplayNameFor(model => model.collar_date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.material_guid)
+            @Html.DisplayNameFor(model => model.material_name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.collar_count)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.remark)
-        </th>
+        </th>       
         <th>
-            @Html.DisplayNameFor(model => model.deleted_at)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.del_yn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.emp_guid)
+            @Html.DisplayNameFor(model => model.emp_name)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.guid)
-        </td>
+    <tr>     
         <td>
             @Html.DisplayFor(modelItem => item.collar_date)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.material_guid)
+            @Html.DisplayFor(modelItem => item.material_name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.collar_count)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.remark)
-        </td>
+        </td>       
         <td>
-            @Html.DisplayFor(modelItem => item.deleted_at)
+            @Html.DisplayFor(modelItem => item.emp_name)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.del_yn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.emp_guid)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.serno }) |
-            @Html.ActionLink("Details", "Details", new { id=item.serno }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.serno })
+        <td>           
+            @Html.ActionLink("檢視", "Details", new { id=item.serno }) |      
         </td>
     </tr>
 }

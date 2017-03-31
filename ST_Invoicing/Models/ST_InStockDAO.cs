@@ -108,7 +108,7 @@ namespace ST_Invoicing.Models
         public void InsertBasicInStock()
         {
             /*Insert 700、850、點心盒*/
-            ST_InStock bowl_700 = new ST_InStock(Guid.Parse("AD280FDA-8B4C-4175-9A5A-8049B673F029"));
+            ST_InStock bowl_700 = new ST_InStock(Guid.Parse("E5564142-5B2C-472F-8EDB-3E957AA1BBE3"));
             ST_InStock bowl_850 = new ST_InStock(Guid.Parse("5981CDD4-C4A7-45A0-9832-E16574D1689C"));
             ST_InStock meat = new ST_InStock(Guid.Parse("258921A7-9EB2-4978-9689-6284B906230D"));
 

@@ -20,6 +20,7 @@ namespace ST_Invoicing.Models
 
         [Required]
         [Display(Name = "提領日期")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
         public System.DateTime collar_date { get; set; }
         public System.Guid material_guid { get; set; }
 
@@ -39,5 +40,9 @@ namespace ST_Invoicing.Models
         [ScaffoldColumn(false)]
         [Display(Name = "原物料名稱")]
         public string material_name { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "提領員工")]
+        public string emp_name { get; set; }
     }
 }

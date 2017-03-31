@@ -4,6 +4,12 @@
     ViewBag.Title = "南臺灣-編輯員工資料";
 }
 
+<script>
+    $(document).ready(function () {
+        $("#ST_Emp").addClass("active");
+    });
+</script>
+
 <h2>編輯員工資料</h2>
 
 
@@ -120,7 +126,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("返回員工列表", "Index")
 </div>
 
 @section Scripts {

@@ -142,6 +142,31 @@ namespace ST_Invoicing.Models
             return isUni;
         }
 
+        public void InsertBasicMaterial()
+        {
+            /*檢查700、850、點心盒有無資料*/
+
+            ST_Material bowl_700 = new ST_Material(Guid.Parse("E5564142-5B2C-472F-8EDB-3E957AA1BBE3"), "700CC碗","個","耗材");
+            ST_Material bowl_850 = new ST_Material(Guid.Parse("5981CDD4-C4A7-45A0-9832-E16574D1689C"), "850CC碗", "個", "耗材");
+            ST_Material meat = new ST_Material(Guid.Parse("258921A7-9EB2-4978-9689-6284B906230D"), "850CC碗", "個", "耗材");
+
+            if (FetchByGuid(bowl_700.guid) == null)
+            {
+                Insert(bowl_700);
+            }
+
+            if (FetchByGuid(bowl_850.guid) == null)
+            {
+                Insert(bowl_850);
+            }
+
+            if (FetchByGuid(meat.guid) == null)
+            {
+                Insert(meat);
+            }
+
+        }
+
         public void Dispose()
         {
             dao.Dispose();

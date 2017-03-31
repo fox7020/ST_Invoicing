@@ -8,16 +8,16 @@ using System.Web.Security;
 
 namespace ST_Invoicing.Controllers
 {   
-    
-
-    /// <summary>
-    /// 後台首頁、登入頁...
-    /// </summary>
+      
     [Authorize]
     public class HomeController : Controller
     {
 
         private ST_EmpDAO mST_EmpDAO = new ST_EmpDAO();
+
+        private ST_MaterialDAO mST_MaterialDAO = new ST_MaterialDAO();
+
+        private ST_InStockDAO mST_InStockDAO = new ST_InStockDAO();
 
         public ActionResult About()
         {
@@ -60,6 +60,8 @@ namespace ST_Invoicing.Controllers
             {
                 return View(vm);
             }
+
+           
             //都成功...
             //進行表單登入 ※之後User.Identity.Name的值就是vm.Account帳號的值
             //導向預設Url(Web.config裡的defaultUrl定義)或使用者原先Request的Url
@@ -93,6 +95,10 @@ namespace ST_Invoicing.Controllers
 
             ST_Emp currUser = mST_EmpDAO.FetchByAccount(User.Identity.Name);
 
+            /*檢查有無700、850、點心盒*/
+            mST_MaterialDAO.InsertBasicMaterial();
+            mST_InStockDAO.InsertBasicInStock();
+
             if (currUser != null)
             {
                 ViewData["user"] = currUser.emp_name;
@@ -110,6 +116,8 @@ namespace ST_Invoicing.Controllers
             if (disposing)
             {
                 mST_EmpDAO.Dispose();
+                mST_MaterialDAO.Dispose();
+                mST_InStockDAO.Dispose();
             }
             base.Dispose(disposing);
         }

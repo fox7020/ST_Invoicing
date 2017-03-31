@@ -13,8 +13,6 @@ namespace ST_Invoicing.Controllers
     [Authorize]
     public class ST_InStockController : Controller
     {
-        private STDATAEntities db = new STDATAEntities();
-
         private ST_InStockDAO mST_InStockDAO = new ST_InStockDAO();
 
         private ST_MaterialDAO mST_MaterialDAO = new ST_MaterialDAO();
@@ -22,45 +20,21 @@ namespace ST_Invoicing.Controllers
         // GET: ST_InStock
         public ActionResult Index()
         {
-            return View(db.ST_InStock.ToList());
-        }
+            List<ST_InStock> inStock_List = mST_InStockDAO.GetDataList_NotDel();
 
-        // GET: ST_InStock/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
+            if (inStock_List.Count > 0)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ST_InStock sT_InStock = db.ST_InStock.Find(id);
-            if (sT_InStock == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sT_InStock);
-        }
+                ST_MaterialDAO mST_MaterialDAO = new ST_MaterialDAO();
 
-        // GET: ST_InStock/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+                foreach (ST_InStock currInStock in inStock_List)
+                {
+                    ST_Material cuuMaterial = mST_MaterialDAO.FetchByGuid(currInStock.material_guid);
 
-        // POST: ST_InStock/Create
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "serno,guid,material_guid,count,remark,deleted_at,del_yn")] ST_InStock sT_InStock)
-        {
-            if (ModelState.IsValid)
-            {
-                db.ST_InStock.Add(sT_InStock);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    currInStock.material_name = cuuMaterial.item_name;
+                }
             }
 
-            return View(sT_InStock);
+            return View(inStock_List);
         }
 
         // GET: ST_InStock/Edit/5
@@ -70,7 +44,7 @@ namespace ST_Invoicing.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ST_InStock data = db.ST_InStock.Find(id);
+            ST_InStock data = mST_InStockDAO.FetchBySerno(id);
 
             data.material_name = mST_MaterialDAO.FetchByGuid(data.material_guid).item_name;
 
@@ -90,37 +64,10 @@ namespace ST_Invoicing.Controllers
         {
             if (ModelState.IsValid)
             {
-                mST_InStockDAO.AddStockCount(data.material_guid, data.count);
-
+                mST_InStockDAO.AddStockCount(data.material_guid, data.add_Count);
                 return RedirectToAction("Index");
             }
             return View(data);
-        }
-
-        // GET: ST_InStock/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ST_InStock sT_InStock = db.ST_InStock.Find(id);
-            if (sT_InStock == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sT_InStock);
-        }
-
-        // POST: ST_InStock/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            ST_InStock sT_InStock = db.ST_InStock.Find(id);
-            db.ST_InStock.Remove(sT_InStock);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
@@ -128,7 +75,6 @@ namespace ST_Invoicing.Controllers
             if (disposing)
             {
                 mST_InStockDAO.Dispose();
-                db.Dispose();
             }
             base.Dispose(disposing);
         }

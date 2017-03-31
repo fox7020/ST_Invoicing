@@ -1,61 +1,39 @@
 ﻿@model IEnumerable<ST_Invoicing.Models.ST_InStock>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "南臺灣-庫存列表";
 }
 
-<h2>Index</h2>
+<h2>原物料庫存列表</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
-    <tr>
+    <tr>      
         <th>
-            @Html.DisplayNameFor(model => model.guid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.material_guid)
+            @Html.DisplayNameFor(model => model.material_name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.count)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.remark)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.deleted_at)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.del_yn)
-        </th>
-        <th></th>
+        </th>            
+       <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr>    
         <td>
-            @Html.DisplayFor(modelItem => item.guid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.material_guid)
+            @Html.DisplayFor(modelItem => item.material_name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.count)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.remark)
-        </td>
+        </td>     
         <td>
-            @Html.DisplayFor(modelItem => item.deleted_at)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.del_yn)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.serno }) |
-            @Html.ActionLink("Details", "Details", new { id=item.serno }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.serno })
+            @Html.ActionLink("入庫", "Edit", new { id=item.serno })          
         </td>
     </tr>
 }

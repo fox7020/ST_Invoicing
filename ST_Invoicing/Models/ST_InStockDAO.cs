@@ -28,15 +28,8 @@ namespace ST_Invoicing.Models
         {
             List<ST_InStock> rslt = new List<ST_InStock>();
 
-            try
-            {
-                rslt = dao.ST_InStock.Where(currInStock => currInStock.del_yn == 0).Where(currInStock => currInStock.material_guid == material_guid).ToList();
-            }
-            catch (Exception ee)
-            {
-                throw;
-            }
-           
+            rslt = dao.ST_InStock.Where(currInStock => currInStock.del_yn == 0).Where(currInStock => currInStock.material_guid == material_guid).ToList();
+
             if (rslt.Count == 1)
             {
                 return rslt[0];
@@ -47,6 +40,15 @@ namespace ST_Invoicing.Models
             }
 
             return null;
+        }
+
+        public List<ST_InStock> GetDataList_NotDel()
+        {
+            List<ST_InStock> rslt = new List<ST_InStock>();
+
+            rslt = dao.ST_InStock.Where(currInStock => currInStock.del_yn == 0).ToList();
+
+            return rslt;
         }
 
         public ST_InStock Update(ST_InStock data)
@@ -103,6 +105,29 @@ namespace ST_Invoicing.Models
             return 0;
         }
 
+        public void InsertBasicInStock()
+        {
+            /*Insert 700、850、點心盒*/
+            ST_InStock bowl_700 = new ST_InStock(Guid.Parse("AD280FDA-8B4C-4175-9A5A-8049B673F029"));
+            ST_InStock bowl_850 = new ST_InStock(Guid.Parse("5981CDD4-C4A7-45A0-9832-E16574D1689C"));
+            ST_InStock meat = new ST_InStock(Guid.Parse("258921A7-9EB2-4978-9689-6284B906230D"));
+
+            if (FetchByMaterialGuid(bowl_700.material_guid) == null)
+            {
+                Insert(bowl_700);
+            }
+
+            if (FetchByMaterialGuid(bowl_850.material_guid) == null)
+            {
+                Insert(bowl_850);
+            }
+
+            if (FetchByMaterialGuid(meat.material_guid) == null)
+            {
+                Insert(meat);
+            }
+
+        }
         public void Dispose()
         {
             dao.Dispose();

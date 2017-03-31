@@ -350,9 +350,6 @@
     <Content Include="Views\ST_Vendor\Details.cshtml" />
     <Content Include="Views\ST_Vendor\Edit.cshtml" />
     <Content Include="Views\ST_Vendor\Index.cshtml" />
-    <Content Include="Views\ST_InStock\Create.cshtml" />
-    <Content Include="Views\ST_InStock\Delete.cshtml" />
-    <Content Include="Views\ST_InStock\Details.cshtml" />
     <Content Include="Views\ST_InStock\Edit.cshtml" />
     <Content Include="Views\ST_InStock\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />

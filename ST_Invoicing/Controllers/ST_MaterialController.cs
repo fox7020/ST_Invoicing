@@ -177,6 +177,7 @@ namespace ST_Invoicing.Controllers
             unit_Items.Add("克");
             unit_Items.Add("公升");
             unit_Items.Add("桶");
+            unit_Items.Add("個");
 
             return unit_Items;
         }   

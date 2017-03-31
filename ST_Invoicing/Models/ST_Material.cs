@@ -14,7 +14,20 @@ namespace ST_Invoicing.Models
     using System.ComponentModel.DataAnnotations;
 
     public partial class ST_Material
-    {
+    {   
+        public ST_Material()
+        {
+
+        }
+
+        public ST_Material(System.Guid guid, string item_name, string item_unit,string item_species)
+        {
+            this.guid = guid;
+            this.item_name = item_name;
+            this.item_unit = item_unit;
+            this.item_species = item_species;
+        }
+
         public int serno { get; set; }
 
         public System.Guid guid { get; set; }

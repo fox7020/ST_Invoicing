@@ -32,13 +32,21 @@ namespace ST_Invoicing.Models
         public System.Guid material_guid { get; set; }
 
         [Required]
-        [Range(0,9999,ErrorMessage = "數量不可小於0")]
+        [Range(0, 9999, ErrorMessage = "數量不可小於0")]
+        [Display(Name = "庫存量")]
         public double count { get; set; }
+
+        [Display(Name = "備註")]
         public string remark { get; set; }
         public Nullable<System.DateTime> deleted_at { get; set; }
         public int del_yn { get; set; }
 
         [ScaffoldColumn(false)]
+        [Display(Name = "原物料名稱")]
         public string material_name { get; set; }
+
+        [Display(Name = "入庫數量")]
+        [Range(0, 9999, ErrorMessage = "數量不可小於0")]
+        public double add_Count { get; set; }
     }
 }

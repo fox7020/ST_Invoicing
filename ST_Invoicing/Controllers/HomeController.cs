@@ -95,7 +95,7 @@ namespace ST_Invoicing.Controllers
 
             ST_Emp currUser = mST_EmpDAO.FetchByAccount(User.Identity.Name);
 
-            /*檢查有無700、850、點心盒*/
+            /*檢查有無700、850、點心盒、便當盒*/
             mST_MaterialDAO.InsertBasicMaterial();
             mST_InStockDAO.InsertBasicInStock();
 

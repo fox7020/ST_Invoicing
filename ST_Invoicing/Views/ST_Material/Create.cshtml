@@ -6,9 +6,13 @@
 
 @{
 
-    var Items = ViewData["unit_Items"] as IEnumerable<string>;
+    var unitItems = ViewData["unit_Items"] as IEnumerable<string>;
 
-    var selectUnit = new SelectList(Items); 
+    var vendorItems = ViewData["vendor_Items"] as IEnumerable<string>;
+
+    var selectUnit = new SelectList(unitItems);
+
+    var selectVendor = new SelectList(vendorItems);
 }
 
 <script>
@@ -42,6 +46,13 @@
             @Html.LabelFor(model => model.item_unit, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.item_unit, selectUnit, "---請選擇單位---", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.vendor_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.vendor_name, selectVendor, "---請選擇廠商---", new { @class = "form-control" })
             </div>
         </div>
 

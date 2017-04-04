@@ -111,6 +111,7 @@ namespace ST_Invoicing.Models
             ST_InStock bowl_700 = new ST_InStock(Guid.Parse("E5564142-5B2C-472F-8EDB-3E957AA1BBE3"));
             ST_InStock bowl_850 = new ST_InStock(Guid.Parse("5981CDD4-C4A7-45A0-9832-E16574D1689C"));
             ST_InStock meat = new ST_InStock(Guid.Parse("258921A7-9EB2-4978-9689-6284B906230D"));
+            ST_InStock rice_Box = new ST_InStock(Guid.Parse("ecf1e82d-163e-4117-bca5-125ba0118f8c"));
 
             if (FetchByMaterialGuid(bowl_700.material_guid) == null)
             {
@@ -125,6 +126,11 @@ namespace ST_Invoicing.Models
             if (FetchByMaterialGuid(meat.material_guid) == null)
             {
                 Insert(meat);
+            }
+
+            if (FetchByMaterialGuid(rice_Box.material_guid) == null)
+            {
+                Insert(rice_Box);
             }
 
         }

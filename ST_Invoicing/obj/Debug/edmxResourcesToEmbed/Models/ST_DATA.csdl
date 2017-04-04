@@ -60,6 +60,7 @@
     <Property Name="deleted_at" Type="DateTime" Precision="3" />
     <Property Name="del_yn" Type="Int32" Nullable="false" />
     <Property Name="item_unit" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="vendor_guid" Type="Guid" />
   </EntityType>
   <EntityType Name="ST_Surplus_Month">
     <Key>

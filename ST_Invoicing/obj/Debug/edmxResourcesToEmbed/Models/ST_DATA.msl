@@ -55,6 +55,7 @@
     <EntitySetMapping Name="ST_Material">
       <EntityTypeMapping TypeName="STDATAModel.ST_Material">
         <MappingFragment StoreEntitySet="ST_Material">
+          <ScalarProperty Name="vendor_guid" ColumnName="vendor_guid" />
           <ScalarProperty Name="item_unit" ColumnName="item_unit" />
           <ScalarProperty Name="serno" ColumnName="serno" />
           <ScalarProperty Name="guid" ColumnName="guid" />

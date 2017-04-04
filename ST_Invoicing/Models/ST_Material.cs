@@ -52,5 +52,11 @@ namespace ST_Invoicing.Models
         public Nullable<System.DateTime> deleted_at { get; set; }
 
         public int del_yn { get; set; }
+
+        public System.Guid vendor_guid { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "供應商")]
+        public string vendor_name { get; set; }
     }
 }

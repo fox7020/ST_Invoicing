@@ -24,11 +24,31 @@ namespace ST_Invoicing.Models
             return dao.ST_Vendor.Find(serno);
         }
 
-        public ST_Vendor FetchByGuid(string guid)
+        public ST_Vendor FetchByGuid(Guid guid)
         {
             List<ST_Vendor> rslt = new List<ST_Vendor>();
 
-            rslt = dao.ST_Vendor.Where(currVendor => currVendor.guid == Guid.Parse(guid)).ToList();
+            rslt = dao.ST_Vendor.Where(currVendor => currVendor.guid == guid).ToList();
+
+            if (rslt.Count == 1)
+            {
+
+                return rslt[0];
+            }
+            else if (rslt.Count > 1)
+            {
+
+                throw new Exception("兩筆以上的ST_Material in Fetch");
+            }
+
+            return null;
+        }
+
+        public ST_Vendor FetchByName(string vendor_Name)
+        {
+            List<ST_Vendor> rslt = new List<ST_Vendor>();
+
+            rslt = dao.ST_Vendor.Where(currVendor => currVendor.vendor_name == vendor_Name).ToList();
 
             if (rslt.Count == 1)
             {
@@ -124,4 +144,9 @@ namespace ST_Invoicing.Models
             dao.Dispose();
         }
     }
+
+
+
+
+
 }

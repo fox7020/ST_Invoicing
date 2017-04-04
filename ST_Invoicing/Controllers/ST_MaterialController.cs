@@ -17,11 +17,23 @@ namespace ST_Invoicing.Controllers
 
         private ST_InStockDAO mST_InStockDAO = new ST_InStockDAO();
 
+        private ST_VendorDAO mST_VendorDAO = new ST_VendorDAO();
+
         // GET: ST_Material
         public ActionResult Index()
         {
             string account = User.Identity.Name;
-            return View(mST_MaterialDAO.GetDataList_NotDel());
+
+            List<ST_Material> material_List = mST_MaterialDAO.GetDataList_NotDel();
+
+            foreach (ST_Material material in material_List)
+            {
+                ST_Vendor currVendor = mST_VendorDAO.FetchByGuid(material.vendor_guid);
+
+                material.vendor_name = currVendor.vendor_name;
+            }
+
+            return View(material_List);
         }
 
         // GET: ST_Material/Details/5
@@ -31,17 +43,26 @@ namespace ST_Invoicing.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ST_Material sT_Material = mST_MaterialDAO.FetchBySerno(id);
-            if (sT_Material == null)
+
+            ST_Material data = mST_MaterialDAO.FetchBySerno(id);
+
+
+            if (data == null)
             {
                 return HttpNotFound();
             }
-            return View(sT_Material);
+
+            ST_Vendor currVendor = mST_VendorDAO.FetchByGuid(data.vendor_guid);
+
+            data.vendor_name = currVendor.vendor_name;
+
+            return View(data);
         }
 
         // GET: ST_Material/Create
         public ActionResult Create()
         {
+            ViewData["vendor_Items"] = GetVendorItems();
 
             ViewData["unit_Items"] = GetUnitItem();
 
@@ -59,11 +80,16 @@ namespace ST_Invoicing.Controllers
             {
                 data.guid = Guid.NewGuid();
 
+                ST_Vendor currVendor = mST_VendorDAO.FetchByName(data.vendor_name);
+
+                data.vendor_guid = currVendor.guid;
+
                 mST_MaterialDAO.Insert(data);
 
-                ST_InStock new_Stock = new ST_InStock(data.guid);
+                /*不跟庫存連動*/
+                //ST_InStock new_Stock = new ST_InStock(data.guid);
 
-                mST_InStockDAO.Insert(new_Stock);
+                //mST_InStockDAO.Insert(new_Stock);
 
                 return RedirectToAction("Index");
             }
@@ -84,8 +110,11 @@ namespace ST_Invoicing.Controllers
             data.item_name = data.item_name.Trim();
             data.item_species = data.item_species.Trim();
             data.item_unit = data.item_unit.Trim();
+            data.vendor_name = mST_VendorDAO.FetchByGuid(data.vendor_guid).vendor_name;
 
             ViewData["unit_Items"] = GetUnitItem();
+
+            ViewData["vendor_Items"] = GetVendorItems();
 
             if (data == null)
             {
@@ -103,6 +132,8 @@ namespace ST_Invoicing.Controllers
         {
             if (ModelState.IsValid)
             {
+                data.vendor_guid = mST_VendorDAO.FetchByName(data.vendor_name).guid;
+
                 mST_MaterialDAO.Update(data);
                 return RedirectToAction("Index");
             }
@@ -180,6 +211,22 @@ namespace ST_Invoicing.Controllers
             unit_Items.Add("個");
 
             return unit_Items;
-        }   
+        }
+
+        private List<string> GetVendorItems()
+        {
+            List<string> vendor_Items = new List<string>();
+
+            List<ST_Vendor> vendors = new List<ST_Vendor>();
+
+            vendors = mST_VendorDAO.GetDataList_NotDel();
+
+            foreach (ST_Vendor vendor in vendors)
+            {
+                vendor_Items.Add(vendor.vendor_name);
+            }
+
+            return vendor_Items;
+        }
     }
 }

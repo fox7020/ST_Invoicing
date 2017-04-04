@@ -60,6 +60,7 @@
     <Property Name="reamrk" Type="nvarchar(max)" />
     <Property Name="deleted_at" Type="datetime" />
     <Property Name="del_yn" Type="int" Nullable="false" />
+    <Property Name="vendor_guid" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="ST_Personal_Cost">
     <Key>

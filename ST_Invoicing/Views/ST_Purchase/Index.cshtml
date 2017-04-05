@@ -1,0 +1,106 @@
+﻿@model IEnumerable<ST_Invoicing.Models.ST_Purchase>
+
+@{
+    ViewBag.Title = "南臺灣-採購列表";
+}
+
+<h2>採購列表</h2>
+
+<p>
+  @Html.ActionLink("新增採購資料", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <div class="form-inline">
+        <div class="form-group">
+            <div class="col-xs-6 col-md-4">
+                <h5> 請選擇日期區間:</h5>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                @Html.TextBox("daterange", @DateTime.Now.Date + "~" + @DateTime.Now.Date, new { @class = "form-control" })
+            </div>
+            <div class="col-xs-6 col-md-2">
+                <input type="submit" value="查詢" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}  
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.purchase_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.item_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.purchase_price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vendor_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+
+            <td>
+                <font color=@item.font_Color>
+                    @Html.DisplayFor(modelItem => item.purchase_date.Date)
+                </font>
+            </td>
+            <td>
+                <font color=@item.font_Color>
+                    @Html.DisplayFor(modelItem => item.item_name)
+                </font>
+            </td>
+            <td>
+                <font color=@item.font_Color>
+                    @Html.DisplayFor(modelItem => item.purchase_price)
+                </font>
+            </td>
+            <td>
+                <font color=@item.font_Color>
+                    @Html.DisplayFor(modelItem => item.vendor_name)
+                </font>
+            </td>
+            <td>
+                <font color=@item.font_Color>
+                    @Html.DisplayFor(modelItem => item.emp_name)
+                </font>
+            </td>
+
+            <td>
+                @Html.ActionLink("編輯", "Edit", new { id = item.serno }) |             
+                @Html.ActionLink("刪除", "Delete", new { id = item.serno })
+            </td>
+        </tr>
+
+    }
+
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+           
+            $('input[name="daterange"]').daterangepicker({
+                locale: {
+                    format: 'YYYY/MM/DD'
+                }
+            });
+        });
+    </script>
+}
+
+

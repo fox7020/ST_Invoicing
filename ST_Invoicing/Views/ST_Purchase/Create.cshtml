@@ -1,0 +1,64 @@
+﻿@model ST_Invoicing.Models.Purchase_DayAll
+
+@{
+    ViewBag.Title = "南臺灣-新增採購";
+}
+
+<h2>新增採購</h2>
+
+<input type="button" value="新增項目" class="btn btn-primary" id="addRow" />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rec_date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.rec_date, new { @class = "form-control date-picker" })
+                @Html.ValidationMessageFor(model => model.rec_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="father">
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="新增採購資料" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("返回採購列表", "Index")
+</div>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <script type="text/javascript">
+        $(function () {
+            $('.date-picker').datepicker({
+                dateFormat: "yy/mm/dd",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
+
+            $("#addRow").click(function () {
+                $.get('/ST_Purchase/GetItemView', function (template) {
+                    $('#father').append(template);
+                })
+                //alert();
+            });
+        })
+    </script>
+}

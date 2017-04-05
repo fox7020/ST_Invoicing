@@ -65,7 +65,7 @@
           <Property Name="reamrk" Type="nvarchar(max)" />
           <Property Name="deleted_at" Type="datetime" />
           <Property Name="del_yn" Type="int" Nullable="false" />
-          <Property Name="vendor_guid" Type="uniqueidentifier"/>
+          <Property Name="vendor_guid" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="ST_Personal_Cost">
           <Key>
@@ -87,16 +87,16 @@
           <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="purchase_date" Type="datetime" Nullable="false" />
-          <Property Name="purchase_num" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="purchase_num" Type="nchar" MaxLength="20" />
           <Property Name="vendor_guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="material_guid" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="purchase_count" Type="float" Nullable="false" />
+          <Property Name="purchase_count" Type="float" />
           <Property Name="purchase_price" Type="int" Nullable="false" />
-          <Property Name="in_stock" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
           <Property Name="deleted_at" Type="datetime" />
           <Property Name="del_yn" Type="int" Nullable="false" />
           <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="special_mark" Type="nchar" MaxLength="2" />
         </EntityType>
         <EntityType Name="ST_Surplus_Month">
           <Key>
@@ -302,16 +302,16 @@
           <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="guid" Type="Guid" Nullable="false" />
           <Property Name="purchase_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="purchase_num" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="purchase_num" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="vendor_guid" Type="Guid" Nullable="false" />
           <Property Name="material_guid" Type="Guid" Nullable="false" />
-          <Property Name="purchase_count" Type="Double" Nullable="false" />
+          <Property Name="purchase_count" Type="Double" />
           <Property Name="purchase_price" Type="Int32" Nullable="false" />
-          <Property Name="in_stock" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="deleted_at" Type="DateTime" Precision="3" />
           <Property Name="del_yn" Type="Int32" Nullable="false" />
           <Property Name="emp_guid" Type="Guid" Nullable="false" />
+          <Property Name="special_mark" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="ST_SurplusDay">
           <Key>
@@ -461,11 +461,11 @@
           <EntitySetMapping Name="ST_Purchase">
             <EntityTypeMapping TypeName="STDATAModel.ST_Purchase">
               <MappingFragment StoreEntitySet="ST_Purchase">
+                <ScalarProperty Name="special_mark" ColumnName="special_mark" />
                 <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
                 <ScalarProperty Name="del_yn" ColumnName="del_yn" />
                 <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="in_stock" ColumnName="in_stock" />
                 <ScalarProperty Name="purchase_price" ColumnName="purchase_price" />
                 <ScalarProperty Name="purchase_count" ColumnName="purchase_count" />
                 <ScalarProperty Name="material_guid" ColumnName="material_guid" />

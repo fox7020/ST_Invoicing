@@ -11,21 +11,52 @@ namespace ST_Invoicing.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ST_Purchase
     {
         public int serno { get; set; }
         public System.Guid guid { get; set; }
+
+        [Display(Name = "採購日期")]
         public System.DateTime purchase_date { get; set; }
+
+        [Display(Name = "單號")]
         public string purchase_num { get; set; }
         public System.Guid vendor_guid { get; set; }
         public System.Guid material_guid { get; set; }
-        public double purchase_count { get; set; }
+
+        [Display(Name = "數量")]
+        public Nullable<double> purchase_count { get; set; }
+
+        [Required]
+        [Display(Name = "價格")]
+        [Range(0, 999999, ErrorMessage = "採購金額限制0~999999")]
         public int purchase_price { get; set; }
-        public string in_stock { get; set; }
+
+        [Display(Name = "備註")]
         public string remark { get; set; }
         public Nullable<System.DateTime> deleted_at { get; set; }
         public int del_yn { get; set; }
         public System.Guid emp_guid { get; set; }
+
+        [Required]
+        [Display(Name = "標記")]
+        public string special_mark { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "採購人員")]
+        public string emp_name { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "採購項目")]
+        public string item_name { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "供應商")]
+        public string vendor_name { get; set; }
+
+        [ScaffoldColumn(false)]
+        public string font_Color { get; set; }
     }
 }

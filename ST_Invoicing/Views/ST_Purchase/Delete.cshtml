@@ -1,0 +1,75 @@
+﻿@model ST_Invoicing.Models.ST_Purchase
+
+@{
+    ViewBag.Title = "南臺灣-刪除採購";
+}
+
+<h2>刪除採購資料</h2>
+
+<h3>確定刪除此筆資料?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.purchase_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.purchase_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.item_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.item_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.purchase_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.purchase_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vendor_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vendor_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.special_mark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.special_mark)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+
+            <input type="submit" value="刪除" class="btn btn-danger" />
+
+            @Html.ActionLink("返回採購列表", "Index")
+        </div>
+    }
+</div>

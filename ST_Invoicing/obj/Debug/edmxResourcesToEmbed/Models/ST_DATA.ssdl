@@ -82,16 +82,16 @@
     <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="purchase_date" Type="datetime" Nullable="false" />
-    <Property Name="purchase_num" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="purchase_num" Type="nchar" MaxLength="20" />
     <Property Name="vendor_guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="material_guid" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="purchase_count" Type="float" Nullable="false" />
+    <Property Name="purchase_count" Type="float" />
     <Property Name="purchase_price" Type="int" Nullable="false" />
-    <Property Name="in_stock" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="remark" Type="nvarchar(max)" />
     <Property Name="deleted_at" Type="datetime" />
     <Property Name="del_yn" Type="int" Nullable="false" />
     <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="special_mark" Type="nchar" MaxLength="2" />
   </EntityType>
   <EntityType Name="ST_Surplus_Month">
     <Key>

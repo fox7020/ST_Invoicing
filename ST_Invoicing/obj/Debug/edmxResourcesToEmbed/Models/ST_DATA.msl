@@ -125,11 +125,11 @@
     <EntitySetMapping Name="ST_Purchase">
       <EntityTypeMapping TypeName="STDATAModel.ST_Purchase">
         <MappingFragment StoreEntitySet="ST_Purchase">
+          <ScalarProperty Name="special_mark" ColumnName="special_mark" />
           <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
           <ScalarProperty Name="del_yn" ColumnName="del_yn" />
           <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
           <ScalarProperty Name="remark" ColumnName="remark" />
-          <ScalarProperty Name="in_stock" ColumnName="in_stock" />
           <ScalarProperty Name="purchase_price" ColumnName="purchase_price" />
           <ScalarProperty Name="purchase_count" ColumnName="purchase_count" />
           <ScalarProperty Name="material_guid" ColumnName="material_guid" />

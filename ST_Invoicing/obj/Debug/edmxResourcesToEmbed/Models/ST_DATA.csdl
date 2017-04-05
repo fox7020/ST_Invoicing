@@ -132,16 +132,16 @@
     <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="guid" Type="Guid" Nullable="false" />
     <Property Name="purchase_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="purchase_num" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="purchase_num" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
     <Property Name="vendor_guid" Type="Guid" Nullable="false" />
     <Property Name="material_guid" Type="Guid" Nullable="false" />
-    <Property Name="purchase_count" Type="Double" Nullable="false" />
+    <Property Name="purchase_count" Type="Double" />
     <Property Name="purchase_price" Type="Int32" Nullable="false" />
-    <Property Name="in_stock" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="deleted_at" Type="DateTime" Precision="3" />
     <Property Name="del_yn" Type="Int32" Nullable="false" />
     <Property Name="emp_guid" Type="Guid" Nullable="false" />
+    <Property Name="special_mark" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="ST_SurplusDay">
     <Key>

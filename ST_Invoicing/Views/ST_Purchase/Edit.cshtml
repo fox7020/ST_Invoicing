@@ -1,0 +1,110 @@
+﻿@model ST_Invoicing.Models.ST_Purchase
+
+@{
+    ViewBag.Title = "南臺灣-編輯採購";
+}
+
+@{
+
+    var materialItems = ViewData["material_Items"] as IEnumerable<string>;
+
+    var selectMaterial = new SelectList(materialItems);
+
+    var vendorItems = ViewData["vendor_Items"] as IEnumerable<string>;
+
+    var selectVendor = new SelectList(vendorItems);
+
+}
+
+<h2>編輯採購</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.serno)
+
+        @Html.HiddenFor(model => model.guid)
+        
+        @Html.HiddenFor(model => model.purchase_date)
+        <div class="form-group">
+            @Html.LabelFor(model => model.purchase_date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.purchase_date.Date, new { @class = "control-label col-md-2" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.purchase_num)
+      
+        @Html.HiddenFor(model => model.vendor_guid)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.vendor_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.vendor_name, selectVendor, "請選擇供應商", new { @class = "form-control" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.material_guid)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.item_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.item_name, new { @class = "control-label col-md-2" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.purchase_count)
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.purchase_price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.purchase_price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.purchase_price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.remark, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.remark, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.remark, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.deleted_at)
+       
+        @Html.HiddenFor(model => model.del_yn)
+        
+        @Html.HiddenFor(model => model.emp_guid)
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.special_mark, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.RadioButtonFor(model => model.special_mark, "是", new { @class = "text-danger" })
+                是
+                @Html.RadioButtonFor(model => model.special_mark, "否", new { @class = "text-danger" })
+                否
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="儲存編輯" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("返回採購列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

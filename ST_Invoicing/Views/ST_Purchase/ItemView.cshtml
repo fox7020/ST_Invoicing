@@ -1,0 +1,48 @@
+﻿@model ST_Invoicing.Models.ST_Purchase
+
+@{
+
+    var materialItems = ViewData["material_Items"] as IEnumerable<string>;
+
+    var selectMaterial = new SelectList(materialItems);
+
+    var vendorItems = ViewData["vendor_Items"] as IEnumerable<string>;
+
+    var selectVendor = new SelectList(vendorItems);
+      
+}
+
+@using (Html.BeginCollectionItem("purchase_List"))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.item_name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.item_name, selectMaterial, "請選擇採購項目", new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("價錢：", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.purchase_price, "", new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.purchase_price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.vendor_name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.vendor_name, selectVendor, "請選擇供應商", new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.special_mark, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.RadioButtonFor(model => model.special_mark, "是", new { @class = "text-danger" })
+            是
+            @Html.RadioButtonFor(model => model.special_mark, "否", new { @class = "text-danger" })
+            否
+        </div>
+    </div>
+}

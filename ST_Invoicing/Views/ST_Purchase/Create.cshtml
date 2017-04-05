@@ -1,7 +1,16 @@
 ﻿@model ST_Invoicing.Models.Purchase_DayAll
 
+
 @{
     ViewBag.Title = "南臺灣-新增採購";
+
+    var materialItems = ViewData["material_Items"] as IEnumerable<string>;
+
+    var selectMaterial = new SelectList(materialItems);
+
+    var vendorItems = ViewData["vendor_Items"] as IEnumerable<string>;
+
+    var selectVendor = new SelectList(vendorItems);
 }
 
 <h2>新增採購</h2>
@@ -25,7 +34,21 @@
         </div>
 
         <div id="father">
+             @if (Model != null)
+             {
+                 if (Model.purchase_List != null)
+                 {
+                     foreach (var purchase in Model.purchase_List)
+                     {
+                         Html.RenderPartial("ItemView", purchase);
+                     }
+                 }
+                
+             }          
+        </div>
 
+        <div class="col-md-10">       
+            @Html.ValidationMessageFor(model => model.purchase_List, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">

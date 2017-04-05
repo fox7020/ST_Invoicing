@@ -48,10 +48,12 @@ namespace ST_Invoicing.Models
         [Display(Name = "採購人員")]
         public string emp_name { get; set; }
 
+        [Required]
         [ScaffoldColumn(false)]
         [Display(Name = "採購項目")]
         public string item_name { get; set; }
 
+        [Required]
         [ScaffoldColumn(false)]
         [Display(Name = "供應商")]
         public string vendor_name { get; set; }

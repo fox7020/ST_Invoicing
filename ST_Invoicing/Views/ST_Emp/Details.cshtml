@@ -115,6 +115,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("編輯員工資料", "Edit", new { id = Model.serno }) |
-    @Html.ActionLink("返回員工列表", "Index")
+    <a href="/ST_Emp/Edit/@Model.serno"><input type="button" value="編輯" class="btn btn-warning" /></a> |
+    <a href="/ST_Emp/Index"><input type="button" value="返回" class="btn btn-info" /></a> 
 </p>

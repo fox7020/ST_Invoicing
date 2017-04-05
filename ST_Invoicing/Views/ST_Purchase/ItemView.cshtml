@@ -18,6 +18,7 @@
         @Html.LabelFor(model => model.item_name, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.item_name, selectMaterial, "請選擇採購項目", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.item_name, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -33,6 +34,7 @@
         @Html.LabelFor(model => model.vendor_name, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.vendor_name, selectVendor, "請選擇供應商", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.vendor_name, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -43,6 +45,7 @@
             是
             @Html.RadioButtonFor(model => model.special_mark, "否", new { @class = "text-danger" })
             否
+            @Html.ValidationMessageFor(model => model.special_mark, "", new { @class = "text-danger" })
         </div>
     </div>
 }

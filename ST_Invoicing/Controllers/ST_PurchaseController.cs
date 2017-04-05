@@ -29,7 +29,7 @@ namespace ST_Invoicing.Controllers
             purchase_List = mST_PurcahseDAO.GetDataByDate(DateTime.Today);
 
             SetOtherProperty(ref purchase_List);
-    
+            
             return View(purchase_List);
         }
 
@@ -52,6 +52,11 @@ namespace ST_Invoicing.Controllers
         // GET: ST_Purchase/Create
         public ActionResult Create()
         {
+
+            ViewData["material_Items"] = GetMaterialItems();
+
+            ViewData["vendor_Items"] = GetVendorItems();
+
             return View();
         }
 
@@ -62,7 +67,7 @@ namespace ST_Invoicing.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Purchase_DayAll data)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && data.purchase_List != null)
             {
                 List<ST_Purchase> prucahse_List = data.purchase_List.Cast<ST_Purchase>().ToList();
 
@@ -81,9 +86,14 @@ namespace ST_Invoicing.Controllers
                     mST_PurcahseDAO.Insert(currPurchase);
                 }
 
-
                 return RedirectToAction("Index");
             }
+
+            ModelState.AddModelError("", "至少新增一筆採購項目");
+
+            ViewData["material_Items"] = GetMaterialItems();
+
+            ViewData["vendor_Items"] = GetVendorItems();
 
             return View(data);
         }

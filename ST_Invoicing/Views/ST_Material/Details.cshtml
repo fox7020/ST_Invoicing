@@ -60,6 +60,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("編輯", "Edit", new { id = Model.serno }) |
-    @Html.ActionLink("返回原物料列表", "Index")
+    <input type="button" class="btn btn-primary" value="編輯原物料" onclick="location.href='@Url.Action("Edit", "ST_Material", new { id = Model.serno })'" />
+    <input type="button" class="btn btn-info" value="返回原物料列表" onclick="location.href='@Url.Action("Index", "ST_Material")'" />
 </p>

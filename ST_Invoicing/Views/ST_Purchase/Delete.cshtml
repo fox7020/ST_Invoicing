@@ -66,10 +66,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-
-            <input type="submit" value="刪除" class="btn btn-danger" />
-
-            @Html.ActionLink("返回採購列表", "Index")
+            <input type="submit" value="刪除" class="btn btn-danger" />        
+            <input type="button" class="btn btn-info" value="返回採購列表" onclick="location.href='@Url.Action("Index", "ST_Purchase")'" />
         </div>
     }
 </div>

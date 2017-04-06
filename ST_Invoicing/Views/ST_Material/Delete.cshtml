@@ -55,8 +55,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            @Html.ActionLink("返回原物料列表", "Index")
+            <input type="submit" value="Delete" class="btn btn-danger" /> 
+            <input type="button" class="btn btn-info" value="返回原物料列表" onclick="location.href='@Url.Action("Index", "ST_Material")'" />
         </div>
     }
 </div>

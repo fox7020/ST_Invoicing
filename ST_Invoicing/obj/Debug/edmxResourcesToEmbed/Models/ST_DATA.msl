@@ -42,10 +42,21 @@
     <EntitySetMapping Name="ST_InStock">
       <EntityTypeMapping TypeName="STDATAModel.ST_InStock">
         <MappingFragment StoreEntitySet="ST_InStock">
+          <ScalarProperty Name="add_box" ColumnName="add_box" />
+          <ScalarProperty Name="use_box" ColumnName="use_box" />
+          <ScalarProperty Name="count_box" ColumnName="count_box" />
+          <ScalarProperty Name="add_meal" ColumnName="add_meal" />
+          <ScalarProperty Name="use_meal" ColumnName="use_meal" />
+          <ScalarProperty Name="count_meal" ColumnName="count_meal" />
+          <ScalarProperty Name="add_700" ColumnName="add_700" />
+          <ScalarProperty Name="use_700" ColumnName="use_700" />
+          <ScalarProperty Name="count_700" ColumnName="count_700" />
+          <ScalarProperty Name="add_850" ColumnName="add_850" />
+          <ScalarProperty Name="use_850" ColumnName="use_850" />
+          <ScalarProperty Name="count_850" ColumnName="count_850" />
+          <ScalarProperty Name="rec_date" ColumnName="rec_date" />
           <ScalarProperty Name="serno" ColumnName="serno" />
           <ScalarProperty Name="guid" ColumnName="guid" />
-          <ScalarProperty Name="material_guid" ColumnName="material_guid" />
-          <ScalarProperty Name="count" ColumnName="count" />
           <ScalarProperty Name="remark" ColumnName="remark" />
           <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
           <ScalarProperty Name="del_yn" ColumnName="del_yn" />
@@ -144,15 +155,31 @@
     <EntitySetMapping Name="ST_SurplusDay">
       <EntityTypeMapping TypeName="STDATAModel.ST_SurplusDay">
         <MappingFragment StoreEntitySet="ST_SurplusDay">
+          <ScalarProperty Name="count_box_use_pm" ColumnName="count_box_use_pm" />
+          <ScalarProperty Name="count_meal_use_pm" ColumnName="count_meal_use_pm" />
+          <ScalarProperty Name="count_700_use_pm" ColumnName="count_700_use_pm" />
+          <ScalarProperty Name="count_850_use_pm" ColumnName="count_850_use_pm" />
+          <ScalarProperty Name="count_box_use_am" ColumnName="count_box_use_am" />
+          <ScalarProperty Name="count_meal_use_am" ColumnName="count_meal_use_am" />
+          <ScalarProperty Name="count_700_use_am" ColumnName="count_700_use_am" />
+          <ScalarProperty Name="count_850_use_am" ColumnName="count_850_use_am" />
+          <ScalarProperty Name="count_box_add" ColumnName="count_box_add" />
+          <ScalarProperty Name="count_meal_add" ColumnName="count_meal_add" />
+          <ScalarProperty Name="count_700_add" ColumnName="count_700_add" />
+          <ScalarProperty Name="count_850_add" ColumnName="count_850_add" />
+          <ScalarProperty Name="inner_s_pm" ColumnName="inner_s_pm" />
+          <ScalarProperty Name="inner_l_pm" ColumnName="inner_l_pm" />
+          <ScalarProperty Name="inner_xl_pm" ColumnName="inner_xl_pm" />
+          <ScalarProperty Name="inner_s_am" ColumnName="inner_s_am" />
+          <ScalarProperty Name="inner_l_am" ColumnName="inner_l_am" />
+          <ScalarProperty Name="inner_xl_am" ColumnName="inner_xl_am" />
+          <ScalarProperty Name="count_fish" ColumnName="count_fish" />
           <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
           <ScalarProperty Name="del_yn" ColumnName="del_yn" />
           <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
           <ScalarProperty Name="remark" ColumnName="remark" />
           <ScalarProperty Name="count_soup" ColumnName="count_soup" />
           <ScalarProperty Name="count_rice" ColumnName="count_rice" />
-          <ScalarProperty Name="count_meal" ColumnName="count_meal" />
-          <ScalarProperty Name="count_700" ColumnName="count_700" />
-          <ScalarProperty Name="count_850" ColumnName="count_850" />
           <ScalarProperty Name="turnover" ColumnName="turnover" />
           <ScalarProperty Name="rec_date" ColumnName="rec_date" />
           <ScalarProperty Name="guid" ColumnName="guid" />

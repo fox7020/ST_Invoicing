@@ -4,6 +4,12 @@
     ViewBag.Title = "南臺灣-採購列表";
 }
 
+<script>
+    $(document).ready(function () {
+        $("#ST_Purchase").addClass("active");
+    });
+</script>
+
 <h2>採購列表</h2>
 
 <p>
@@ -15,10 +21,10 @@
     <div class="form-inline">
         <div class="form-group">
             <div class="col-xs-6 col-md-4">
-                <h5> 請選擇日期區間:</h5>
+                <h5> 查看日期區間:</h5>
             </div>
             <div class="col-xs-6 col-md-6">
-                @Html.TextBox("daterange", @DateTime.Now.Date + "~" + @DateTime.Now.Date, new { @class = "form-control" })
+                @Html.TextBox("daterange", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1) + "~" + new DateTime(DateTime.Now.AddMonths(1).Year, DateTime.Now.AddMonths(1).Month, 1).AddDays(-1), new { @class = "form-control" })
             </div>
             <div class="col-xs-6 col-md-2">
                 <input type="submit" value="查詢" class="btn btn-info" />
@@ -55,7 +61,7 @@
 
             <td>
                 <font color=@item.font_Color>
-                    @Html.DisplayFor(modelItem => item.purchase_date.Date)
+                    @Html.DisplayFor(modelItem => item.display_Date)
                 </font>
             </td>
             <td>
@@ -80,8 +86,8 @@
             </td>
 
             <td>
-                @Html.ActionLink("編輯", "Edit", new { id = item.serno }) |             
-                @Html.ActionLink("刪除", "Delete", new { id = item.serno })
+                <input type="button" class="btn btn-warning" value="編輯" onclick="location.href='@Url.Action("Edit", "ST_Purchase", new { id = item.serno })'" />
+                <input type="button" class="btn btn-danger" value="刪除" onclick="location.href='@Url.Action("Delete", "ST_Purchase", new { id = item.serno })'" />
             </td>
         </tr>
 

@@ -23,23 +23,30 @@ namespace ST_Invoicing.Models
         {
             return dao.ST_InStock.Find(serno);
         }
-
-        public ST_InStock FetchByMaterialGuid(Guid material_guid)
+        
+        public ST_InStock FetchByDate(DateTime rec_date)
         {
-            List<ST_InStock> rslt = new List<ST_InStock>();
+            List<ST_InStock> rslt = dao.ST_InStock.Where(currStock => currStock.del_yn == 0).Where(currStock => currStock.rec_date == rec_date).ToList();
 
-            rslt = dao.ST_InStock.Where(currInStock => currInStock.del_yn == 0).Where(currInStock => currInStock.material_guid == material_guid).ToList();
-
-            if (rslt.Count == 1)
+            if(rslt.Count == 1)
             {
                 return rslt[0];
-            }
-            else if (rslt.Count > 1)
+            }else if (rslt.Count > 1)
             {
-                throw new Exception("2筆以上相同原物料的庫存!!!");
+                throw new Exception("2筆以上的相同日期庫存!!!!");
             }
 
             return null;
+        }
+
+        public ST_InStock FetchRecentData(DateTime rec_date)
+        {         
+            return dao.ST_InStock.Where(currStock => currStock.del_yn == 0).Where(currStock => currStock.rec_date < rec_date).OrderByDescending(currStock => currStock.rec_date).FirstOrDefault();        
+        }
+
+        public ST_InStock FetchLastDateData()
+        {
+            return dao.ST_InStock.Where(currStock => currStock.del_yn == 0).OrderByDescending(currStock => currStock.rec_date).FirstOrDefault();        
         }
 
         public List<ST_InStock> GetDataList_NotDel()
@@ -60,80 +67,8 @@ namespace ST_Invoicing.Models
             return data;
         }
 
-        public double AddStockCount(Guid material_guid, double count)
-        {
-
-            List<ST_InStock> rslt = new List<ST_InStock>();
-
-            rslt = dao.ST_InStock.Where(currInStock => currInStock.del_yn == 0).Where(currInStock => currInStock.material_guid.Equals(material_guid)).ToList();
-
-            if (rslt.Count == 1)
-            {
-                rslt[0].count += count;
-
-                Update(rslt[0]);
-
-                return rslt[0].count;
-            }
-            else if (rslt.Count > 1)
-            {
-                throw new Exception("2筆以上相同原物料的庫存!!!");
-            }
-
-            return 0;
-        }
-
-        public double DecreseStockCount(Guid material_guid, double count)
-        {
-            List<ST_InStock> rslt = new List<ST_InStock>();
-
-            rslt = dao.ST_InStock.Where(currInStock => currInStock.del_yn == 0).Where(currInStock => currInStock.material_guid.Equals(material_guid)).ToList();
-
-            if (rslt.Count == 1)
-            {
-                rslt[0].count -= count;
-
-                Update(rslt[0]);
-
-                return rslt[0].count;
-            }
-            else if (rslt.Count > 1)
-            {
-                throw new Exception("2筆以上相同原物料的庫存!!!");
-            }
-
-            return 0;
-        }
-
-        public void InsertBasicInStock()
-        {
-            /*Insert 700、850、點心盒*/
-            ST_InStock bowl_700 = new ST_InStock(Guid.Parse("E5564142-5B2C-472F-8EDB-3E957AA1BBE3"));
-            ST_InStock bowl_850 = new ST_InStock(Guid.Parse("5981CDD4-C4A7-45A0-9832-E16574D1689C"));
-            ST_InStock meat = new ST_InStock(Guid.Parse("258921A7-9EB2-4978-9689-6284B906230D"));
-            ST_InStock rice_Box = new ST_InStock(Guid.Parse("ecf1e82d-163e-4117-bca5-125ba0118f8c"));
-
-            if (FetchByMaterialGuid(bowl_700.material_guid) == null)
-            {
-                Insert(bowl_700);
-            }
-
-            if (FetchByMaterialGuid(bowl_850.material_guid) == null)
-            {
-                Insert(bowl_850);
-            }
-
-            if (FetchByMaterialGuid(meat.material_guid) == null)
-            {
-                Insert(meat);
-            }
-
-            if (FetchByMaterialGuid(rice_Box.material_guid) == null)
-            {
-                Insert(rice_Box);
-            }
-
-        }
+     
+       
         public void Dispose()
         {
             dao.Dispose();

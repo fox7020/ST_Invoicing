@@ -47,8 +47,19 @@
           </Key>
           <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="material_guid" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="count" Type="float" Nullable="false" />
+          <Property Name="rec_date" Type="datetime" Nullable="false" />
+          <Property Name="count_850" Type="int" Nullable="false" />
+          <Property Name="use_850" Type="int" Nullable="false" />
+          <Property Name="add_850" Type="int" Nullable="false" />
+          <Property Name="count_700" Type="int" Nullable="false" />
+          <Property Name="use_700" Type="int" Nullable="false" />
+          <Property Name="add_700" Type="int" Nullable="false" />
+          <Property Name="count_meal" Type="int" Nullable="false" />
+          <Property Name="use_meal" Type="int" Nullable="false" />
+          <Property Name="add_meal" Type="int" Nullable="false" />
+          <Property Name="count_box" Type="int" Nullable="false" />
+          <Property Name="use_box" Type="int" Nullable="false" />
+          <Property Name="add_box" Type="int" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
           <Property Name="deleted_at" Type="datetime" />
           <Property Name="del_yn" Type="int" Nullable="false" />
@@ -128,15 +139,31 @@
           <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="rec_date" Type="date" Nullable="false" />
           <Property Name="turnover" Type="int" Nullable="false" />
-          <Property Name="count_850" Type="int" Nullable="false" />
-          <Property Name="count_700" Type="int" Nullable="false" />
-          <Property Name="count_meal" Type="int" Nullable="false" />
+          <Property Name="count_850_use_am" Type="int" Nullable="false" />
+          <Property Name="count_700_use_am" Type="int" Nullable="false" />
+          <Property Name="count_meal_use_am" Type="int" Nullable="false" />
           <Property Name="count_rice" Type="float" Nullable="false" />
           <Property Name="count_soup" Type="float" Nullable="false" />
           <Property Name="remark" Type="nvarchar(max)" />
           <Property Name="deleted_at" Type="datetime" />
           <Property Name="del_yn" Type="int" Nullable="false" />
           <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="count_box_use_am" Type="int" Nullable="false" />
+          <Property Name="count_fish" Type="float" Nullable="false" />
+          <Property Name="inner_xl_am" Type="int" Nullable="false" />
+          <Property Name="inner_l_am" Type="int" Nullable="false" />
+          <Property Name="inner_s_am" Type="int" Nullable="false" />
+          <Property Name="inner_xl_pm" Type="int" Nullable="false" />
+          <Property Name="inner_l_pm" Type="int" Nullable="false" />
+          <Property Name="inner_s_pm" Type="int" Nullable="false" />
+          <Property Name="count_850_add" Type="int" Nullable="false" />
+          <Property Name="count_700_add" Type="int" Nullable="false" />
+          <Property Name="count_meal_add" Type="int" Nullable="false" />
+          <Property Name="count_box_add" Type="int" Nullable="false" />
+          <Property Name="count_850_use_pm" Type="int" Nullable="false" />
+          <Property Name="count_700_use_pm" Type="int" Nullable="false" />
+          <Property Name="count_meal_use_pm" Type="int" Nullable="false" />
+          <Property Name="count_box_use_pm" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ST_Vendor">
           <Key>
@@ -212,11 +239,22 @@
           </Key>
           <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="guid" Type="Guid" Nullable="false" />
-          <Property Name="material_guid" Type="Guid"  Nullable="false" />
-          <Property Name="count" Type="Double" Nullable="false" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="deleted_at" Type="DateTime" Precision="3" />
           <Property Name="del_yn" Type="Int32" Nullable="false" />
+          <Property Name="rec_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="count_850" Type="Int32" Nullable="false" />
+          <Property Name="use_850" Type="Int32" Nullable="false" />
+          <Property Name="add_850" Type="Int32" Nullable="false" />
+          <Property Name="count_700" Type="Int32" Nullable="false" />
+          <Property Name="use_700" Type="Int32" Nullable="false" />
+          <Property Name="add_700" Type="Int32" Nullable="false" />
+          <Property Name="count_meal" Type="Int32" Nullable="false" />
+          <Property Name="use_meal" Type="Int32" Nullable="false" />
+          <Property Name="add_meal" Type="Int32" Nullable="false" />
+          <Property Name="count_box" Type="Int32" Nullable="false" />
+          <Property Name="use_box" Type="Int32" Nullable="false" />
+          <Property Name="add_box" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ST_Material">
           <Key>
@@ -321,15 +359,31 @@
           <Property Name="guid" Type="Guid" Nullable="false" />
           <Property Name="rec_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="turnover" Type="Int32" Nullable="false" />
-          <Property Name="count_850" Type="Int32" Nullable="false" />
-          <Property Name="count_700" Type="Int32" Nullable="false" />
-          <Property Name="count_meal" Type="Int32" Nullable="false" />
           <Property Name="count_rice" Type="Double" Nullable="false" />
           <Property Name="count_soup" Type="Double" Nullable="false" />
           <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="deleted_at" Type="DateTime" Precision="3" />
           <Property Name="del_yn" Type="Int32" Nullable="false" />
           <Property Name="emp_guid" Type="Guid" Nullable="false" />
+          <Property Name="count_fish" Type="Double" Nullable="false" />
+          <Property Name="inner_xl_am" Type="Int32" Nullable="false" />
+          <Property Name="inner_l_am" Type="Int32" Nullable="false" />
+          <Property Name="inner_s_am" Type="Int32" Nullable="false" />
+          <Property Name="inner_xl_pm" Type="Int32" Nullable="false" />
+          <Property Name="inner_l_pm" Type="Int32" Nullable="false" />
+          <Property Name="inner_s_pm" Type="Int32" Nullable="false" />
+          <Property Name="count_850_add" Type="Int32" Nullable="false" />
+          <Property Name="count_700_add" Type="Int32" Nullable="false" />
+          <Property Name="count_meal_add" Type="Int32" Nullable="false" />
+          <Property Name="count_box_add" Type="Int32" Nullable="false" />
+          <Property Name="count_850_use_am" Type="Int32" Nullable="false" />
+          <Property Name="count_700_use_am" Type="Int32" Nullable="false" />
+          <Property Name="count_meal_use_am" Type="Int32" Nullable="false" />
+          <Property Name="count_box_use_am" Type="Int32" Nullable="false" />
+          <Property Name="count_850_use_pm" Type="Int32" Nullable="false" />
+          <Property Name="count_700_use_pm" Type="Int32" Nullable="false" />
+          <Property Name="count_meal_use_pm" Type="Int32" Nullable="false" />
+          <Property Name="count_box_use_pm" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -378,10 +432,21 @@
           <EntitySetMapping Name="ST_InStock">
             <EntityTypeMapping TypeName="STDATAModel.ST_InStock">
               <MappingFragment StoreEntitySet="ST_InStock">
+                <ScalarProperty Name="add_box" ColumnName="add_box" />
+                <ScalarProperty Name="use_box" ColumnName="use_box" />
+                <ScalarProperty Name="count_box" ColumnName="count_box" />
+                <ScalarProperty Name="add_meal" ColumnName="add_meal" />
+                <ScalarProperty Name="use_meal" ColumnName="use_meal" />
+                <ScalarProperty Name="count_meal" ColumnName="count_meal" />
+                <ScalarProperty Name="add_700" ColumnName="add_700" />
+                <ScalarProperty Name="use_700" ColumnName="use_700" />
+                <ScalarProperty Name="count_700" ColumnName="count_700" />
+                <ScalarProperty Name="add_850" ColumnName="add_850" />
+                <ScalarProperty Name="use_850" ColumnName="use_850" />
+                <ScalarProperty Name="count_850" ColumnName="count_850" />
+                <ScalarProperty Name="rec_date" ColumnName="rec_date" />
                 <ScalarProperty Name="serno" ColumnName="serno" />
                 <ScalarProperty Name="guid" ColumnName="guid" />
-                <ScalarProperty Name="material_guid" ColumnName="material_guid" />
-                <ScalarProperty Name="count" ColumnName="count" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
                 <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
                 <ScalarProperty Name="del_yn" ColumnName="del_yn" />
@@ -480,15 +545,31 @@
           <EntitySetMapping Name="ST_SurplusDay">
             <EntityTypeMapping TypeName="STDATAModel.ST_SurplusDay">
               <MappingFragment StoreEntitySet="ST_SurplusDay">
+                <ScalarProperty Name="count_box_use_pm" ColumnName="count_box_use_pm" />
+                <ScalarProperty Name="count_meal_use_pm" ColumnName="count_meal_use_pm" />
+                <ScalarProperty Name="count_700_use_pm" ColumnName="count_700_use_pm" />
+                <ScalarProperty Name="count_850_use_pm" ColumnName="count_850_use_pm" />
+                <ScalarProperty Name="count_box_use_am" ColumnName="count_box_use_am" />
+                <ScalarProperty Name="count_meal_use_am" ColumnName="count_meal_use_am" />
+                <ScalarProperty Name="count_700_use_am" ColumnName="count_700_use_am" />
+                <ScalarProperty Name="count_850_use_am" ColumnName="count_850_use_am" />
+                <ScalarProperty Name="count_box_add" ColumnName="count_box_add" />
+                <ScalarProperty Name="count_meal_add" ColumnName="count_meal_add" />
+                <ScalarProperty Name="count_700_add" ColumnName="count_700_add" />
+                <ScalarProperty Name="count_850_add" ColumnName="count_850_add" />
+                <ScalarProperty Name="inner_s_pm" ColumnName="inner_s_pm" />
+                <ScalarProperty Name="inner_l_pm" ColumnName="inner_l_pm" />
+                <ScalarProperty Name="inner_xl_pm" ColumnName="inner_xl_pm" />
+                <ScalarProperty Name="inner_s_am" ColumnName="inner_s_am" />
+                <ScalarProperty Name="inner_l_am" ColumnName="inner_l_am" />
+                <ScalarProperty Name="inner_xl_am" ColumnName="inner_xl_am" />
+                <ScalarProperty Name="count_fish" ColumnName="count_fish" />
                 <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
                 <ScalarProperty Name="del_yn" ColumnName="del_yn" />
                 <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
                 <ScalarProperty Name="count_soup" ColumnName="count_soup" />
                 <ScalarProperty Name="count_rice" ColumnName="count_rice" />
-                <ScalarProperty Name="count_meal" ColumnName="count_meal" />
-                <ScalarProperty Name="count_700" ColumnName="count_700" />
-                <ScalarProperty Name="count_850" ColumnName="count_850" />
                 <ScalarProperty Name="turnover" ColumnName="turnover" />
                 <ScalarProperty Name="rec_date" ColumnName="rec_date" />
                 <ScalarProperty Name="guid" ColumnName="guid" />

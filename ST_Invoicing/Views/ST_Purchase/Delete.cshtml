@@ -4,6 +4,12 @@
     ViewBag.Title = "南臺灣-刪除採購";
 }
 
+<script>
+    $(document).ready(function () {
+        $("#ST_Purchase").addClass("active");
+    });
+</script>
+
 <h2>刪除採購資料</h2>
 
 <h3>確定刪除此筆資料?</h3>
@@ -15,7 +21,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.purchase_date)
+            @Html.DisplayFor(model => model.display_Date)
         </dd>
 
         <dt>

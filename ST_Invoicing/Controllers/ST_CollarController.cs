@@ -97,7 +97,7 @@ namespace ST_Invoicing.Controllers
 
                 mST_CollarDAO.Insert(data);
 
-                mST_InStockDAO.DecreseStockCount(currMaterial.guid, data.collar_count);
+                //mST_InStockDAO.DecreseStockCount(currMaterial.guid, data.collar_count);
 
                 return RedirectToAction("Index");
             }
@@ -107,26 +107,26 @@ namespace ST_Invoicing.Controllers
  
 
             
-        public JsonResult CheckStockCount(ST_Collar data)
-        {
-            if (!String.IsNullOrEmpty(data.material_name))
-            {
-                ST_Material currMaterial = mST_MaterialDAO.FetchByItemName(data.material_name);
+        //public JsonResult CheckStockCount(ST_Collar data)
+        //{
+        //    if (!String.IsNullOrEmpty(data.material_name))
+        //    {
+        //        ST_Material currMaterial = mST_MaterialDAO.FetchByItemName(data.material_name);
 
-                ST_InStock currStock = mST_InStockDAO.FetchByMaterialGuid(currMaterial.guid);
+        //        ST_InStock currStock = mST_InStockDAO.FetchByMaterialGuid(currMaterial.guid);
 
-                if (currStock.count < data.collar_count)
-                {
-                    return Json(false, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(true, JsonRequestBehavior.AllowGet);
-                }
-            }
+        //        if (currStock.count < data.collar_count)
+        //        {
+        //            return Json(false, JsonRequestBehavior.AllowGet);
+        //        }
+        //        else
+        //        {
+        //            return Json(true, JsonRequestBehavior.AllowGet);
+        //        }
+        //    }
 
-            return Json(false, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(false, JsonRequestBehavior.AllowGet);
+        //}
         protected override void Dispose(bool disposing)
         {
             if (disposing)

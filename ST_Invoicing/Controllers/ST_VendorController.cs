@@ -19,6 +19,8 @@ namespace ST_Invoicing.Controllers
         // GET: ST_Vendor
         public ActionResult Index()
         {
+            ViewData["user"] = Session["user"];
+
             return View(mST_VendorDAO.GetDataList_NotDel());
         }
 
@@ -29,17 +31,24 @@ namespace ST_Invoicing.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             ST_Vendor sT_Vendor = mST_VendorDAO.FetchBySerno(id);
+
             if (sT_Vendor == null)
             {
                 return HttpNotFound();
             }
+
+            ViewData["user"] = Session["user"];
+
             return View(sT_Vendor);
         }
 
         // GET: ST_Vendor/Create
         public ActionResult Create()
         {
+            ViewData["user"] = Session["user"];
+
             return View();
         }
 
@@ -78,6 +87,9 @@ namespace ST_Invoicing.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewData["user"] = Session["user"];
+
             return View(data);
         }
 
@@ -111,6 +123,9 @@ namespace ST_Invoicing.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewData["user"] = Session["user"];
+
             return View(data);
         }
 

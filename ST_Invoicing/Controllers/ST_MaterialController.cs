@@ -33,6 +33,8 @@ namespace ST_Invoicing.Controllers
                 material.vendor_name = currVendor.vendor_name;
             }
 
+            ViewData["user"] = Session["user"];
+
             return View(material_List);
         }
 
@@ -56,6 +58,8 @@ namespace ST_Invoicing.Controllers
 
             data.vendor_name = currVendor.vendor_name;
 
+            ViewData["user"] = Session["user"];
+
             return View(data);
         }
 
@@ -65,6 +69,8 @@ namespace ST_Invoicing.Controllers
             ViewData["vendor_Items"] = GetVendorItems();
 
             ViewData["unit_Items"] = GetUnitItem();
+
+            ViewData["user"] = Session["user"];
 
             return View();
         }
@@ -116,10 +122,13 @@ namespace ST_Invoicing.Controllers
 
             ViewData["vendor_Items"] = GetVendorItems();
 
+            ViewData["user"] = Session["user"];
+
             if (data == null)
             {
                 return HttpNotFound();
             }
+
             return View(data);
         }
 
@@ -147,11 +156,16 @@ namespace ST_Invoicing.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             ST_Material data = mST_MaterialDAO.FetchBySerno(id);
+
             if (data == null)
             {
                 return HttpNotFound();
             }
+
+            ViewData["user"] = Session["user"];
+
             return View(data);
         }
 

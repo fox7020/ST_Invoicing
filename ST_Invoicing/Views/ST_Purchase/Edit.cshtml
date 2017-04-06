@@ -16,6 +16,12 @@
 
 }
 
+<script>
+    $(document).ready(function () {
+        $("#ST_Purchase").addClass("active");
+    });
+</script>
+
 <h2>編輯採購</h2>
 
 
@@ -34,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.purchase_date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.purchase_date.Date, new { @class = "control-label col-md-2" })
+                @Html.DisplayFor(model => model.display_Date, new { @class = "control-label col-md-2" })
             </div>
         </div>
 

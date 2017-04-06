@@ -11,21 +11,170 @@ namespace ST_Invoicing.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ST_SurplusDay
     {
         public int serno { get; set; }
         public System.Guid guid { get; set; }
+
+        [Required]
+        [Display(Name = "日期")]
         public System.DateTime rec_date { get; set; }
+
+        [Required]
+        [Display(Name = "當日收入")]
+        [Range(0, 1000000, ErrorMessage = "營業額為{1}到{2}之間")]
         public int turnover { get; set; }
-        public int count_850 { get; set; }
-        public int count_700 { get; set; }
-        public int count_meal { get; set; }
+
+        [Required]
+        [Display(Name = "飯桶數")]
+        [Range(0, 20, ErrorMessage = "飯桶數為{1}到{2}之間")]
         public double count_rice { get; set; }
+
+        [Required]
+        [Display(Name = "粳桶數")]
+        [Range(0, 20, ErrorMessage = "飯桶數為{1}到{2}之間")]
         public double count_soup { get; set; }
+
+        [Required]
+        [Display(Name = "魚盒數")]
+        [Range(0, 20, ErrorMessage = "魚盒數為{1}到{2}之間")]
+        public double count_fish { get; set; }
+
+        public System.Guid emp_guid { get; set; }
+
+        [Required]
+        [Display(Name = "早班850cc盒使用量")]
+        [Range(0, 9999, ErrorMessage = "早班850cc盒使用量為{1}到{2}之間")]
+        public int count_850_use_am { get; set; }
+
+        [Required]
+        [Display(Name = "早班700cc盒使用量")]
+        [Range(0, 9999, ErrorMessage = "早班700cc盒使用量為{1}到{2}之間")]
+        public int count_700_use_am { get; set; }
+
+        [Required]
+        [Display(Name = "早班點心盒使用量")]
+        [Range(0, 9999, ErrorMessage = "早班點心盒使用量為{1}到{2}之間")]
+        public int count_meal_use_am { get; set; }
+
+        [Required]
+        [Display(Name = "早班便當盒使用量")]
+        [Range(0, 9999, ErrorMessage = "早班便當盒使用量為{1}到{2}之間")]
+        public int count_box_use_am { get; set; }
+
+        [Required]
+        [Display(Name = "晚班850cc盒使用量")]
+        [Range(0, 9999, ErrorMessage = "晚班850cc盒使用量為{1}到{2}之間")]
+        public int count_850_use_pm { get; set; }
+
+        [Required]
+        [Display(Name = "晚班700cc盒使用量")]
+        [Range(0, 9999, ErrorMessage = "晚班700cc盒使用量為{1}到{2}之間")]
+        public int count_700_use_pm { get; set; }
+
+        [Required]
+        [Display(Name = "晚班點心盒使用量")]
+        [Range(0, 9999, ErrorMessage = "晚班點心盒使用量為{1}到{2}之間")]
+        public int count_meal_use_pm { get; set; }
+
+        [Required]
+        [Display(Name = "晚班便當盒使用量")]
+        [Range(0, 9999, ErrorMessage = "晚班便當盒使用量為{1}到{2}之間")]
+        public int count_box_use_pm { get; set; }
+
+        [Required]
+        [Display(Name = "850cc盒補充量")]
+        [Range(0, 9999, ErrorMessage = "850cc盒補充量為{1}到{2}之間")]
+        public int count_850_add { get; set; }
+
+        [Required]
+        [Display(Name = "700cc盒補充量")]
+        [Range(0, 9999, ErrorMessage = "700cc盒補充量為{1}到{2}之間")]
+        public int count_700_add { get; set; }
+
+        [Required]
+        [Display(Name = "點心盒補充量")]
+        [Range(0, 9999, ErrorMessage = "點心盒補充量為{1}到{2}之間")]
+        public int count_meal_add { get; set; }
+
+        [Required]
+        [Display(Name = "便當盒補充量")]
+        [Range(0, 9999, ErrorMessage = "便當盒補充量為{1}到{2}之間")]
+        public int count_box_add { get; set; }
+
+        [Required]
+        [Display(Name = "早班大大碗數量")]
+        [Range(0, 1000, ErrorMessage = "早班大大碗數量為{1}到{2}之間")]
+        public int inner_xl_am { get; set; }
+
+        [Required]
+        [Display(Name = "早班大碗數量")]
+        [Range(0, 1000, ErrorMessage = "早班大碗數量為{1}到{2}之間")]
+        public int inner_l_am { get; set; }
+
+        [Required]
+        [Display(Name = "早班小碗數量")]
+        [Range(0, 1000, ErrorMessage = "早班小碗數量為{1}到{2}之間")]
+        public int inner_s_am { get; set; }
+
+        [Required]
+        [Display(Name = "晚班大大碗數量")]
+        [Range(0, 1000, ErrorMessage = "晚班大大碗數量為{1}到{2}之間")]
+        public int inner_xl_pm { get; set; }
+
+        [Required]
+        [Display(Name = "晚班大碗數量")]
+        [Range(0, 1000, ErrorMessage = "晚班大碗數量為{1}到{2}之間")]
+        public int inner_l_pm { get; set; }
+
+        [Required]
+        [Display(Name = "晚班小碗數量")]
+        [Range(0, 1000, ErrorMessage = "晚班小碗數量為{1}到{2}之間")]
+        public int inner_s_pm { get; set; }
+
+        [Display(Name = "備註")]
         public string remark { get; set; }
         public Nullable<System.DateTime> deleted_at { get; set; }
         public int del_yn { get; set; }
-        public System.Guid emp_guid { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "記錄人")]
+        public string emp_name { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "當日支出")]
+        public int expenditure { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "當日盈餘")]
+        public int surplus { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "累計支出")]
+        public int expenditure_month { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "累計收入")]
+        public int surplus_month { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "700cc庫存量")]
+        public int sotck_700cc { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "850cc庫存量")]
+        public int stock_850cc { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "點心庫存量")]
+        public int stock_meal { get; set; }
+
+        [ScaffoldColumn(false)]
+        [Display(Name = "便當盒庫存量")]
+        public int stock_box { get; set; }
+
+        public string display_Date { get { return rec_date.ToString("yyyy-MM-dd") + " " + rec_date.DayOfWeek; } }
     }
 }

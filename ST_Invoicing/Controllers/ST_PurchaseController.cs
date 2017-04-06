@@ -26,9 +26,13 @@ namespace ST_Invoicing.Controllers
         {
             List<ST_Purchase> purchase_List = new List<ST_Purchase>();
 
-            purchase_List = mST_PurcahseDAO.GetDataByDate(DateTime.Today);
+            purchase_List = mST_PurcahseDAO.GetThisMonthData(DateTime.Today);
 
             SetOtherProperty(ref purchase_List);
+        
+            purchase_List = purchase_List.OrderBy(o => o.purchase_date).ToList();
+
+            ViewData["user"] = Session["user"];
             
             return View(purchase_List);
         }
@@ -46,6 +50,8 @@ namespace ST_Invoicing.Controllers
 
             List<ST_Purchase> SortedList = rslt.OrderBy(o => o.purchase_date).ToList();
 
+            ViewData["user"] = Session["user"];
+
             return View(SortedList);
         }
 
@@ -56,6 +62,8 @@ namespace ST_Invoicing.Controllers
             ViewData["material_Items"] = GetMaterialItems();
 
             ViewData["vendor_Items"] = GetVendorItems();
+
+            ViewData["user"] = Session["user"];
 
             return View();
         }
@@ -95,6 +103,8 @@ namespace ST_Invoicing.Controllers
 
             ViewData["vendor_Items"] = GetVendorItems();
 
+            ViewData["user"] = Session["user"];
+
             return View(data);
         }
 
@@ -123,6 +133,7 @@ namespace ST_Invoicing.Controllers
 
             ViewData["vendor_Items"] = GetVendorItems();
 
+            ViewData["user"] = Session["user"];
 
             return View(data);
         }
@@ -166,6 +177,8 @@ namespace ST_Invoicing.Controllers
             data.vendor_name = mST_VendorDAO.FetchByGuid(data.vendor_guid).vendor_name;
 
             data.emp_name = mST_EmpDAO.FetchByGuid(data.emp_guid).emp_name;
+
+            ViewData["user"] = Session["user"];
 
             return View(data);
         }
@@ -257,5 +270,6 @@ namespace ST_Invoicing.Controllers
                 }
             }
         }
+
     }
 }

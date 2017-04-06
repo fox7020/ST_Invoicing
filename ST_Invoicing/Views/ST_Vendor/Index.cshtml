@@ -71,9 +71,9 @@
             @Html.DisplayFor(modelItem => item.remark)
         </td>     
         <td>
-            @Html.ActionLink("編輯", "Edit", new { id=item.serno }) |
-            @Html.ActionLink("查看", "Details", new { id=item.serno }) |
-            @Html.ActionLink("刪除", "Delete", new { id=item.serno })
+            <input type="button" class="btn btn-warning" value="編輯" onclick="location.href='@Url.Action("Edit", "ST_Vendor", new { id = item.serno })'" />
+            <input type="button" class="btn btn-success" value="查看" onclick="location.href='@Url.Action("Details", "ST_Vendor", new { id = item.serno })'" />
+            <input type="button" class="btn btn-danger" value="刪除" onclick="location.href='@Url.Action("Delete", "ST_Vendor", new { id = item.serno })'" />
         </td>
     </tr>
 }

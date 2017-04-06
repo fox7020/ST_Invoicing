@@ -21,6 +21,9 @@ namespace ST_Invoicing.Controllers
         // GET: ST_Emp
         public ActionResult Index()
         {
+
+            ViewData["user"] = Session["user"];
+
             return View(mST_EmpDAO.GetDataList_NotDel());
         }
 
@@ -36,12 +39,17 @@ namespace ST_Invoicing.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewData["user"] = Session["user"];
+
             return View(sT_Emp);
         }
 
         // GET: ST_Emp/Create
         public ActionResult Create()
         {
+            ViewData["user"] = Session["user"];
+
             return View();
         }
 
@@ -86,6 +94,9 @@ namespace ST_Invoicing.Controllers
             sT_Emp.account = sT_Emp.account.Trim();
             sT_Emp.password = sT_Emp.password.Trim();
             sT_Emp.password2 = sT_Emp.password.Trim();
+
+            ViewData["user"] = Session["user"];
+
             return View(sT_Emp);
         }
 
@@ -119,6 +130,9 @@ namespace ST_Invoicing.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewData["user"] = Session["user"];
+
             return View(sT_Emp);
         }
 

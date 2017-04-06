@@ -60,5 +60,7 @@ namespace ST_Invoicing.Models
 
         [ScaffoldColumn(false)]
         public string font_Color { get; set; }
+
+        public string display_Date { get { return purchase_date.ToString("yyyy-MM-dd") + " " + purchase_date.DayOfWeek; } }
     }
 }

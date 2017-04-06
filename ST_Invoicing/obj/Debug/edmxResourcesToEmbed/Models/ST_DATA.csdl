@@ -42,11 +42,22 @@
     </Key>
     <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="guid" Type="Guid" Nullable="false" />
-    <Property Name="material_guid" Type="Guid" Nullable="false" />
-    <Property Name="count" Type="Double" Nullable="false" />
     <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="deleted_at" Type="DateTime" Precision="3" />
     <Property Name="del_yn" Type="Int32" Nullable="false" />
+    <Property Name="rec_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="count_850" Type="Int32" Nullable="false" />
+    <Property Name="use_850" Type="Int32" Nullable="false" />
+    <Property Name="add_850" Type="Int32" Nullable="false" />
+    <Property Name="count_700" Type="Int32" Nullable="false" />
+    <Property Name="use_700" Type="Int32" Nullable="false" />
+    <Property Name="add_700" Type="Int32" Nullable="false" />
+    <Property Name="count_meal" Type="Int32" Nullable="false" />
+    <Property Name="use_meal" Type="Int32" Nullable="false" />
+    <Property Name="add_meal" Type="Int32" Nullable="false" />
+    <Property Name="count_box" Type="Int32" Nullable="false" />
+    <Property Name="use_box" Type="Int32" Nullable="false" />
+    <Property Name="add_box" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="ST_Material">
     <Key>
@@ -151,14 +162,30 @@
     <Property Name="guid" Type="Guid" Nullable="false" />
     <Property Name="rec_date" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="turnover" Type="Int32" Nullable="false" />
-    <Property Name="count_850" Type="Int32" Nullable="false" />
-    <Property Name="count_700" Type="Int32" Nullable="false" />
-    <Property Name="count_meal" Type="Int32" Nullable="false" />
     <Property Name="count_rice" Type="Double" Nullable="false" />
     <Property Name="count_soup" Type="Double" Nullable="false" />
     <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="deleted_at" Type="DateTime" Precision="3" />
     <Property Name="del_yn" Type="Int32" Nullable="false" />
     <Property Name="emp_guid" Type="Guid" Nullable="false" />
+    <Property Name="count_fish" Type="Double" Nullable="false" />
+    <Property Name="inner_xl_am" Type="Int32" Nullable="false" />
+    <Property Name="inner_l_am" Type="Int32" Nullable="false" />
+    <Property Name="inner_s_am" Type="Int32" Nullable="false" />
+    <Property Name="inner_xl_pm" Type="Int32" Nullable="false" />
+    <Property Name="inner_l_pm" Type="Int32" Nullable="false" />
+    <Property Name="inner_s_pm" Type="Int32" Nullable="false" />
+    <Property Name="count_850_add" Type="Int32" Nullable="false" />
+    <Property Name="count_700_add" Type="Int32" Nullable="false" />
+    <Property Name="count_meal_add" Type="Int32" Nullable="false" />
+    <Property Name="count_box_add" Type="Int32" Nullable="false" />
+    <Property Name="count_850_use_am" Type="Int32" Nullable="false" />
+    <Property Name="count_700_use_am" Type="Int32" Nullable="false" />
+    <Property Name="count_meal_use_am" Type="Int32" Nullable="false" />
+    <Property Name="count_box_use_am" Type="Int32" Nullable="false" />
+    <Property Name="count_850_use_pm" Type="Int32" Nullable="false" />
+    <Property Name="count_700_use_pm" Type="Int32" Nullable="false" />
+    <Property Name="count_meal_use_pm" Type="Int32" Nullable="false" />
+    <Property Name="count_box_use_pm" Type="Int32" Nullable="false" />
   </EntityType>
 </Schema>

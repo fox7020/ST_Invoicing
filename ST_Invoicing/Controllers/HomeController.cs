@@ -97,7 +97,8 @@ namespace ST_Invoicing.Controllers
 
             /*檢查有無700、850、點心盒、便當盒*/
             mST_MaterialDAO.InsertBasicMaterial();
-            mST_InStockDAO.InsertBasicInStock();
+
+            Session["user"] = currUser.emp_name;
 
             if (currUser != null)
             {

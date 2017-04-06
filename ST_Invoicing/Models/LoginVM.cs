@@ -18,6 +18,7 @@ namespace ST_Invoicing.Models
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         [Required]
         public string Password { get; set; }
+    
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -26,7 +27,7 @@ namespace ST_Invoicing.Models
 
             if (mST_EmpDAO.isCurrentUser(Account, Password) == false) {
                 yield return new ValidationResult("帳號或密碼錯誤", new string[] { "Account" });
-            }    
+            }  
         }
     }
 }

@@ -42,6 +42,19 @@ namespace ST_Invoicing.Models
 
             return rslt;
         }
+
+        public List<ST_Purchase> GetThisMonthData(DateTime rec_date)
+        {
+            DateTime firstDay = new DateTime(rec_date.Year, rec_date.Month, 1);
+            DateTime lastDay = new DateTime(rec_date.AddMonths(1).Year, rec_date.AddMonths(1).Month, 1).AddDays(-1);
+
+            List<ST_Purchase> rslt = new List<ST_Purchase>();
+
+            rslt = dao.ST_Purchase.Where(currPurcahse => currPurcahse.del_yn == 0).Where(currPurcahse => currPurcahse.purchase_date >= firstDay).Where(currPurcahse => currPurcahse.purchase_date <= lastDay).ToList();
+
+            return rslt;
+        }
+
         public ST_Purchase Update(ST_Purchase data)
         {
             dao.Entry(data).State = EntityState.Modified;

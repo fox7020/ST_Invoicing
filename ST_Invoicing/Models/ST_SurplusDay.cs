@@ -152,13 +152,17 @@ namespace ST_Invoicing.Models
         public int surplus { get; set; }
 
         [ScaffoldColumn(false)]
+        [Display(Name = "累計收入")]
+        public int turnover_month { get; set; }
+
+        [ScaffoldColumn(false)]
         [Display(Name = "累計支出")]
         public int expenditure_month { get; set; }
 
         [ScaffoldColumn(false)]
-        [Display(Name = "累計收入")]
+        [Display(Name = "累計盈餘")]
         public int surplus_month { get; set; }
-
+    
         [ScaffoldColumn(false)]
         [Display(Name = "700cc庫存量")]
         public int sotck_700cc { get; set; }

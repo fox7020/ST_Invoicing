@@ -1,0 +1,120 @@
+﻿@model ST_Invoicing.Models.ST_Emp
+
+@{
+    ViewBag.Title = "南臺灣-員工資料";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#ST_Emp").addClass("active");
+    });
+</script>
+
+<h2>員工資料</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_birthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_identity_num)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_identity_num)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_tel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_tel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.account)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.account)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.in_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.in_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.out_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.out_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remark)
+        </dd>
+
+    </dl>
+</div>
+<p>    
+    <input type="button" class="btn btn-primary" value="編輯員工" onclick="location.href='@Url.Action("Edit", "ST_Emp", new { id = Model.serno })'" />
+    <input type="button" class="btn btn-info" value="返回員工列表" onclick="location.href='@Url.Action("Index", "ST_Emp")'" /> 
+</p>

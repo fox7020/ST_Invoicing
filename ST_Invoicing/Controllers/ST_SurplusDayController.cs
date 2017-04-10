@@ -34,14 +34,50 @@ namespace ST_Invoicing.Controllers
             /*計算月收入累計&月支出累計前要先依照日期排序*/
             dataList = dataList.OrderBy(o => o.rec_date).ToList();
 
-            SetSurplus_Month(ref dataList);
-
+            /*計算累計支出*/
             SetExpenditure_Month(ref dataList);
+
+            /*計算累計收入*/
+            SetTurnover_Month(ref dataList);
+
+            /*計算累計盈餘*/
+            SetSurplus_Month(ref dataList);
+          
+            ViewData["user"] = Session["user"];
+
+            return View(dataList);
+        }
+
+        [HttpPost]
+        public ActionResult Index(string daterange, string remark)
+        {
+            DateTime start_Date = DateTime.Parse(daterange.Substring(0, 10));
+
+            DateTime end_Date = DateTime.Parse(daterange.Substring(13, 10));
+
+            List<ST_SurplusDay> dataList = mST_SurplusDayDAO.GetDataByDateRange(start_Date, end_Date);
+
+            SetExpenditure(ref dataList);
+
+            SetSurplus(ref dataList);
+
+            /*計算月收入累計&月支出累計前要先依照日期排序*/
+            dataList = dataList.OrderBy(o => o.rec_date).ToList();
+
+            /*計算累計支出*/
+            SetExpenditure_Month(ref dataList);
+
+            /*計算累計收入*/
+            SetTurnover_Month(ref dataList);
+
+            /*計算累計盈餘*/
+            SetSurplus_Month(ref dataList);
 
             ViewData["user"] = Session["user"];
 
             return View(dataList);
         }
+
 
         // GET: ST_SurplusDay/Details/5
         public ActionResult Details(int? id)
@@ -58,7 +94,24 @@ namespace ST_Invoicing.Controllers
                 return HttpNotFound();
             }
 
+            #region 計算當日支出
+            List<ST_Purchase> purrchase_List = mST_PurcahseDAO.GetDataByDate(data.rec_date);
+
+            data.expenditure = 0;
+
+            foreach (ST_Purchase currPurchase in purrchase_List)
+            {
+                data.expenditure += currPurchase.purchase_price;
+            }
+            #endregion
+
+            #region 計算當日盈餘
+            data.surplus = data.turnover - data.expenditure;
+            #endregion
+           
             ViewData["user"] = Session["user"];
+
+            data.emp_name = mST_EmpDAO.FetchByGuid(data.emp_guid).emp_name;
 
             return View(data);
         }
@@ -110,12 +163,7 @@ namespace ST_Invoicing.Controllers
             }
 
             ViewData["user"] = Session["user"];
-
-            if(data.rec_date != DateTime.Today)
-            {   /*TODO*/
-                return RedirectToAction("Index");
-            }
-
+           
             return View(data);
         }
 
@@ -130,7 +178,19 @@ namespace ST_Invoicing.Controllers
             {
                 mST_SurplusDayDAO.Update(data);
 
+                #region 修改庫存
                 SetStock(data);
+                #endregion
+                #region 修改比data日期還大的庫存
+
+                List<ST_SurplusDay> edit_List = mST_SurplusDayDAO.GetDataWhichDateGreateThanSpecifyDate(data.rec_date);
+
+                foreach (ST_SurplusDay editData in edit_List)
+                {
+                    SetStock(editData);
+
+                }
+                #endregion
 
                 return RedirectToAction("Index");
             }
@@ -200,9 +260,21 @@ namespace ST_Invoicing.Controllers
 
             for (int i = 0; i < dataList.Count; i++)
             {
-                total_Surplus += dataList[i].turnover;
+                total_Surplus += dataList[i].surplus;
 
                 dataList[i].surplus_month = total_Surplus;
+            }
+        }
+
+        public void SetTurnover_Month(ref List<ST_SurplusDay> dataList)
+        {
+            int total_Turnover = 0;
+
+            for (int i = 0; i < dataList.Count; i++)
+            {
+                total_Turnover += dataList[i].turnover;
+
+                dataList[i].turnover_month = total_Turnover;
             }
         }
 
@@ -235,11 +307,22 @@ namespace ST_Invoicing.Controllers
                 currStock.use_850 = data.count_850_use_am + data.count_850_use_pm;
                 currStock.use_meal = data.count_meal_use_am + data.count_meal_use_pm;
                 currStock.use_box = data.count_box_use_am + data.count_box_use_pm;
-
-                currStock.count_700 = recentStock.count_700 + currStock.add_700 - currStock.use_700;
-                currStock.count_850 = recentStock.count_850 + currStock.add_850 - currStock.use_850;
-                currStock.count_meal = recentStock.count_meal + currStock.add_meal - currStock.use_meal;
-                currStock.count_box = recentStock.count_box + currStock.add_box - currStock.use_box;
+                
+                if(recentStock != null)
+                {
+                    currStock.count_700 = recentStock.count_700 + currStock.add_700 - currStock.use_700;
+                    currStock.count_850 = recentStock.count_850 + currStock.add_850 - currStock.use_850;
+                    currStock.count_meal = recentStock.count_meal + currStock.add_meal - currStock.use_meal;
+                    currStock.count_box = recentStock.count_box + currStock.add_box - currStock.use_box;
+                }
+                else
+                {
+                    currStock.count_700 = currStock.add_700 - currStock.use_700;
+                    currStock.count_850 = currStock.add_850 - currStock.use_850;
+                    currStock.count_meal = currStock.add_meal - currStock.use_meal;
+                    currStock.count_box = currStock.add_box - currStock.use_box;
+                }
+               
 
                 mST_InStockDAO.Update(currStock);
             }
@@ -260,11 +343,21 @@ namespace ST_Invoicing.Controllers
                 currStock.use_850 = data.count_850_use_am + data.count_850_use_pm;
                 currStock.use_meal = data.count_meal_use_am + data.count_meal_use_pm;
                 currStock.use_box = data.count_box_use_am + data.count_box_use_pm;
-
-                currStock.count_700 = currStock.add_700 - currStock.use_700;
-                currStock.count_850 = currStock.add_850 - currStock.use_850;
-                currStock.count_meal = currStock.add_meal - currStock.use_meal;
-                currStock.count_box = currStock.add_box - currStock.use_box;
+          
+                if (recentStock != null)
+                {
+                    currStock.count_700 = recentStock.count_700 + currStock.add_700 - currStock.use_700;
+                    currStock.count_850 = recentStock.count_850 + currStock.add_850 - currStock.use_850;
+                    currStock.count_meal = recentStock.count_meal + currStock.add_meal - currStock.use_meal;
+                    currStock.count_box = recentStock.count_box + currStock.add_box - currStock.use_box;
+                }
+                else
+                {
+                    currStock.count_700 = currStock.add_700 - currStock.use_700;
+                    currStock.count_850 = currStock.add_850 - currStock.use_850;
+                    currStock.count_meal = currStock.add_meal - currStock.use_meal;
+                    currStock.count_box = currStock.add_box - currStock.use_box;
+                }
 
                 mST_InStockDAO.Insert(currStock);           
             }          

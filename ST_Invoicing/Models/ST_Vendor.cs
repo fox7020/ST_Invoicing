@@ -23,7 +23,6 @@ namespace ST_Invoicing.Models
         [MaxLength(10, ErrorMessage = "廠商名稱長度不可大於{1}個字元")]
         public string vendor_name { get; set; }
 
-        [Required]
         [Display(Name = "聯絡人")]
         [MaxLength(5, ErrorMessage = "聯絡人長度不可大於{1}個字元")]
         public string contact_person { get; set; }
@@ -37,7 +36,6 @@ namespace ST_Invoicing.Models
         [MaxLength(10, ErrorMessage = "連絡電話不可大於{1}個字元")]
         public string vendor_tel2 { get; set; }
 
-        [Required]
         [Display(Name = "聯絡地址")]
         [MaxLength(30, ErrorMessage = "聯絡地址不可大於{1}個字元")]
         public string address { get; set; }

@@ -71,6 +71,25 @@ namespace ST_Invoicing.Models
             return rslt;
         }
 
+        public List<ST_Material> GetDataListBySpecies(string species)
+        {
+            List<ST_Material> rslt = new List<ST_Material>();
+
+            rslt = dao.ST_Material.Where(currMaterial => currMaterial.del_yn == 0).Where(currMaterial => currMaterial.item_species.Trim().Equals(species)).ToList();
+
+            return rslt;
+        }
+
+
+        public List<ST_Material> GetDataListByKeyWord(string item_name)
+        {
+            List<ST_Material> rslt = new List<ST_Material>();
+
+            rslt = dao.ST_Material.Where(currMaterial => currMaterial.del_yn == 0).Where(currMaterial => currMaterial.item_name.Contains(item_name)).ToList();
+
+            return rslt;
+        }
+
         public ST_Material Update(ST_Material data)
         {
             dao.Entry(data).State = EntityState.Modified;

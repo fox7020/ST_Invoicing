@@ -1,0 +1,65 @@
+﻿@model ST_Invoicing.Models.ST_Material
+
+@{
+    ViewBag.Title = "南臺灣-查看原物料";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#ST_Material").addClass("active");
+    });
+</script>
+
+<h2>查看原物料</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.item_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.item_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.item_unit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.item_unit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.item_species)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.item_species)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vendor_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vendor_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reamrk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reamrk)
+        </dd
+     
+    </dl>
+</div>
+<p>
+    <input type="button" class="btn btn-primary" value="編輯原物料" onclick="location.href='@Url.Action("Edit", "ST_Material", new { id = Model.serno })'" />
+    <input type="button" class="btn btn-info" value="返回原物料列表" onclick="location.href='@Url.Action("Index", "ST_Material")'" />
+</p>

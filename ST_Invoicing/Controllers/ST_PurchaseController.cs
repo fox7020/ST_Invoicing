@@ -59,9 +59,11 @@ namespace ST_Invoicing.Controllers
         public ActionResult Create()
         {
 
-            ViewData["material_Items"] = GetMaterialItems();
+            ViewData["food_Items"] = GetMaterialItems("食材");
 
-            ViewData["vendor_Items"] = GetVendorItems();
+            ViewData["supplies_Items"] = GetMaterialItems("耗材");
+
+            ViewData["other_Items"] = GetMaterialItems("其他");       
 
             ViewData["user"] = Session["user"];
 
@@ -85,10 +87,19 @@ namespace ST_Invoicing.Controllers
 
                     currPurchase.purchase_date = data.rec_date;
 
-                    currPurchase.vendor_guid = mST_VendorDAO.FetchByName(currPurchase.vendor_name).guid;
+                    ST_Material currMaterial = mST_MaterialDAO.FetchByItemName(currPurchase.item_name);
 
-                    currPurchase.material_guid = mST_MaterialDAO.FetchByItemName(currPurchase.item_name).guid;
+                    if(currMaterial != null)
+                    {
+                        currPurchase.material_guid = currMaterial.guid;
+                    }
+                    else
+                    {   /*Material表非固定品項的Guid*/
+                        currPurchase.material_guid = Guid.Parse("DF7E2E4F-F2F0-4232-8E10-665FA99048B1");
 
+                        currPurchase.special_item = currPurchase.item_name;
+                    }
+                   
                     currPurchase.emp_guid = mST_EmpDAO.FetchByAccount(User.Identity.Name).guid;
 
                     mST_PurcahseDAO.Insert(currPurchase);
@@ -99,9 +110,11 @@ namespace ST_Invoicing.Controllers
 
             ModelState.AddModelError("", "至少新增一筆採購項目");
 
-            ViewData["material_Items"] = GetMaterialItems();
+            ViewData["food_Items"] = GetMaterialItems("食材");
 
-            ViewData["vendor_Items"] = GetVendorItems();
+            ViewData["supplies_Items"] = GetMaterialItems("耗材");
+
+            ViewData["other_Items"] = GetMaterialItems("其他");         
 
             ViewData["user"] = Session["user"];
 
@@ -125,14 +138,16 @@ namespace ST_Invoicing.Controllers
 
             data.special_mark = data.special_mark.Trim();
 
-            data.item_name = mST_MaterialDAO.FetchByGuid(data.material_guid).item_name;
-
-            data.vendor_name = mST_VendorDAO.FetchByGuid(data.vendor_guid).vendor_name;
-
-            ViewData["material_Items"] = GetMaterialItems();
-
-            ViewData["vendor_Items"] = GetVendorItems();
-
+            /*非固定品項*/
+            if (data.material_guid.Equals(Guid.Parse("DF7E2E4F-F2F0-4232-8E10-665FA99048B1")))
+            {
+                data.item_name = data.special_item;
+            }
+            else
+            {
+                data.item_name = mST_MaterialDAO.FetchByGuid(data.material_guid).item_name;     
+            }                                   
+          
             ViewData["user"] = Session["user"];
 
             return View(data);
@@ -146,13 +161,15 @@ namespace ST_Invoicing.Controllers
         public ActionResult Edit(ST_Purchase data)
         {
             if (ModelState.IsValid)
-            {
-                data.vendor_guid = mST_VendorDAO.FetchByName(data.vendor_name).guid;
+            {               
 
                 mST_PurcahseDAO.Update(data);
 
                 return RedirectToAction("Index");
             }
+          
+            ViewData["user"] = Session["user"];
+
             return View(data);
         }
 
@@ -172,9 +189,7 @@ namespace ST_Invoicing.Controllers
 
             data.special_mark = data.special_mark.Trim();
 
-            data.item_name = mST_MaterialDAO.FetchByGuid(data.material_guid).item_name;
-
-            data.vendor_name = mST_VendorDAO.FetchByGuid(data.vendor_guid).vendor_name;
+            data.item_name = mST_MaterialDAO.FetchByGuid(data.material_guid).item_name;        
 
             data.emp_name = mST_EmpDAO.FetchByGuid(data.emp_guid).emp_name;
 
@@ -198,15 +213,32 @@ namespace ST_Invoicing.Controllers
 
             return RedirectToAction("Index");
         }
+    
+        public ActionResult GetFoodView()
+        {
+            ViewData["food_Items"] = GetMaterialItems("食材");         
+
+            return PartialView("FoodView");
+        }
 
         public ActionResult GetItemView()
         {
 
-            ViewData["material_Items"] = GetMaterialItems();
-
-            ViewData["vendor_Items"] = GetVendorItems();
+            ViewData["supplies_Items"] = GetMaterialItems("耗材");      
 
             return PartialView("ItemView");
+        }
+
+        public ActionResult GetOtherView()
+        {
+            ViewData["other_Items"] = GetMaterialItems("其他");       
+
+            return PartialView("OtherView");
+        }
+
+        public ActionResult GetNonFixView()
+        {             
+            return PartialView("NonFixedView");
         }
 
         protected override void Dispose(bool disposing)
@@ -221,9 +253,9 @@ namespace ST_Invoicing.Controllers
             base.Dispose(disposing);
         }
 
-        private List<string> GetMaterialItems()
+        private List<string> GetMaterialItems(string species)
         {
-            List<ST_Material> materials = mST_MaterialDAO.GetDataList_NotDel();
+            List<ST_Material> materials = mST_MaterialDAO.GetDataListBySpecies(species);
 
             List<string> material_Items = new List<string>();
 
@@ -233,30 +265,21 @@ namespace ST_Invoicing.Controllers
             }
 
             return material_Items;
-        }
-
-        private List<string> GetVendorItems()
-        {
-            List<ST_Vendor> vendors = mST_VendorDAO.GetDataList_NotDel();
-
-            List<string> vendor_Items = new List<string>();
-
-            foreach (ST_Vendor vendor in vendors)
-            {
-                vendor_Items.Add(vendor.vendor_name);
-            }
-
-            return vendor_Items;
-        }
+        }    
 
         private void SetOtherProperty(ref List<ST_Purchase> dataList)
         {
             foreach (ST_Purchase purchase in dataList)
             {
-                purchase.item_name = mST_MaterialDAO.FetchByGuid(purchase.material_guid).item_name;
-
-                purchase.vendor_name = mST_VendorDAO.FetchByGuid(purchase.vendor_guid).vendor_name;
-
+                if (purchase.special_item != null)
+                {
+                    purchase.item_name = purchase.special_item;           
+                }
+                else
+                {
+                    purchase.item_name = mST_MaterialDAO.FetchByGuid(purchase.material_guid).item_name;               
+                }
+               
                 purchase.emp_name = mST_EmpDAO.FetchByGuid(purchase.emp_guid).emp_name;
 
 
@@ -268,6 +291,8 @@ namespace ST_Invoicing.Controllers
                 {
                     purchase.font_Color = "black";
                 }
+
+               
             }
         }
 

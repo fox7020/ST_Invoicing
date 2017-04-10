@@ -1,0 +1,131 @@
+﻿@model ST_Invoicing.Models.ST_SurplusDay
+
+@{
+    ViewBag.Title = "南臺灣-刪除日帳表";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#ST_SurplusDay").addClass("active");
+    });
+</script>
+
+
+<h2>刪除日帳表</h2>
+
+<h3>確定刪除此以下資料?</h3>
+<div>
+    <hr />
+    <div>
+        <table class="table table-bordered" style="table-layout:fixed">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.rec_date)</th>
+
+                <td colspan="3">@Html.DisplayFor(model => model.display_Date)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.turnover)</th>
+                <td colspan="3">@Html.DisplayFor(model => model.turnover)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.expenditure)</th>
+                <td colspan="3">@Html.DisplayFor(model => model.expenditure)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.surplus)</th>
+                <td colspan="3">@Html.DisplayFor(model => model.surplus)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.count_soup)</th>
+                <td colspan="3">@Html.DisplayFor(model => model.count_soup)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.count_rice)</th>
+                <td colspan="3">@Html.DisplayFor(model => model.count_rice)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.count_fish)</th>
+                <td colspan="3">@Html.DisplayFor(model => model.count_fish)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.count_850_use_am)</th>
+                <td>@Html.DisplayFor(model => model.count_850_use_am)</td>
+                <th>@Html.DisplayNameFor(model => model.count_850_use_pm)</th>
+                <td>@Html.DisplayFor(model => model.count_850_use_pm)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.count_700_use_am)</th>
+                <td>@Html.DisplayFor(model => model.count_700_use_am)</td>
+                <th>@Html.DisplayNameFor(model => model.count_700_use_pm)</th>
+                <td>@Html.DisplayFor(model => model.count_700_use_pm)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.count_meal_use_am)</th>
+                <td>@Html.DisplayFor(model => model.count_meal_use_am)</td>
+                <th>@Html.DisplayNameFor(model => model.count_meal_use_pm)</th>
+                <td>@Html.DisplayFor(model => model.count_meal_use_pm)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.count_box_use_am)</th>
+                <td>@Html.DisplayFor(model => model.count_box_use_am)</td>
+                <th>@Html.DisplayNameFor(model => model.count_box_use_pm)</th>
+                <td>@Html.DisplayFor(model => model.count_box_use_pm)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.inner_xl_am)</th>
+                <td>@Html.DisplayFor(model => model.inner_xl_am)</td>
+                <th>@Html.DisplayNameFor(model => model.inner_xl_pm)</th>
+                <td>@Html.DisplayFor(model => model.inner_xl_pm)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.inner_l_am)</th>
+                <td>@Html.DisplayFor(model => model.inner_l_am)</td>
+                <th>@Html.DisplayNameFor(model => model.inner_l_pm)</th>
+                <td>@Html.DisplayFor(model => model.inner_l_pm)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.inner_s_am)</th>
+                <td>@Html.DisplayFor(model => model.inner_s_am)</td>
+                <th>@Html.DisplayNameFor(model => model.inner_s_pm)</th>
+                <td>@Html.DisplayFor(model => model.inner_s_pm)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.count_850_add)</th>
+                <td colspan="3">@Html.DisplayFor(model => model.count_850_add)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.count_700_add)</th>
+                <td colspan="3">@Html.DisplayFor(model => model.count_700_add)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.count_850_add)</th>
+                <td colspan="3">@Html.DisplayFor(model => model.count_850_add)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.count_meal_add)</th>
+                <td colspan="3">@Html.DisplayFor(model => model.count_meal_add)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.count_box_add)</th>
+                <td colspan="3">@Html.DisplayFor(model => model.count_box_add)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.emp_name)</th>
+                <td colspan="3">@Html.DisplayFor(model => model.emp_name)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.remark)</th>
+                <td colspan="3">@Html.DisplayFor(model => model.remark)</td>
+            </tr>
+        </table>
+    </div>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="刪除" class="btn btn-danger" />
+            <input type="button" class="btn btn-info" value="返回日帳表列表" onclick="location.href='@Url.Action("Index", "ST_SurplusDay")'" />  
+        </div>
+    }
+</div>

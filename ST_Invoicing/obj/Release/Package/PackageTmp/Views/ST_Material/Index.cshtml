@@ -1,0 +1,90 @@
+﻿@model IEnumerable<ST_Invoicing.Models.ST_Material>
+
+@{
+    ViewBag.Title = "南臺灣-原物料列表";
+    
+    var queryItem = ViewData["query_Item"] as IEnumerable<string>;  
+
+    var selectQuery = new SelectList(queryItem);
+}
+
+<script>
+    $(document).ready(function () {
+        $("#ST_Material").addClass("active");
+
+        $("#query").change(function () {
+            if ($('#query').val() == "食材") {
+                $.post("/ST_Material/Index_Food", function (data, status) {
+                    alert("Data: " + data + "\nStatus: " + status);
+                });
+            } else if ($('#query').val() == "耗材") {
+                $.post("/ST_Material/Index_Supplies", function (data, status) {
+                    alert("Data: " + data + "\nStatus: " + status);
+                });
+            } else if ($('#query').val() == "其他") {
+                $.post("/ST_Material/Index_Other", function (data, status) {
+                    alert("Data: " + data + "\nStatus: " + status);
+                });
+            } else if ($('#query').val() == "全部") {
+                $.post("/ST_Material/Index_All", function (data, status) {
+                    alert("Data: " + data + "\nStatus: " + status);
+                });
+            }
+            
+        });
+    });
+</script>
+
+<h2>原物料列表</h2>
+
+<p>
+    <input type="button" class="btn btn-primary" value="新增原物料" onclick="location.href='@Url.Action("Create", "ST_Material")'" />
+    @Html.DropDownList("query", selectQuery, "---查看方式---", new { @class = "btn btn-info dropdown-toggle" })
+    
+</p>
+<table class="table">
+    <tr>      
+        <th>
+            @Html.DisplayNameFor(model => model.item_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.item_unit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.item_species)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vendor_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reamrk)
+        </th>        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>       
+        <td>
+            @Html.DisplayFor(modelItem => item.item_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.item_unit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.item_species)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vendor_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reamrk)
+        </td> 
+        <td>
+            <input type="button" class="btn btn-warning" value="編輯" onclick="location.href='@Url.Action("Edit", "ST_Material", new { id = item.serno })'" />
+            <input type="button" class="btn btn-success" value="查看" onclick="location.href='@Url.Action("Details", "ST_Material", new { id = item.serno })'" />
+            <input type="button" class="btn btn-danger" value="刪除" onclick="location.href='@Url.Action("Delete", "ST_Material", new { id = item.serno })'" />
+        </td>   
+    </tr>
+}
+
+</table>

@@ -33,10 +33,252 @@ namespace ST_Invoicing.Controllers
                 material.vendor_name = currVendor.vendor_name;
             }
 
+            List<string> query_Method = new List<string>();
+
+            query_Method.Add("食材");
+            query_Method.Add("耗材");
+            query_Method.Add("其他");
+            query_Method.Add("全部");
+
+            ViewData["query_Item"] = query_Method;
+
             ViewData["user"] = Session["user"];
 
             return View(material_List);
         }
+
+        [HttpPost]
+        public ActionResult Index(string query)
+        {
+            string account = User.Identity.Name;
+
+            List<ST_Material> material_List = new List<ST_Material>();
+
+            if (query != "")
+            {
+                material_List = mST_MaterialDAO.GetDataListByKeyWord(query);
+            }
+            else
+            {
+                material_List = mST_MaterialDAO.GetDataList_NotDel();
+            }
+
+
+            foreach (ST_Material material in material_List)
+            {
+                ST_Vendor currVendor = mST_VendorDAO.FetchByGuid(material.vendor_guid);
+
+                material.vendor_name = currVendor.vendor_name;
+            }
+
+            List<string> query_Method = new List<string>();
+
+            query_Method.Add("食材");
+            query_Method.Add("耗材");
+            query_Method.Add("其他");
+            query_Method.Add("全部");
+
+            ViewData["query_Item"] = query_Method;
+
+            ViewData["user"] = Session["user"];
+
+            return View(material_List);
+        }
+
+        public ActionResult Index_Food()
+        {
+            string account = User.Identity.Name;
+
+            List<ST_Material> material_List = mST_MaterialDAO.GetDataListBySpecies("食材");
+
+            foreach (ST_Material material in material_List)
+            {
+                ST_Vendor currVendor = mST_VendorDAO.FetchByGuid(material.vendor_guid);
+
+                material.vendor_name = currVendor.vendor_name;
+            }
+
+            List<string> query_Method = new List<string>();
+
+            query_Method.Add("食材");
+            query_Method.Add("耗材");
+            query_Method.Add("其他");
+            query_Method.Add("全部");
+
+            ViewData["query_Item"] = query_Method;
+
+            ViewData["user"] = Session["user"];
+
+            return View(material_List);
+
+        }
+
+        [HttpPost]
+        public ActionResult Index_Food(string query)
+        {
+            string account = User.Identity.Name;
+
+            List<ST_Material> material_List = new List<ST_Material>();
+
+            if (query != "")
+            {
+                material_List = mST_MaterialDAO.GetDataListByKeyWord(query);
+            }
+            else
+            {
+                material_List = mST_MaterialDAO.GetDataListBySpecies("食材");
+            }
+
+            foreach (ST_Material material in material_List)
+            {
+                ST_Vendor currVendor = mST_VendorDAO.FetchByGuid(material.vendor_guid);
+
+                material.vendor_name = currVendor.vendor_name;
+            }
+
+            List<string> query_Method = new List<string>();
+
+            query_Method.Add("食材");
+            query_Method.Add("耗材");
+            query_Method.Add("其他");
+            query_Method.Add("全部");
+
+            ViewData["query_Item"] = query_Method;
+
+            ViewData["user"] = Session["user"];
+
+            return View(material_List);
+        }
+        public ActionResult Index_Supplies()
+        {
+            string account = User.Identity.Name;
+
+            List<ST_Material> material_List = mST_MaterialDAO.GetDataListBySpecies("耗材");
+
+            foreach (ST_Material material in material_List)
+            {
+                ST_Vendor currVendor = mST_VendorDAO.FetchByGuid(material.vendor_guid);
+
+                material.vendor_name = currVendor.vendor_name;
+            }
+
+            List<string> query_Method = new List<string>();
+
+            query_Method.Add("食材");
+            query_Method.Add("耗材");
+            query_Method.Add("其他");
+            query_Method.Add("全部");
+
+            ViewData["query_Item"] = query_Method;
+
+            ViewData["user"] = Session["user"];
+
+            return View(material_List);
+        }
+
+        [HttpPost]
+        public ActionResult Index_Supplies(string query)
+        {
+            string account = User.Identity.Name;
+
+            List<ST_Material> material_List = new List<ST_Material>();
+
+            if (query != "")
+            {
+                material_List = mST_MaterialDAO.GetDataListByKeyWord(query);
+            }
+            else
+            {
+                material_List = mST_MaterialDAO.GetDataListBySpecies("耗材");
+            }
+
+            foreach (ST_Material material in material_List)
+            {
+                ST_Vendor currVendor = mST_VendorDAO.FetchByGuid(material.vendor_guid);
+
+                material.vendor_name = currVendor.vendor_name;
+            }
+
+            List<string> query_Method = new List<string>();
+
+            query_Method.Add("食材");
+            query_Method.Add("耗材");
+            query_Method.Add("其他");
+            query_Method.Add("全部");
+
+            ViewData["query_Item"] = query_Method;
+
+            ViewData["user"] = Session["user"];
+
+            return View(material_List);
+        }
+
+        public ActionResult Index_Other()
+        {
+            string account = User.Identity.Name;
+
+            List<ST_Material> material_List = mST_MaterialDAO.GetDataListBySpecies("其他");
+
+            foreach (ST_Material material in material_List)
+            {
+                ST_Vendor currVendor = mST_VendorDAO.FetchByGuid(material.vendor_guid);
+
+                material.vendor_name = currVendor.vendor_name;
+            }
+
+            List<string> query_Method = new List<string>();
+
+            query_Method.Add("食材");
+            query_Method.Add("耗材");
+            query_Method.Add("其他");
+            query_Method.Add("全部");
+
+            ViewData["query_Item"] = query_Method;
+
+            ViewData["user"] = Session["user"];
+
+            return View(material_List);
+        }
+
+        [HttpPost]
+        public ActionResult Index_Other(string query)
+        {
+            string account = User.Identity.Name;
+
+            List<ST_Material> material_List = new List<ST_Material>();
+
+            if (query != "")
+            {
+                material_List = mST_MaterialDAO.GetDataListByKeyWord(query);
+            }
+            else
+            {
+                material_List = mST_MaterialDAO.GetDataListBySpecies("其他");
+            }
+
+            foreach (ST_Material material in material_List)
+            {
+                ST_Vendor currVendor = mST_VendorDAO.FetchByGuid(material.vendor_guid);
+
+                material.vendor_name = currVendor.vendor_name;
+            }
+
+            List<string> query_Method = new List<string>();
+
+            query_Method.Add("食材");
+            query_Method.Add("耗材");
+            query_Method.Add("其他");
+            query_Method.Add("全部");
+
+            ViewData["query_Item"] = query_Method;
+
+            ViewData["user"] = Session["user"];
+
+            return View(material_List);
+        }
+
+
+       
 
         // GET: ST_Material/Details/5
         public ActionResult Details(int? id)

@@ -174,7 +174,12 @@ namespace ST_Invoicing.Controllers
         private void CleanData(ref ST_Vendor data)
         {
             data.vendor_name = data.vendor_name.Trim();
-            data.contact_person = data.contact_person.Trim();
+
+            if (data.contact_person != null)
+            {
+                data.contact_person = data.contact_person.Trim();
+            }
+            
             data.vendor_tel1 = data.vendor_tel1.Trim();
 
             if (data.vendor_tel2 != null)
@@ -182,8 +187,11 @@ namespace ST_Invoicing.Controllers
                 data.vendor_tel2 = data.vendor_tel2.Trim();
             }
 
-            data.address = data.address.Trim();
-
+            if (data.address != null)
+            {
+                data.address = data.address.Trim();
+            }
+        
             if (data.uniform_num != null)
             {
                 data.uniform_num = data.uniform_num.Trim();

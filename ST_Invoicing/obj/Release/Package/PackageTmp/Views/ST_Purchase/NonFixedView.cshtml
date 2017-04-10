@@ -1,0 +1,37 @@
+﻿
+@model ST_Invoicing.Models.ST_Purchase
+
+
+@using (Html.BeginCollectionItem("purchase_List"))
+{<div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.item_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.item_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.item_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("價錢：", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.purchase_price, "", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.purchase_price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.special_mark, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.RadioButtonFor(model => model.special_mark, "是", new { @class = "text-danger" })
+                是
+                @Html.RadioButtonFor(model => model.special_mark, "否", new { @class = "text-danger" })
+                否
+                @Html.ValidationMessageFor(model => model.special_mark, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-danger" onclick="$(this).parent().first().parent('div').remove(); event.preventDefault();">刪除此項目</button>
+        </div>
+    </div>
+}

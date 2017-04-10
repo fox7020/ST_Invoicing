@@ -55,6 +55,15 @@ namespace ST_Invoicing.Models
             return rslt;
         }
 
+        public List<ST_SurplusDay> GetDataWhichDateGreateThanSpecifyDate(DateTime rec_date)
+        {
+            List<ST_SurplusDay> rslt = new List<ST_SurplusDay>();
+
+            rslt = dao.ST_SurplusDay.Where(currSurplusDay => currSurplusDay.del_yn == 0).Where(currSurplusDay => currSurplusDay.rec_date > rec_date).ToList();
+
+            return rslt;
+        }
+
         public ST_SurplusDay Update(ST_SurplusDay data)
         {
             dao.Entry(data).State = EntityState.Modified;

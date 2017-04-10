@@ -1,0 +1,87 @@
+﻿@model ST_Invoicing.Models.ST_Vendor
+
+@{
+    ViewBag.Title = "南臺灣-查看廠商";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#ST_Vendor").addClass("active");
+    });
+</script>
+
+<h2>查看廠商</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.vendor_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vendor_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contact_person)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contact_person)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vendor_tel1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vendor_tel1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vendor_tel2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vendor_tel2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uniform_num)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uniform_num)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.payment_mathod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.payment_mathod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remark)
+        </dd>
+    </dl>
+</div>
+<p>
+    <input type="button" class="btn btn-primary" value="編輯廠商" onclick="location.href='@Url.Action("Edit", "ST_Vendor", new { id = Model.serno })'" />
+    <input type="button" class="btn btn-info" value="返回廠商列表" onclick="location.href='@Url.Action("Index", "ST_Vendor")'" />
+</p>

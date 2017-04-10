@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ST_Invoicing.Models.ST_InStock>
+
+@{
+    ViewBag.Title = "南臺灣-庫存列表";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#ST_InStock").addClass("active");
+    });
+</script>
+
+<h2>原物料庫存列表</h2>
+
+
+<table class="table">
+    <tr>      
+        <th>        
+            @Html.DisplayName("日期")
+        </th>
+        <th>
+           @Html.DisplayName("品項")
+        </th>
+        <th>
+           @Html.DisplayName("庫存量")
+        </th>              
+       <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>    
+        <td>
+            @Html.DisplayFor(modelItem => item.display_Date)
+        </td>
+        <td>
+           700cc盒
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.count_700)
+        </td>                  
+    </tr>
+}
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.display_Date)
+            </td>
+            <td>
+                850cc盒
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.count_850)
+            </td>           
+        </tr>
+    }
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.display_Date)
+            </td>
+            <td>
+                點心盒
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.count_meal)
+            </td>       
+        </tr>
+    }
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.display_Date)
+            </td>
+            <td>
+                便當盒
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.count_box)
+            </td>            
+        </tr>
+    }
+</table>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ST_Invoicing.Models.ST_Collar>
+
+@{
+    ViewBag.Title = "南臺灣-原物料提領";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#ST_Collar").addClass("active");
+    });
+</script>
+
+<h2>原物料提領清單</h2>
+
+<p>
+    <input type="button" class="btn btn-primary" value="提領" onclick="location.href='@Url.Action("Create", "ST_Collar")'" />
+</p>
+<table class="table">
+    <tr>     
+        <th>
+            @Html.DisplayNameFor(model => model.collar_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.material_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.collar_count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.remark)
+        </th>       
+        <th>
+            @Html.DisplayNameFor(model => model.emp_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>     
+        <td>
+            @Html.DisplayFor(modelItem => item.collar_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.material_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.collar_count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.remark)
+        </td>       
+        <td>
+            @Html.DisplayFor(modelItem => item.emp_name)
+        </td>
+        <td>
+            <input type="button" class="btn btn-info" value="檢視" onclick="location.href='@Url.Action("Detail", "ST_Collar", new { id = item.serno })'" />   
+        </td>
+    </tr>
+}
+
+</table>

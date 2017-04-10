@@ -1,0 +1,61 @@
+﻿@model ST_Invoicing.Models.ST_Collar
+
+@{
+    ViewBag.Title = "南臺灣-提領檢視";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#ST_Collar").addClass("active");
+    });
+</script>
+
+<h2>提領檢視</h2>
+
+<div>  
+    <hr />
+    <dl class="dl-horizontal">    
+        <dt>
+            @Html.DisplayNameFor(model => model.collar_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.collar_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.material_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.material_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.collar_count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.collar_count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.remark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remark)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_name)
+        </dd>
+
+    </dl>
+</div>
+<p>    
+    <input type="button" class="btn btn-info" value="返回提領列表" onclick="location.href='@Url.Action("Index", "ST_Collar")'" />
+</p>

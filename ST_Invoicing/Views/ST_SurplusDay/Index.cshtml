@@ -11,11 +11,34 @@
 </script>
 
 
-<h2>南臺灣-日帳表清單</h2>
+<h2>日帳表清單</h2>
 
 <p>
     <input type="button" class="btn btn-primary" value="新增日帳表" onclick="location.href='@Url.Action("Create", "ST_SurplusDay")'" />
 </p>
+
+ 
+
+@using (Html.BeginForm())
+{
+    <div class="form-inline">
+        <div class="form-group">
+            <div class="col-xs-6 col-md-4">
+               
+                @Html.RadioButton("bydate", "date", true, new { @class = "text-danger" })
+                日期
+                @Html.RadioButton("bydate", "remark", false, new { @class = "text-danger" })
+                備註
+            </div>
+            <div class="col-xs-6 col-md-6">
+                @Html.TextBox("user_input","", new { @class = "form-control" })
+            </div>
+            <div class="col-xs-6 col-md-2">
+                <input type="submit" value="查詢" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+}  
 <table class="table">
     <tr>      
         <th>
@@ -25,7 +48,7 @@
             @Html.DisplayNameFor(model => model.turnover)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.surplus_month)
+            @Html.DisplayNameFor(model => model.turnover_month)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.expenditure)
@@ -34,7 +57,7 @@
             @Html.DisplayNameFor(model => model.expenditure_month)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.surplus)
+            @Html.DisplayNameFor(model => model.surplus_month)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.count_soup)
@@ -57,7 +80,7 @@
             @Html.DisplayFor(modelItem => item.turnover)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.surplus_month)
+            @Html.DisplayFor(modelItem => item.turnover_month)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.expenditure)
@@ -66,7 +89,7 @@
             @Html.DisplayFor(modelItem => item.expenditure_month)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.surplus)
+            @Html.DisplayFor(modelItem => item.surplus_month)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.count_soup)
@@ -86,3 +109,29 @@
 }
 
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('input[type=radio][name=bydate]').change(function () {
+                if ($('#bydate:checked').val() == "date") {
+                    $('input[name="user_input"]').daterangepicker({
+                        locale: {
+                            format: 'YYYY/MM/DD'
+                        }
+                    });
+                    alert("date");
+                }
+
+                if ($('#bydate:checked').val() == "remark") {
+                    alert("remark");
+                    $('input[name="user_input"]').datepicker('remove');
+                    
+                }
+            });
+           
+            
+        });
+    </script>
+}

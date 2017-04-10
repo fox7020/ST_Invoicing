@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b4fc759636da45819f677859c2e19008" Name="Diagram1" ZoomLevel="84">
+        <EntityTypeShape EntityType="STDATAModel.ST_Collar" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="STDATAModel.ST_Emp" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="STDATAModel.ST_InStock" Width="1.5" PointX="4.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="STDATAModel.ST_Material" Width="1.5" PointX="0.625" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="STDATAModel.ST_Surplus_Month" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="STDATAModel.ST_Vendor" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="STDATAModel.ST_Personal_Cost" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="STDATAModel.ST_Purchase" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="STDATAModel.ST_SurplusDay" Width="1.5" PointX="9.375" PointY="5.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -24,21 +24,18 @@
     <div class="form-inline">
         <div class="form-group">
             <div class="col-xs-6 col-md-4">
-               
-                @Html.RadioButton("bydate", "date", true, new { @class = "text-danger" })
-                日期
-                @Html.RadioButton("bydate", "remark", false, new { @class = "text-danger" })
-                備註
+                <h5> 查詢關鍵字:</h5>
             </div>
             <div class="col-xs-6 col-md-6">
-                @Html.TextBox("user_input","", new { @class = "form-control" })
+                @Html.TextBox("query", "", new { @class = "form-control" })
             </div>
             <div class="col-xs-6 col-md-2">
-                <input type="submit" value="查詢" class="btn btn-info" />
+                <input type="submit" value="查詢" class="btn btn-success" />
             </div>
         </div>
     </div>
-}  
+}
+<br />
 <table class="table">
     <tr>      
         <th>

@@ -49,14 +49,16 @@ namespace ST_Invoicing.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string daterange, string remark)
+        public ActionResult Index(string query)
         {
-            DateTime start_Date = DateTime.Parse(daterange.Substring(0, 10));
 
-            DateTime end_Date = DateTime.Parse(daterange.Substring(13, 10));
+            List<ST_SurplusDay> dataList = mST_SurplusDayDAO.GetThisMonthData(DateTime.Today);
 
-            List<ST_SurplusDay> dataList = mST_SurplusDayDAO.GetDataByDateRange(start_Date, end_Date);
-
+            if (query != "")
+            {
+                QueryByKeyWord(ref dataList, query);
+            }
+            
             SetExpenditure(ref dataList);
 
             SetSurplus(ref dataList);
@@ -363,6 +365,26 @@ namespace ST_Invoicing.Controllers
             }          
         }
 
+        private void QueryByKeyWord(ref List<ST_SurplusDay>datalist, string query)
+        {
+            for (int i = 0; i < datalist.Count; i++)
+            {
+                if (datalist[i].remark != null)
+                {
+                    if (!datalist[i].remark.Contains(query))
+                    {
+                        datalist.RemoveAt(i);
+                        i--;
+                    }
+                }
+                else if (datalist[i].remark == null)
+                {
+                      datalist.RemoveAt(i);
+                      i--;
+                }
+               
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

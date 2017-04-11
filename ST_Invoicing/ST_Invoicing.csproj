@@ -389,6 +389,7 @@
     <Content Include="Views\ST_Material\Index_Food.cshtml" />
     <Content Include="Views\ST_Material\Index_Supplies.cshtml" />
     <Content Include="Views\ST_Material\Index_Other.cshtml" />
+    <Content Include="Views\ST_Emp\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

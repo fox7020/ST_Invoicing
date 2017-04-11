@@ -7,8 +7,8 @@ using System.Web.Mvc;
 using System.Web.Security;
 
 namespace ST_Invoicing.Controllers
-{   
-      
+{
+
     [Authorize]
     public class HomeController : Controller
     {
@@ -61,7 +61,7 @@ namespace ST_Invoicing.Controllers
                 return View(vm);
             }
 
-           
+
             //都成功...
             //進行表單登入 ※之後User.Identity.Name的值就是vm.Account帳號的值
             //導向預設Url(Web.config裡的defaultUrl定義)或使用者原先Request的Url
@@ -100,6 +100,10 @@ namespace ST_Invoicing.Controllers
 
             Session["user"] = currUser.emp_name;
 
+            Session["user_guid"] = currUser.guid.ToString();
+
+            Session["id"] = currUser.serno;
+
             if (currUser != null)
             {
                 ViewData["user"] = currUser.emp_name;
@@ -108,7 +112,12 @@ namespace ST_Invoicing.Controllers
             {
                 ViewData["user"] = "Unknow User";
             }
-       
+
+            return View();
+        }
+
+        public ActionResult Index2()
+        {
             return View();
         }
 

@@ -105,17 +105,17 @@ namespace ST_Invoicing.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ST_Emp sT_Emp)
+        public ActionResult Edit(ST_Emp data)
         {
 
             if (ModelState.IsValid)
             {
-                mST_EmpDAO.Update(sT_Emp);
+                mST_EmpDAO.Update(data);
 
                 return RedirectToAction("Index");
             }
 
-            return View(sT_Emp);
+            return View(data);
         }
 
         // GET: ST_Emp/Delete/5
@@ -146,6 +146,40 @@ namespace ST_Invoicing.Controllers
             mST_EmpDAO.Soft_Delete(data);
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ChangePassword()
+        {
+            ST_Emp data = mST_EmpDAO.FetchByGuid(Guid.Parse(Session["user_guid"].ToString().Trim()));
+
+
+            if (data == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+
+            ViewData["user"] = Session["user"];
+
+            return View(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(ST_Emp data)
+        {
+            if (data.password != null && data.password2 != null)
+            {
+                if (ModelState.IsValid && data.password.Equals(data.password2))
+                {
+                    mST_EmpDAO.Update(data);
+
+                    return RedirectToAction("Index");
+                }
+            }
+           
+
+            return View(data);
         }
 
         public ActionResult CheckUniID(ST_Emp data)

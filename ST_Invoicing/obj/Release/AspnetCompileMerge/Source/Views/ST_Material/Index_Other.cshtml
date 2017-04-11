@@ -29,14 +29,16 @@
             }
         });
 
+
     });
 </script>
 
 <h2>原物料列表</h2>
 
 <p>
-        <input type="button" class="btn btn-primary" value="新增原物料" onclick="location.href='@Url.Action("Create", "ST_Material")'" />
-        @Html.DropDownList("query", selectQuery, "---查看方式---", new { @class = "btn btn-info dropdown-toggle" })
+    <input type="button" class="btn btn-primary" value="新增原物料" onclick="location.href='@Url.Action("Create", "ST_Material")'" />
+    @Html.DropDownList("query", selectQuery, "---查看方式---", new { @class = "btn btn-info dropdown-toggle" })
+
 </p>
 
 @using (Html.BeginForm())
@@ -54,8 +56,9 @@
             </div>
         </div>
     </div>
-}  
+}
 <br />
+
 <table class="table">
     <tr>
         <th>

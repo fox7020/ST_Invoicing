@@ -11,11 +11,31 @@
 </script>
 
 
-<h2>南臺灣-日帳表清單</h2>
+<h2>日帳表清單</h2>
 
 <p>
     <input type="button" class="btn btn-primary" value="新增日帳表" onclick="location.href='@Url.Action("Create", "ST_SurplusDay")'" />
 </p>
+
+ 
+
+@using (Html.BeginForm())
+{
+    <div class="form-inline">
+        <div class="form-group">
+            <div class="col-xs-6 col-md-4">
+                <h5> 查詢關鍵字:</h5>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                @Html.TextBox("query", "", new { @class = "form-control" })
+            </div>
+            <div class="col-xs-6 col-md-2">
+                <input type="submit" value="查詢" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+<br />
 <table class="table">
     <tr>      
         <th>
@@ -86,3 +106,29 @@
 }
 
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('input[type=radio][name=bydate]').change(function () {
+                if ($('#bydate:checked').val() == "date") {
+                    $('input[name="user_input"]').daterangepicker({
+                        locale: {
+                            format: 'YYYY/MM/DD'
+                        }
+                    });
+                    alert("date");
+                }
+
+                if ($('#bydate:checked').val() == "remark") {
+                    alert("remark");
+                    $('input[name="user_input"]').datepicker('remove');
+                    
+                }
+            });
+           
+            
+        });
+    </script>
+}

@@ -21,17 +21,18 @@
     <div class="form-inline">
         <div class="form-group">
             <div class="col-xs-6 col-md-4">
-                <h5> 查看日期區間:</h5>
+                <h5> 查詢關鍵字:</h5>
             </div>
             <div class="col-xs-6 col-md-6">
-                @Html.TextBox("daterange", new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1) + "~" + new DateTime(DateTime.Now.AddMonths(1).Year, DateTime.Now.AddMonths(1).Month, 1).AddDays(-1), new { @class = "form-control" })
+                @Html.TextBox("query", "", new { @class = "form-control" })
             </div>
             <div class="col-xs-6 col-md-2">
-                <input type="submit" value="查詢" class="btn btn-info" />
+                <input type="submit" value="查詢" class="btn btn-success" />
             </div>
         </div>
     </div>
-}  
+}
+<br />
 
 
 <table class="table">
@@ -102,18 +103,6 @@
 
 </table>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script>
-        $(document).ready(function () {
-           
-            $('input[name="daterange"]').daterangepicker({
-                locale: {
-                    format: 'YYYY/MM/DD'
-                }
-            });
-        });
-    </script>
-}
+
 
 

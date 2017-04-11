@@ -38,21 +38,44 @@ namespace ST_Invoicing.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string daterange)
+        public ActionResult Index(string query)
         {
-            DateTime start_Date = DateTime.Parse(daterange.Substring(0, 10));
 
-            DateTime end_Date = DateTime.Parse(daterange.Substring(13, 10));
-
-            List<ST_Purchase> rslt = mST_PurcahseDAO.GetDataByDateRange(start_Date, end_Date);
-
+            List<ST_Purchase> rslt = mST_PurcahseDAO.GetThisMonthData(DateTime.Today);
+          
             SetOtherProperty(ref rslt);
+
+            if (query != null)
+            {
+                QueryByKeyWord(ref rslt, query);
+            }
 
             List<ST_Purchase> SortedList = rslt.OrderBy(o => o.purchase_date).ToList();
 
             ViewData["user"] = Session["user"];
 
             return View(SortedList);
+        }
+
+        private void QueryByKeyWord(ref List<ST_Purchase> datalist, string query)
+        {
+            for (int i = 0; i < datalist.Count; i++)
+            {
+                if (datalist[i].item_name != null)
+                {
+                    if (!datalist[i].item_name.Contains(query))
+                    {
+                        datalist.RemoveAt(i);
+                        i--;
+                    }
+                }
+                else if (datalist[i].item_name == null)
+                {
+                    datalist.RemoveAt(i);
+                    i--;
+                }
+
+            }
         }
 
         // GET: ST_Purchase/Create

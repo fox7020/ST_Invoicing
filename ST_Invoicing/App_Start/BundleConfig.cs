@@ -8,10 +8,11 @@ namespace ST_Invoicing
         // 如需「搭配」的詳細資訊，請瀏覽 http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(                     
                         "~/Scripts/jquery-{version}.js",
                          "~/Scripts/moment.js",
-                       "~/Scripts/daterangepicker.js"));
+                       "~/Scripts/daterangepicker.js"
+                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

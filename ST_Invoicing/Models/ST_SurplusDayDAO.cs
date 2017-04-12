@@ -64,6 +64,24 @@ namespace ST_Invoicing.Models
             return rslt;
         }
 
+        public List<ST_SurplusDay> GetDataLessThanThisMonth(bool isFinish)
+        {
+            List<ST_SurplusDay> rslt = new List<ST_SurplusDay>();
+
+            DateTime lastDay = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1).AddDays(-1);
+
+            if (isFinish == true)
+            {
+                rslt = dao.ST_SurplusDay.Where(currSurplusDay => currSurplusDay.del_yn == 0).Where(currSurplusDay => currSurplusDay.rec_date <= lastDay).Where(currSurplusDay => currSurplusDay.finish_yn == 1).ToList();
+            }
+            else if (isFinish == false)
+            {
+                rslt = dao.ST_SurplusDay.Where(currSurplusDay => currSurplusDay.del_yn == 0).Where(currSurplusDay => currSurplusDay.rec_date <= lastDay).Where(currSurplusDay => currSurplusDay.finish_yn == 0).ToList();
+            }
+
+            return rslt;
+        }
+
         public ST_SurplusDay Update(ST_SurplusDay data)
         {
             dao.Entry(data).State = EntityState.Modified;

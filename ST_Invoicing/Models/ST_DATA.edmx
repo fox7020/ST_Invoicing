@@ -104,6 +104,7 @@
           <Property Name="special_mark" Type="nchar" MaxLength="2" />
           <Property Name="remark" Type="nvarchar(max)" />
           <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="finish_yn" Type="int" Nullable="false" />
           <Property Name="deleted_at" Type="datetime" />
           <Property Name="del_yn" Type="int" Nullable="false" />
         </EntityType>
@@ -114,17 +115,24 @@
           <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="rec_month" Type="datetime" Nullable="false" />
+          <Property Name="work_days" Type="int" Nullable="false" />
           <Property Name="expenditure_month" Type="int" Nullable="false" />
-          <Property Name="income_month" Type="int" Nullable="false" />
+          <Property Name="turnover_month" Type="int" Nullable="false" />
+          <Property Name="surplus_month" Type="int" Nullable="false" />
           <Property Name="rice_month" Type="float" Nullable="false" />
           <Property Name="soup_month" Type="float" Nullable="false" />
+          <Property Name="fish_month" Type="float" Nullable="false" />
           <Property Name="month_700" Type="int" Nullable="false" />
           <Property Name="month_850" Type="int" Nullable="false" />
           <Property Name="month_meal" Type="int" Nullable="false" />
-          <Property Name="personal_month" Type="int" Nullable="false" />
+          <Property Name="month_box" Type="int" Nullable="false" />
+          <Property Name="month_inner_xl" Type="int" Nullable="false" />
+          <Property Name="month_inner_l" Type="int" Nullable="false" />
+          <Property Name="month_inner_s" Type="int" Nullable="false" />
           <Property Name="food_month" Type="int" Nullable="false" />
           <Property Name="supplie_month" Type="int" Nullable="false" />
           <Property Name="other_month" Type="int" Nullable="false" />
+          <Property Name="personal_month" Type="int" />
           <Property Name="remark" Type="nvarchar(max)" />
           <Property Name="deleted_at" Type="datetime" />
           <Property Name="del_yn" Type="int" Nullable="false" />
@@ -136,32 +144,33 @@
           <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="rec_date" Type="date" Nullable="false" />
+          <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="turnover" Type="int" Nullable="false" />
+          <Property Name="count_rice" Type="float" Nullable="false" />
+          <Property Name="count_soup" Type="float" Nullable="false" />
+          <Property Name="count_fish" Type="float" Nullable="false" />
           <Property Name="count_850_use_am" Type="int" Nullable="false" />
           <Property Name="count_700_use_am" Type="int" Nullable="false" />
           <Property Name="count_meal_use_am" Type="int" Nullable="false" />
-          <Property Name="count_rice" Type="float" Nullable="false" />
-          <Property Name="count_soup" Type="float" Nullable="false" />
-          <Property Name="remark" Type="nvarchar(max)" />
-          <Property Name="deleted_at" Type="datetime" />
-          <Property Name="del_yn" Type="int" Nullable="false" />
-          <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
           <Property Name="count_box_use_am" Type="int" Nullable="false" />
-          <Property Name="count_fish" Type="float" Nullable="false" />
+          <Property Name="count_850_use_pm" Type="int" Nullable="false" />
+          <Property Name="count_700_use_pm" Type="int" Nullable="false" />
+          <Property Name="count_meal_use_pm" Type="int" Nullable="false" />
+          <Property Name="count_box_use_pm" Type="int" Nullable="false" />
+          <Property Name="count_850_add" Type="int" Nullable="false" />
+          <Property Name="count_700_add" Type="int" Nullable="false" />
+          <Property Name="count_meal_add" Type="int" Nullable="false" />
+          <Property Name="count_box_add" Type="int" Nullable="false" />
           <Property Name="inner_xl_am" Type="int" Nullable="false" />
           <Property Name="inner_l_am" Type="int" Nullable="false" />
           <Property Name="inner_s_am" Type="int" Nullable="false" />
           <Property Name="inner_xl_pm" Type="int" Nullable="false" />
           <Property Name="inner_l_pm" Type="int" Nullable="false" />
           <Property Name="inner_s_pm" Type="int" Nullable="false" />
-          <Property Name="count_850_add" Type="int" Nullable="false" />
-          <Property Name="count_700_add" Type="int" Nullable="false" />
-          <Property Name="count_meal_add" Type="int" Nullable="false" />
-          <Property Name="count_box_add" Type="int" Nullable="false" />
-          <Property Name="count_850_use_pm" Type="int" Nullable="false" />
-          <Property Name="count_700_use_pm" Type="int" Nullable="false" />
-          <Property Name="count_meal_use_pm" Type="int" Nullable="false" />
-          <Property Name="count_box_use_pm" Type="int" Nullable="false" />
+          <Property Name="remark" Type="nvarchar(max)" />
+          <Property Name="finish_yn" Type="int" Nullable="false" />
+          <Property Name="deleted_at" Type="datetime" />
+          <Property Name="del_yn" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ST_Vendor">
           <Key>
@@ -268,28 +277,6 @@
           <Property Name="item_unit" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="vendor_guid" Type="Guid" />
         </EntityType>
-        <EntityType Name="ST_Surplus_Month">
-          <Key>
-            <PropertyRef Name="serno" />
-          </Key>
-          <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="guid" Type="Guid" Nullable="false" />
-          <Property Name="rec_month" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="expenditure_month" Type="Int32" Nullable="false" />
-          <Property Name="income_month" Type="Int32" Nullable="false" />
-          <Property Name="rice_month" Type="Double" Nullable="false" />
-          <Property Name="soup_month" Type="Double" Nullable="false" />
-          <Property Name="month_700" Type="Int32" Nullable="false" />
-          <Property Name="month_850" Type="Int32" Nullable="false" />
-          <Property Name="month_meal" Type="Int32" Nullable="false" />
-          <Property Name="personal_month" Type="Int32" Nullable="false" />
-          <Property Name="food_month" Type="Int32" Nullable="false" />
-          <Property Name="supplie_month" Type="Int32" Nullable="false" />
-          <Property Name="other_month" Type="Int32" Nullable="false" />
-          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="deleted_at" Type="DateTime" Precision="3" />
-          <Property Name="del_yn" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="ST_Vendor">
           <Key>
             <PropertyRef Name="serno" />
@@ -312,11 +299,11 @@
           <EntitySet Name="ST_Emp" EntityType="Self.ST_Emp" />
           <EntitySet Name="ST_InStock" EntityType="Self.ST_InStock" />
           <EntitySet Name="ST_Material" EntityType="Self.ST_Material" />
-          <EntitySet Name="ST_Surplus_Month" EntityType="Self.ST_Surplus_Month" />
           <EntitySet Name="ST_Vendor" EntityType="Self.ST_Vendor" />
           <EntitySet Name="ST_Personal_Cost" EntityType="STDATAModel.ST_Personal_Cost" />
           <EntitySet Name="ST_Purchase" EntityType="STDATAModel.ST_Purchase" />
           <EntitySet Name="ST_SurplusDay" EntityType="STDATAModel.ST_SurplusDay" />
+          <EntitySet Name="ST_Surplus_Month" EntityType="STDATAModel.ST_Surplus_Month" />
         </EntityContainer>
         <EntityType Name="ST_Personal_Cost">
           <Key>
@@ -346,6 +333,7 @@
           <Property Name="emp_guid" Type="Guid" Nullable="false" />
           <Property Name="special_mark" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
           <Property Name="special_item" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="finish_yn" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ST_SurplusDay">
           <Key>
@@ -380,6 +368,36 @@
           <Property Name="count_700_use_pm" Type="Int32" Nullable="false" />
           <Property Name="count_meal_use_pm" Type="Int32" Nullable="false" />
           <Property Name="count_box_use_pm" Type="Int32" Nullable="false" />
+          <Property Name="finish_yn" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ST_Surplus_Month">
+          <Key>
+            <PropertyRef Name="serno" />
+          </Key>
+          <Property Name="serno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="guid" Type="Guid" Nullable="false" />
+          <Property Name="rec_month" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="work_days" Type="Int32" Nullable="false" />
+          <Property Name="expenditure_month" Type="Int32" Nullable="false" />
+          <Property Name="turnover_month" Type="Int32" Nullable="false" />
+          <Property Name="surplus_month" Type="Int32" Nullable="false" />
+          <Property Name="rice_month" Type="Double" Nullable="false" />
+          <Property Name="soup_month" Type="Double" Nullable="false" />
+          <Property Name="fish_month" Type="Double" Nullable="false" />
+          <Property Name="month_700" Type="Int32" Nullable="false" />
+          <Property Name="month_850" Type="Int32" Nullable="false" />
+          <Property Name="month_meal" Type="Int32" Nullable="false" />
+          <Property Name="month_box" Type="Int32" Nullable="false" />
+          <Property Name="month_inner_xl" Type="Int32" Nullable="false" />
+          <Property Name="month_inner_l" Type="Int32" Nullable="false" />
+          <Property Name="month_inner_s" Type="Int32" Nullable="false" />
+          <Property Name="food_month" Type="Int32" Nullable="false" />
+          <Property Name="supplie_month" Type="Int32" Nullable="false" />
+          <Property Name="other_month" Type="Int32" Nullable="false" />
+          <Property Name="personal_month" Type="Int32" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="deleted_at" Type="DateTime" Precision="3" />
+          <Property Name="del_yn" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -464,29 +482,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ST_Surplus_Month">
-            <EntityTypeMapping TypeName="STDATAModel.ST_Surplus_Month">
-              <MappingFragment StoreEntitySet="ST_Surplus_Month">
-                <ScalarProperty Name="serno" ColumnName="serno" />
-                <ScalarProperty Name="guid" ColumnName="guid" />
-                <ScalarProperty Name="rec_month" ColumnName="rec_month" />
-                <ScalarProperty Name="expenditure_month" ColumnName="expenditure_month" />
-                <ScalarProperty Name="income_month" ColumnName="income_month" />
-                <ScalarProperty Name="rice_month" ColumnName="rice_month" />
-                <ScalarProperty Name="soup_month" ColumnName="soup_month" />
-                <ScalarProperty Name="month_700" ColumnName="month_700" />
-                <ScalarProperty Name="month_850" ColumnName="month_850" />
-                <ScalarProperty Name="month_meal" ColumnName="month_meal" />
-                <ScalarProperty Name="personal_month" ColumnName="personal_month" />
-                <ScalarProperty Name="food_month" ColumnName="food_month" />
-                <ScalarProperty Name="supplie_month" ColumnName="supplie_month" />
-                <ScalarProperty Name="other_month" ColumnName="other_month" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
-                <ScalarProperty Name="del_yn" ColumnName="del_yn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ST_Vendor">
             <EntityTypeMapping TypeName="STDATAModel.ST_Vendor">
               <MappingFragment StoreEntitySet="ST_Vendor">
@@ -522,6 +517,7 @@
           <EntitySetMapping Name="ST_Purchase">
             <EntityTypeMapping TypeName="STDATAModel.ST_Purchase">
               <MappingFragment StoreEntitySet="ST_Purchase">
+                <ScalarProperty Name="finish_yn" ColumnName="finish_yn" />
                 <ScalarProperty Name="special_item" ColumnName="special_item" />
                 <ScalarProperty Name="special_mark" ColumnName="special_mark" />
                 <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
@@ -539,6 +535,7 @@
           <EntitySetMapping Name="ST_SurplusDay">
             <EntityTypeMapping TypeName="STDATAModel.ST_SurplusDay">
               <MappingFragment StoreEntitySet="ST_SurplusDay">
+                <ScalarProperty Name="finish_yn" ColumnName="finish_yn" />
                 <ScalarProperty Name="count_box_use_pm" ColumnName="count_box_use_pm" />
                 <ScalarProperty Name="count_meal_use_pm" ColumnName="count_meal_use_pm" />
                 <ScalarProperty Name="count_700_use_pm" ColumnName="count_700_use_pm" />
@@ -566,6 +563,36 @@
                 <ScalarProperty Name="count_rice" ColumnName="count_rice" />
                 <ScalarProperty Name="turnover" ColumnName="turnover" />
                 <ScalarProperty Name="rec_date" ColumnName="rec_date" />
+                <ScalarProperty Name="guid" ColumnName="guid" />
+                <ScalarProperty Name="serno" ColumnName="serno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ST_Surplus_Month">
+            <EntityTypeMapping TypeName="STDATAModel.ST_Surplus_Month">
+              <MappingFragment StoreEntitySet="ST_Surplus_Month">
+                <ScalarProperty Name="del_yn" ColumnName="del_yn" />
+                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="personal_month" ColumnName="personal_month" />
+                <ScalarProperty Name="other_month" ColumnName="other_month" />
+                <ScalarProperty Name="supplie_month" ColumnName="supplie_month" />
+                <ScalarProperty Name="food_month" ColumnName="food_month" />
+                <ScalarProperty Name="month_inner_s" ColumnName="month_inner_s" />
+                <ScalarProperty Name="month_inner_l" ColumnName="month_inner_l" />
+                <ScalarProperty Name="month_inner_xl" ColumnName="month_inner_xl" />
+                <ScalarProperty Name="month_box" ColumnName="month_box" />
+                <ScalarProperty Name="month_meal" ColumnName="month_meal" />
+                <ScalarProperty Name="month_850" ColumnName="month_850" />
+                <ScalarProperty Name="month_700" ColumnName="month_700" />
+                <ScalarProperty Name="fish_month" ColumnName="fish_month" />
+                <ScalarProperty Name="soup_month" ColumnName="soup_month" />
+                <ScalarProperty Name="rice_month" ColumnName="rice_month" />
+                <ScalarProperty Name="surplus_month" ColumnName="surplus_month" />
+                <ScalarProperty Name="turnover_month" ColumnName="turnover_month" />
+                <ScalarProperty Name="expenditure_month" ColumnName="expenditure_month" />
+                <ScalarProperty Name="work_days" ColumnName="work_days" />
+                <ScalarProperty Name="rec_month" ColumnName="rec_month" />
                 <ScalarProperty Name="guid" ColumnName="guid" />
                 <ScalarProperty Name="serno" ColumnName="serno" />
               </MappingFragment>

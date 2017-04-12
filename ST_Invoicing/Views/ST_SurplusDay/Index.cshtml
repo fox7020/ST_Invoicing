@@ -107,28 +107,3 @@
 
 </table>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script>
-        $(document).ready(function () {
-            $('input[type=radio][name=bydate]').change(function () {
-                if ($('#bydate:checked').val() == "date") {
-                    $('input[name="user_input"]').daterangepicker({
-                        locale: {
-                            format: 'YYYY/MM/DD'
-                        }
-                    });
-                    alert("date");
-                }
-
-                if ($('#bydate:checked').val() == "remark") {
-                    alert("remark");
-                    $('input[name="user_input"]').datepicker('remove');
-                    
-                }
-            });
-           
-            
-        });
-    </script>
-}

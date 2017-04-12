@@ -14,14 +14,7 @@ namespace ST_Invoicing.Models
         {
             dao.ST_Vendor.Add(data);
 
-            try
-            {
-                dao.SaveChanges();
-            }catch(Exception ee)
-            {
-                throw;
-            }
-           
+            dao.SaveChanges();
 
             return data;
         }

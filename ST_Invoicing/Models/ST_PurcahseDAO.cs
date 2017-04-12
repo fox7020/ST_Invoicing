@@ -25,7 +25,7 @@ namespace ST_Invoicing.Models
         }
 
 
-        public List<ST_Purchase>GetDataByDate(DateTime rec_date)
+        public List<ST_Purchase> GetDataByDate(DateTime rec_date)
         {
             List<ST_Purchase> rslt = new List<ST_Purchase>();
 
@@ -34,7 +34,7 @@ namespace ST_Invoicing.Models
             return rslt;
         }
 
-        public List<ST_Purchase>GetDataByDateRange(DateTime start_Date, DateTime end_Date)
+        public List<ST_Purchase> GetDataByDateRange(DateTime start_Date, DateTime end_Date)
         {
             List<ST_Purchase> rslt = new List<ST_Purchase>();
 
@@ -51,6 +51,24 @@ namespace ST_Invoicing.Models
             List<ST_Purchase> rslt = new List<ST_Purchase>();
 
             rslt = dao.ST_Purchase.Where(currPurcahse => currPurcahse.del_yn == 0).Where(currPurcahse => currPurcahse.purchase_date >= firstDay).Where(currPurcahse => currPurcahse.purchase_date <= lastDay).ToList();
+
+            return rslt;
+        }
+
+        public List<ST_Purchase> GetDataLessThanThisMonth(bool isFinish)
+        {
+            List<ST_Purchase> rslt = new List<ST_Purchase>();
+
+            DateTime lastDay = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1).AddDays(-1);
+
+            if (isFinish == true)
+            {
+                rslt = dao.ST_Purchase.Where(currPurcahse => currPurcahse.del_yn == 0).Where(currPurcahse => currPurcahse.purchase_date <= lastDay).Where(currPurcahse => currPurcahse.finish_yn == 1).ToList();
+            }
+            else if (isFinish == false)
+            {
+                rslt = dao.ST_Purchase.Where(currPurcahse => currPurcahse.del_yn == 0).Where(currPurcahse => currPurcahse.purchase_date <= lastDay).Where(currPurcahse => currPurcahse.finish_yn == 0).ToList();
+            }
 
             return rslt;
         }

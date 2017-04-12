@@ -29,11 +29,11 @@ namespace ST_Invoicing.Controllers
             purchase_List = mST_PurcahseDAO.GetThisMonthData(DateTime.Today);
 
             SetOtherProperty(ref purchase_List);
-        
+
             purchase_List = purchase_List.OrderBy(o => o.purchase_date).ToList();
 
             ViewData["user"] = Session["user"];
-            
+
             return View(purchase_List);
         }
 
@@ -42,7 +42,7 @@ namespace ST_Invoicing.Controllers
         {
 
             List<ST_Purchase> rslt = mST_PurcahseDAO.GetThisMonthData(DateTime.Today);
-          
+
             SetOtherProperty(ref rslt);
 
             if (query != null)
@@ -86,7 +86,7 @@ namespace ST_Invoicing.Controllers
 
             ViewData["supplies_Items"] = GetMaterialItems("耗材");
 
-            ViewData["other_Items"] = GetMaterialItems("其他");       
+            ViewData["other_Items"] = GetMaterialItems("其他");
 
             ViewData["user"] = Session["user"];
 
@@ -112,7 +112,7 @@ namespace ST_Invoicing.Controllers
 
                     ST_Material currMaterial = mST_MaterialDAO.FetchByItemName(currPurchase.item_name);
 
-                    if(currMaterial != null)
+                    if (currMaterial != null)
                     {
                         currPurchase.material_guid = currMaterial.guid;
                     }
@@ -122,7 +122,7 @@ namespace ST_Invoicing.Controllers
 
                         currPurchase.special_item = currPurchase.item_name;
                     }
-                   
+
                     currPurchase.emp_guid = mST_EmpDAO.FetchByAccount(User.Identity.Name).guid;
 
                     mST_PurcahseDAO.Insert(currPurchase);
@@ -137,7 +137,7 @@ namespace ST_Invoicing.Controllers
 
             ViewData["supplies_Items"] = GetMaterialItems("耗材");
 
-            ViewData["other_Items"] = GetMaterialItems("其他");         
+            ViewData["other_Items"] = GetMaterialItems("其他");
 
             ViewData["user"] = Session["user"];
 
@@ -168,9 +168,9 @@ namespace ST_Invoicing.Controllers
             }
             else
             {
-                data.item_name = mST_MaterialDAO.FetchByGuid(data.material_guid).item_name;     
-            }                                   
-          
+                data.item_name = mST_MaterialDAO.FetchByGuid(data.material_guid).item_name;
+            }
+
             ViewData["user"] = Session["user"];
 
             return View(data);
@@ -184,13 +184,13 @@ namespace ST_Invoicing.Controllers
         public ActionResult Edit(ST_Purchase data)
         {
             if (ModelState.IsValid)
-            {               
+            {
 
                 mST_PurcahseDAO.Update(data);
 
                 return RedirectToAction("Index");
             }
-          
+
             ViewData["user"] = Session["user"];
 
             return View(data);
@@ -212,7 +212,7 @@ namespace ST_Invoicing.Controllers
 
             data.special_mark = data.special_mark.Trim();
 
-            data.item_name = mST_MaterialDAO.FetchByGuid(data.material_guid).item_name;        
+            data.item_name = mST_MaterialDAO.FetchByGuid(data.material_guid).item_name;
 
             data.emp_name = mST_EmpDAO.FetchByGuid(data.emp_guid).emp_name;
 
@@ -236,10 +236,10 @@ namespace ST_Invoicing.Controllers
 
             return RedirectToAction("Index");
         }
-    
+
         public ActionResult GetFoodView()
         {
-            ViewData["food_Items"] = GetMaterialItems("食材");         
+            ViewData["food_Items"] = GetMaterialItems("食材");
 
             return PartialView("FoodView");
         }
@@ -247,21 +247,228 @@ namespace ST_Invoicing.Controllers
         public ActionResult GetItemView()
         {
 
-            ViewData["supplies_Items"] = GetMaterialItems("耗材");      
+            ViewData["supplies_Items"] = GetMaterialItems("耗材");
 
             return PartialView("ItemView");
         }
 
         public ActionResult GetOtherView()
         {
-            ViewData["other_Items"] = GetMaterialItems("其他");       
+            ViewData["other_Items"] = GetMaterialItems("其他");
 
             return PartialView("OtherView");
         }
 
         public ActionResult GetNonFixView()
-        {             
+        {
             return PartialView("NonFixedView");
+        }
+
+        [HttpGet]
+        public ActionResult HistroryIndex()
+        {
+            #region 取得本月之前的舊資料
+            List<ST_Purchase> purchase_List = mST_PurcahseDAO.GetDataLessThanThisMonth(true);
+
+            SetOtherProperty(ref purchase_List);
+
+            purchase_List = purchase_List.OrderBy(o => o.purchase_date).ToList();
+            #endregion
+
+            #region DropDown List資料
+            List<DateTime> month_List = GetMonthList(purchase_List);
+
+            List<string> queryItems = new List<string>();
+
+            foreach (DateTime month in month_List)
+            {
+                string strMonth = month.ToString("yyyy-MM");
+
+                queryItems.Add(strMonth);
+            }
+
+            ViewData["query_Item"] = queryItems;
+            #endregion
+
+            return View(purchase_List);
+        }
+
+        [HttpPost]
+        public ActionResult HistroryIndex(string selMonth)
+        {
+
+            #region 取得本月之前的舊資料
+            List<ST_Purchase> purchase_List = mST_PurcahseDAO.GetDataLessThanThisMonth(true);          
+            #endregion
+
+            #region 設定要查詢的月份資料
+            if (selMonth != "")
+            {
+                string strMonth = selMonth + "-1";
+
+                DateTime Month = DateTime.Parse(strMonth);
+
+                GetSelMonthData(ref purchase_List, Month);
+            }
+            #endregion
+
+
+            #region DropDown List資料
+            List<DateTime> month_List = GetMonthList(purchase_List);
+
+            List<string> queryItems = new List<string>();
+
+            foreach (DateTime month in month_List)
+            {
+                string strMonth = month.ToString("yyyy-MM");
+
+                queryItems.Add(strMonth);
+            }
+
+            ViewData["query_Item"] = queryItems;
+            #endregion
+
+            SetOtherProperty(ref purchase_List);
+
+            purchase_List = purchase_List.OrderBy(o => o.purchase_date).ToList();
+
+            return View(purchase_List);
+        }
+
+        [HttpGet]
+        public ActionResult Unsettlement()
+        {
+            #region 取得本月之前的舊資料
+            List<ST_Purchase> rslt = mST_PurcahseDAO.GetDataLessThanThisMonth(false);
+            #endregion
+
+            //#region 將取得的資料依照月份分配
+            //List<DateTime> month_list = new List<DateTime>();
+            //month_list = GetMonthList(rslt);
+            //#endregion
+
+            //#region 取得上個月的資料
+            //GetSelMonthData(ref rslt, month_list[0]);
+            //#endregion
+
+            SetOtherProperty(ref rslt);
+
+            rslt = rslt.OrderBy(o => o.purchase_date).ToList();
+
+            ViewData["user"] = Session["user"];
+
+            return View(rslt);
+        }
+
+        [HttpPost, ActionName("Unsettlement")]
+        public ActionResult Settlement()
+        {
+            #region 取得本月之前的舊資料
+            List<ST_Purchase> rslt = mST_PurcahseDAO.GetDataLessThanThisMonth(false);
+            #endregion
+
+            SetOtherProperty(ref rslt);
+
+            foreach (ST_Purchase data in rslt)
+            {
+                data.finish_yn = 1;
+
+                mST_PurcahseDAO.Update(data);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public ActionResult HistoryEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ST_Purchase data = mST_PurcahseDAO.FetchBySerno(id);
+
+            if (data == null)
+            {
+                return HttpNotFound();
+            }
+
+            data.special_mark = data.special_mark.Trim();
+
+            /*非固定品項*/
+            if (data.material_guid.Equals(Guid.Parse("DF7E2E4F-F2F0-4232-8E10-665FA99048B1")))
+            {
+                data.item_name = data.special_item;
+            }
+            else
+            {
+                data.item_name = mST_MaterialDAO.FetchByGuid(data.material_guid).item_name;
+            }
+
+            ViewData["user"] = Session["user"];
+
+            return View(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult HistoryEdit(ST_Purchase data)
+        {
+            if (ModelState.IsValid)
+            {
+
+                mST_PurcahseDAO.Update(data);
+
+                return RedirectToAction("Unsettlement");
+            }
+
+            ViewData["user"] = Session["user"];
+
+            return View(data);
+        }
+
+
+
+        public ActionResult HistoryDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ST_Purchase data = mST_PurcahseDAO.FetchBySerno(id);
+
+            if (data == null)
+            {
+                return HttpNotFound();
+            }
+
+            data.special_mark = data.special_mark.Trim();
+
+            data.item_name = mST_MaterialDAO.FetchByGuid(data.material_guid).item_name;
+
+            data.emp_name = mST_EmpDAO.FetchByGuid(data.emp_guid).emp_name;
+
+            ViewData["user"] = Session["user"];
+
+            return View(data);
+        }
+
+        // POST: ST_Purchase/Delete/5
+        [HttpPost, ActionName("HistoryDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult HistoryDeleteConfirmed(int id)
+        {
+            ST_Purchase data = mST_PurcahseDAO.FetchBySerno(id);
+
+            if (data != null)
+            {
+                mST_PurcahseDAO.Delete(data);
+            }
+
+
+            return RedirectToAction("Unsettlement");
         }
 
         protected override void Dispose(bool disposing)
@@ -288,7 +495,7 @@ namespace ST_Invoicing.Controllers
             }
 
             return material_Items;
-        }    
+        }
 
         private void SetOtherProperty(ref List<ST_Purchase> dataList)
         {
@@ -296,13 +503,13 @@ namespace ST_Invoicing.Controllers
             {
                 if (purchase.special_item != null)
                 {
-                    purchase.item_name = purchase.special_item;           
+                    purchase.item_name = purchase.special_item;
                 }
                 else
                 {
-                    purchase.item_name = mST_MaterialDAO.FetchByGuid(purchase.material_guid).item_name;               
+                    purchase.item_name = mST_MaterialDAO.FetchByGuid(purchase.material_guid).item_name;
                 }
-               
+
                 purchase.emp_name = mST_EmpDAO.FetchByGuid(purchase.emp_guid).emp_name;
 
 
@@ -315,8 +522,50 @@ namespace ST_Invoicing.Controllers
                     purchase.font_Color = "black";
                 }
 
-               
+
             }
+        }
+
+        private List<DateTime> GetMonthList(List<ST_Purchase> dataList)
+        {
+            List<DateTime> dates = new List<DateTime>();
+
+            foreach (ST_Purchase data in dataList)
+            {
+
+                DateTime recMonth = new DateTime(data.purchase_date.Year, data.purchase_date.Month, 1);
+
+                if (dates.Count == 0)
+                {
+                    dates.Add(recMonth);
+                }
+
+                foreach (DateTime date in dates)
+                {
+                    if (date != recMonth)
+                    {
+                        dates.Add(recMonth);
+                    }
+                }
+            }
+
+            return dates;
+        }
+
+        private void GetSelMonthData(ref List<ST_Purchase> rslt, DateTime selMonth)
+        {
+            DateTime firstDay = new DateTime(selMonth.Year, selMonth.Month, 1);
+            DateTime lastDay = new DateTime(selMonth.AddMonths(1).Year, selMonth.AddMonths(1).Month, 1).AddDays(-1);
+
+            for (int i = 0; i < rslt.Count; i++)
+            {
+                if (rslt[i].purchase_date < firstDay || rslt[i].purchase_date > lastDay)
+                {
+                    rslt.RemoveAt(i);
+                    i--;
+                }
+            }
+
         }
 
     }

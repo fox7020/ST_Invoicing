@@ -42,7 +42,7 @@ namespace ST_Invoicing.Controllers
 
             /*計算累計盈餘*/
             SetSurplus_Month(ref dataList);
-          
+
             ViewData["user"] = Session["user"];
 
             return View(dataList);
@@ -58,7 +58,7 @@ namespace ST_Invoicing.Controllers
             {
                 QueryByKeyWord(ref dataList, query);
             }
-            
+
             SetExpenditure(ref dataList);
 
             SetSurplus(ref dataList);
@@ -110,7 +110,7 @@ namespace ST_Invoicing.Controllers
             #region 計算當日盈餘
             data.surplus = data.turnover - data.expenditure;
             #endregion
-           
+
             ViewData["user"] = Session["user"];
 
             data.emp_name = mST_EmpDAO.FetchByGuid(data.emp_guid).emp_name;
@@ -165,7 +165,7 @@ namespace ST_Invoicing.Controllers
             }
 
             ViewData["user"] = Session["user"];
-           
+
             return View(data);
         }
 
@@ -196,7 +196,7 @@ namespace ST_Invoicing.Controllers
 
                 return RedirectToAction("Index");
             }
-      
+
             return View(data);
         }
 
@@ -232,7 +232,259 @@ namespace ST_Invoicing.Controllers
             return RedirectToAction("Index");
         }
 
-       
+
+        [HttpGet]
+        public ActionResult HistroryIndex()
+        {
+            #region 取得本月之前的舊資料
+            List<ST_SurplusDay> dataList = mST_SurplusDayDAO.GetDataLessThanThisMonth(true);
+
+            SetExpenditure(ref dataList);
+
+            SetSurplus(ref dataList);
+
+            /*計算月收入累計&月支出累計前要先依照日期排序*/
+            dataList = dataList.OrderBy(o => o.rec_date).ToList();
+
+            /*計算累計支出*/
+            SetExpenditure_Month(ref dataList);
+
+            /*計算累計收入*/
+            SetTurnover_Month(ref dataList);
+
+            /*計算累計盈餘*/
+            SetSurplus_Month(ref dataList);
+
+
+            #endregion
+
+            #region DropDown List資料
+            List<DateTime> month_List = GetMonthList(dataList);
+
+            List<string> queryItems = new List<string>();
+
+            foreach (DateTime month in month_List)
+            {
+                string strMonth = month.ToString("yyyy-MM");
+
+                queryItems.Add(strMonth);
+            }
+
+            ViewData["query_Item"] = queryItems;
+            #endregion
+
+            ViewData["user"] = Session["user"];
+
+            return View(dataList);
+        }
+
+        [HttpPost]
+        public ActionResult HistroryIndex(string selMonth)
+        {
+
+            #region 取得本月之前的舊資料
+            List<ST_SurplusDay> dataList = mST_SurplusDayDAO.GetDataLessThanThisMonth(true);
+
+            SetExpenditure(ref dataList);
+
+            SetSurplus(ref dataList);
+
+            /*計算月收入累計&月支出累計前要先依照日期排序*/
+            dataList = dataList.OrderBy(o => o.rec_date).ToList();
+
+            /*計算累計支出*/
+            SetExpenditure_Month(ref dataList);
+
+            /*計算累計收入*/
+            SetTurnover_Month(ref dataList);
+
+            /*計算累計盈餘*/
+            SetSurplus_Month(ref dataList);
+
+            #endregion
+
+            #region 設定要查詢的月份資料
+            if (selMonth != "")
+            {
+                string strMonth = selMonth + "-1";
+
+                DateTime Month = DateTime.Parse(strMonth);
+
+                GetSelMonthData(ref dataList, Month);
+            }
+            #endregion
+
+
+            #region DropDown List資料
+            List<DateTime> month_List = GetMonthList(dataList);
+
+            List<string> queryItems = new List<string>();
+
+            foreach (DateTime month in month_List)
+            {
+                string strMonth = month.ToString("yyyy-MM");
+
+                queryItems.Add(strMonth);
+            }
+
+            ViewData["query_Item"] = queryItems;
+            #endregion
+
+            ViewData["user"] = Session["user"];
+
+            return View(dataList);
+        }
+
+        [HttpGet]
+        public ActionResult Unsettlement()
+        {
+            #region 取得本月之前的舊資料
+            List<ST_SurplusDay> dataList = mST_SurplusDayDAO.GetDataLessThanThisMonth(false);
+
+            SetExpenditure(ref dataList);
+
+            SetSurplus(ref dataList);
+
+            /*計算月收入累計&月支出累計前要先依照日期排序*/
+            dataList = dataList.OrderBy(o => o.rec_date).ToList();
+
+            /*計算累計支出*/
+            SetExpenditure_Month(ref dataList);
+
+            /*計算累計收入*/
+            SetTurnover_Month(ref dataList);
+
+            /*計算累計盈餘*/
+            SetSurplus_Month(ref dataList);
+
+            #endregion
+
+
+            ViewData["user"] = Session["user"];
+
+            return View(dataList);
+        }
+
+        [HttpPost, ActionName("Unsettlement")]
+        public ActionResult Settlement()
+        {
+            #region 取得本月之前的舊資料
+            List<ST_SurplusDay> dataList = mST_SurplusDayDAO.GetDataLessThanThisMonth(false);
+
+            SetExpenditure(ref dataList);
+
+            SetSurplus(ref dataList);
+
+            /*計算月收入累計&月支出累計前要先依照日期排序*/
+            dataList = dataList.OrderBy(o => o.rec_date).ToList();
+
+            /*計算累計支出*/
+            SetExpenditure_Month(ref dataList);
+
+            /*計算累計收入*/
+            SetTurnover_Month(ref dataList);
+
+            /*計算累計盈餘*/
+            SetSurplus_Month(ref dataList);
+
+            #endregion
+
+            foreach (ST_SurplusDay data in dataList)
+            {
+                data.finish_yn = 1;
+
+                mST_SurplusDayDAO.Update(data);
+            }
+
+            ViewData["user"] = Session["user"];
+
+            return RedirectToAction("HistroryIndex");
+        }
+
+
+        [HttpGet]
+        public ActionResult HistoryEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ST_SurplusDay data = mST_SurplusDayDAO.FetchBySerno(id);
+
+            if (data == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewData["user"] = Session["user"];
+
+            return View(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult HistoryEdit(ST_SurplusDay data)
+        {
+            if (ModelState.IsValid)
+            {
+                mST_SurplusDayDAO.Update(data);
+
+                #region 修改庫存
+                SetStock(data);
+                #endregion
+                #region 修改比data日期還大的庫存(限本月)
+
+                DateTime lastDay = new DateTime(data.rec_date.AddMonths(1).Year, data.rec_date.AddMonths(1).Month, 1).AddDays(-1);
+
+                List<ST_SurplusDay> edit_List = mST_SurplusDayDAO.GetDataByDateRange(data.rec_date, lastDay);
+
+                foreach (ST_SurplusDay editData in edit_List)
+                {
+                    SetStock(editData);
+
+                }
+                #endregion
+
+                return RedirectToAction("Unsettlement");
+            }
+
+            return View(data);
+        }
+
+
+
+        public ActionResult HistoryDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ST_SurplusDay data = mST_SurplusDayDAO.FetchBySerno(id);
+
+            if (data == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewData["user"] = Session["user"];
+
+            return View(data);
+        }
+
+        // POST: ST_Purchase/Delete/5
+        [HttpPost, ActionName("HistoryDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult HistoryDeleteConfirmed(int id)
+        {
+            ST_SurplusDay data = mST_SurplusDayDAO.FetchBySerno(id);
+
+            mST_SurplusDayDAO.SoftDelete(data);
+
+            return RedirectToAction("Unsettlement");
+        }
+
         public void SetExpenditure(ref List<ST_SurplusDay> dataList)
         {
             foreach (ST_SurplusDay currData in dataList)
@@ -309,8 +561,8 @@ namespace ST_Invoicing.Controllers
                 currStock.use_850 = data.count_850_use_am + data.count_850_use_pm;
                 currStock.use_meal = data.count_meal_use_am + data.count_meal_use_pm;
                 currStock.use_box = data.count_box_use_am + data.count_box_use_pm;
-                
-                if(recentStock != null)
+
+                if (recentStock != null)
                 {
                     currStock.count_700 = recentStock.count_700 + currStock.add_700 - currStock.use_700;
                     currStock.count_850 = recentStock.count_850 + currStock.add_850 - currStock.use_850;
@@ -324,7 +576,7 @@ namespace ST_Invoicing.Controllers
                     currStock.count_meal = currStock.add_meal - currStock.use_meal;
                     currStock.count_box = currStock.add_box - currStock.use_box;
                 }
-               
+
 
                 mST_InStockDAO.Update(currStock);
             }
@@ -345,7 +597,7 @@ namespace ST_Invoicing.Controllers
                 currStock.use_850 = data.count_850_use_am + data.count_850_use_pm;
                 currStock.use_meal = data.count_meal_use_am + data.count_meal_use_pm;
                 currStock.use_box = data.count_box_use_am + data.count_box_use_pm;
-          
+
                 if (recentStock != null)
                 {
                     currStock.count_700 = recentStock.count_700 + currStock.add_700 - currStock.use_700;
@@ -361,11 +613,11 @@ namespace ST_Invoicing.Controllers
                     currStock.count_box = currStock.add_box - currStock.use_box;
                 }
 
-                mST_InStockDAO.Insert(currStock);           
-            }          
+                mST_InStockDAO.Insert(currStock);
+            }
         }
 
-        private void QueryByKeyWord(ref List<ST_SurplusDay>datalist, string query)
+        private void QueryByKeyWord(ref List<ST_SurplusDay> datalist, string query)
         {
             for (int i = 0; i < datalist.Count; i++)
             {
@@ -379,10 +631,10 @@ namespace ST_Invoicing.Controllers
                 }
                 else if (datalist[i].remark == null)
                 {
-                      datalist.RemoveAt(i);
-                      i--;
+                    datalist.RemoveAt(i);
+                    i--;
                 }
-               
+
             }
         }
         protected override void Dispose(bool disposing)
@@ -395,6 +647,48 @@ namespace ST_Invoicing.Controllers
                 mST_InStockDAO.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private List<DateTime> GetMonthList(List<ST_SurplusDay> dataList)
+        {
+            List<DateTime> dates = new List<DateTime>();
+
+            foreach (ST_SurplusDay data in dataList)
+            {
+
+                DateTime recMonth = new DateTime(data.rec_date.Year, data.rec_date.Month, 1);
+
+                if (dates.Count == 0)
+                {
+                    dates.Add(recMonth);
+                }
+
+                foreach (DateTime date in dates)
+                {
+                    if (date != recMonth)
+                    {
+                        dates.Add(recMonth);
+                    }
+                }
+            }
+
+            return dates;
+        }
+
+        private void GetSelMonthData(ref List<ST_SurplusDay> rslt, DateTime selMonth)
+        {
+            DateTime firstDay = new DateTime(selMonth.Year, selMonth.Month, 1);
+            DateTime lastDay = new DateTime(selMonth.AddMonths(1).Year, selMonth.AddMonths(1).Month, 1).AddDays(-1);
+
+            for (int i = 0; i < rslt.Count; i++)
+            {
+                if (rslt[i].rec_date < firstDay || rslt[i].rec_date > lastDay)
+                {
+                    rslt.RemoveAt(i);
+                    i--;
+                }
+            }
+
         }
     }
 }

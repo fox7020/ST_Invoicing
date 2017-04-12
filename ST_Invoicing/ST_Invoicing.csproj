@@ -390,6 +390,14 @@
     <Content Include="Views\ST_Material\Index_Supplies.cshtml" />
     <Content Include="Views\ST_Material\Index_Other.cshtml" />
     <Content Include="Views\ST_Emp\ChangePassword.cshtml" />
+    <Content Include="Views\ST_Purchase\HistroryIndex.cshtml" />
+    <Content Include="Views\ST_Purchase\Unsettlement.cshtml" />
+    <Content Include="Views\ST_Purchase\HistoryEdit.cshtml" />
+    <Content Include="Views\ST_Purchase\HistoryDelete.cshtml" />
+    <Content Include="Views\ST_SurplusDay\Unsettlement.cshtml" />
+    <Content Include="Views\ST_SurplusDay\HistoryEdit.cshtml" />
+    <Content Include="Views\ST_SurplusDay\HistoryDelete.cshtml" />
+    <Content Include="Views\ST_SurplusDay\HistroryIndex.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

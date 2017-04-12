@@ -78,29 +78,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ST_Surplus_Month">
-      <EntityTypeMapping TypeName="STDATAModel.ST_Surplus_Month">
-        <MappingFragment StoreEntitySet="ST_Surplus_Month">
-          <ScalarProperty Name="serno" ColumnName="serno" />
-          <ScalarProperty Name="guid" ColumnName="guid" />
-          <ScalarProperty Name="rec_month" ColumnName="rec_month" />
-          <ScalarProperty Name="expenditure_month" ColumnName="expenditure_month" />
-          <ScalarProperty Name="income_month" ColumnName="income_month" />
-          <ScalarProperty Name="rice_month" ColumnName="rice_month" />
-          <ScalarProperty Name="soup_month" ColumnName="soup_month" />
-          <ScalarProperty Name="month_700" ColumnName="month_700" />
-          <ScalarProperty Name="month_850" ColumnName="month_850" />
-          <ScalarProperty Name="month_meal" ColumnName="month_meal" />
-          <ScalarProperty Name="personal_month" ColumnName="personal_month" />
-          <ScalarProperty Name="food_month" ColumnName="food_month" />
-          <ScalarProperty Name="supplie_month" ColumnName="supplie_month" />
-          <ScalarProperty Name="other_month" ColumnName="other_month" />
-          <ScalarProperty Name="remark" ColumnName="remark" />
-          <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
-          <ScalarProperty Name="del_yn" ColumnName="del_yn" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ST_Vendor">
       <EntityTypeMapping TypeName="STDATAModel.ST_Vendor">
         <MappingFragment StoreEntitySet="ST_Vendor">
@@ -136,6 +113,7 @@
     <EntitySetMapping Name="ST_Purchase">
       <EntityTypeMapping TypeName="STDATAModel.ST_Purchase">
         <MappingFragment StoreEntitySet="ST_Purchase">
+          <ScalarProperty Name="finish_yn" ColumnName="finish_yn" />
           <ScalarProperty Name="special_item" ColumnName="special_item" />
           <ScalarProperty Name="special_mark" ColumnName="special_mark" />
           <ScalarProperty Name="emp_guid" ColumnName="emp_guid" />
@@ -153,6 +131,7 @@
     <EntitySetMapping Name="ST_SurplusDay">
       <EntityTypeMapping TypeName="STDATAModel.ST_SurplusDay">
         <MappingFragment StoreEntitySet="ST_SurplusDay">
+          <ScalarProperty Name="finish_yn" ColumnName="finish_yn" />
           <ScalarProperty Name="count_box_use_pm" ColumnName="count_box_use_pm" />
           <ScalarProperty Name="count_meal_use_pm" ColumnName="count_meal_use_pm" />
           <ScalarProperty Name="count_700_use_pm" ColumnName="count_700_use_pm" />
@@ -180,6 +159,36 @@
           <ScalarProperty Name="count_rice" ColumnName="count_rice" />
           <ScalarProperty Name="turnover" ColumnName="turnover" />
           <ScalarProperty Name="rec_date" ColumnName="rec_date" />
+          <ScalarProperty Name="guid" ColumnName="guid" />
+          <ScalarProperty Name="serno" ColumnName="serno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ST_Surplus_Month">
+      <EntityTypeMapping TypeName="STDATAModel.ST_Surplus_Month">
+        <MappingFragment StoreEntitySet="ST_Surplus_Month">
+          <ScalarProperty Name="del_yn" ColumnName="del_yn" />
+          <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="personal_month" ColumnName="personal_month" />
+          <ScalarProperty Name="other_month" ColumnName="other_month" />
+          <ScalarProperty Name="supplie_month" ColumnName="supplie_month" />
+          <ScalarProperty Name="food_month" ColumnName="food_month" />
+          <ScalarProperty Name="month_inner_s" ColumnName="month_inner_s" />
+          <ScalarProperty Name="month_inner_l" ColumnName="month_inner_l" />
+          <ScalarProperty Name="month_inner_xl" ColumnName="month_inner_xl" />
+          <ScalarProperty Name="month_box" ColumnName="month_box" />
+          <ScalarProperty Name="month_meal" ColumnName="month_meal" />
+          <ScalarProperty Name="month_850" ColumnName="month_850" />
+          <ScalarProperty Name="month_700" ColumnName="month_700" />
+          <ScalarProperty Name="fish_month" ColumnName="fish_month" />
+          <ScalarProperty Name="soup_month" ColumnName="soup_month" />
+          <ScalarProperty Name="rice_month" ColumnName="rice_month" />
+          <ScalarProperty Name="surplus_month" ColumnName="surplus_month" />
+          <ScalarProperty Name="turnover_month" ColumnName="turnover_month" />
+          <ScalarProperty Name="expenditure_month" ColumnName="expenditure_month" />
+          <ScalarProperty Name="work_days" ColumnName="work_days" />
+          <ScalarProperty Name="rec_month" ColumnName="rec_month" />
           <ScalarProperty Name="guid" ColumnName="guid" />
           <ScalarProperty Name="serno" ColumnName="serno" />
         </MappingFragment>

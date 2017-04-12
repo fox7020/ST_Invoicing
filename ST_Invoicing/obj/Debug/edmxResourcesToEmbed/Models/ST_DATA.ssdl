@@ -99,6 +99,7 @@
     <Property Name="special_mark" Type="nchar" MaxLength="2" />
     <Property Name="remark" Type="nvarchar(max)" />
     <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="finish_yn" Type="int" Nullable="false" />
     <Property Name="deleted_at" Type="datetime" />
     <Property Name="del_yn" Type="int" Nullable="false" />
   </EntityType>
@@ -109,17 +110,24 @@
     <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="rec_month" Type="datetime" Nullable="false" />
+    <Property Name="work_days" Type="int" Nullable="false" />
     <Property Name="expenditure_month" Type="int" Nullable="false" />
-    <Property Name="income_month" Type="int" Nullable="false" />
+    <Property Name="turnover_month" Type="int" Nullable="false" />
+    <Property Name="surplus_month" Type="int" Nullable="false" />
     <Property Name="rice_month" Type="float" Nullable="false" />
     <Property Name="soup_month" Type="float" Nullable="false" />
+    <Property Name="fish_month" Type="float" Nullable="false" />
     <Property Name="month_700" Type="int" Nullable="false" />
     <Property Name="month_850" Type="int" Nullable="false" />
     <Property Name="month_meal" Type="int" Nullable="false" />
-    <Property Name="personal_month" Type="int" Nullable="false" />
+    <Property Name="month_box" Type="int" Nullable="false" />
+    <Property Name="month_inner_xl" Type="int" Nullable="false" />
+    <Property Name="month_inner_l" Type="int" Nullable="false" />
+    <Property Name="month_inner_s" Type="int" Nullable="false" />
     <Property Name="food_month" Type="int" Nullable="false" />
     <Property Name="supplie_month" Type="int" Nullable="false" />
     <Property Name="other_month" Type="int" Nullable="false" />
+    <Property Name="personal_month" Type="int" />
     <Property Name="remark" Type="nvarchar(max)" />
     <Property Name="deleted_at" Type="datetime" />
     <Property Name="del_yn" Type="int" Nullable="false" />
@@ -131,32 +139,33 @@
     <Property Name="serno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="rec_date" Type="date" Nullable="false" />
+    <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="turnover" Type="int" Nullable="false" />
+    <Property Name="count_rice" Type="float" Nullable="false" />
+    <Property Name="count_soup" Type="float" Nullable="false" />
+    <Property Name="count_fish" Type="float" Nullable="false" />
     <Property Name="count_850_use_am" Type="int" Nullable="false" />
     <Property Name="count_700_use_am" Type="int" Nullable="false" />
     <Property Name="count_meal_use_am" Type="int" Nullable="false" />
-    <Property Name="count_rice" Type="float" Nullable="false" />
-    <Property Name="count_soup" Type="float" Nullable="false" />
-    <Property Name="remark" Type="nvarchar(max)" />
-    <Property Name="deleted_at" Type="datetime" />
-    <Property Name="del_yn" Type="int" Nullable="false" />
-    <Property Name="emp_guid" Type="uniqueidentifier" Nullable="false" />
     <Property Name="count_box_use_am" Type="int" Nullable="false" />
-    <Property Name="count_fish" Type="float" Nullable="false" />
+    <Property Name="count_850_use_pm" Type="int" Nullable="false" />
+    <Property Name="count_700_use_pm" Type="int" Nullable="false" />
+    <Property Name="count_meal_use_pm" Type="int" Nullable="false" />
+    <Property Name="count_box_use_pm" Type="int" Nullable="false" />
+    <Property Name="count_850_add" Type="int" Nullable="false" />
+    <Property Name="count_700_add" Type="int" Nullable="false" />
+    <Property Name="count_meal_add" Type="int" Nullable="false" />
+    <Property Name="count_box_add" Type="int" Nullable="false" />
     <Property Name="inner_xl_am" Type="int" Nullable="false" />
     <Property Name="inner_l_am" Type="int" Nullable="false" />
     <Property Name="inner_s_am" Type="int" Nullable="false" />
     <Property Name="inner_xl_pm" Type="int" Nullable="false" />
     <Property Name="inner_l_pm" Type="int" Nullable="false" />
     <Property Name="inner_s_pm" Type="int" Nullable="false" />
-    <Property Name="count_850_add" Type="int" Nullable="false" />
-    <Property Name="count_700_add" Type="int" Nullable="false" />
-    <Property Name="count_meal_add" Type="int" Nullable="false" />
-    <Property Name="count_box_add" Type="int" Nullable="false" />
-    <Property Name="count_850_use_pm" Type="int" Nullable="false" />
-    <Property Name="count_700_use_pm" Type="int" Nullable="false" />
-    <Property Name="count_meal_use_pm" Type="int" Nullable="false" />
-    <Property Name="count_box_use_pm" Type="int" Nullable="false" />
+    <Property Name="remark" Type="nvarchar(max)" />
+    <Property Name="finish_yn" Type="int" Nullable="false" />
+    <Property Name="deleted_at" Type="datetime" />
+    <Property Name="del_yn" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ST_Vendor">
     <Key>

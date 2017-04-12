@@ -136,6 +136,9 @@ namespace ST_Invoicing.Models
 
         [Display(Name = "備註")]
         public string remark { get; set; }
+
+        public int finish_yn { get; set; }
+
         public Nullable<System.DateTime> deleted_at { get; set; }
         public int del_yn { get; set; }
 
@@ -162,7 +165,7 @@ namespace ST_Invoicing.Models
         [ScaffoldColumn(false)]
         [Display(Name = "累計盈餘")]
         public int surplus_month { get; set; }
-    
+
         [ScaffoldColumn(false)]
         [Display(Name = "700cc庫存量")]
         public int sotck_700cc { get; set; }

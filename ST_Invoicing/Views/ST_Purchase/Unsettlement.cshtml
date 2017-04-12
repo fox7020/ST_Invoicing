@@ -1,0 +1,103 @@
+﻿@model IEnumerable<ST_Invoicing.Models.ST_Purchase>
+
+@{
+    ViewBag.Title = "南臺灣-未結算採購";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#ST_Purchase").addClass("active");
+
+    });
+
+    function Settlement() {
+        alert();
+    }
+</script>
+
+<h2>未結算採購列表</h2>
+
+@using (Html.BeginForm())
+{ 
+
+    <div class="form-actions no-color">       
+        <input type="submit" value="確認結算" class="btn btn-success">
+    </div>
+}
+
+
+<br/>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.purchase_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.item_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.purchase_price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vendor_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emp_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.remark)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+
+            <td>
+                <font color=@item.font_Color>
+                    @Html.DisplayFor(modelItem => item.display_Date)
+                </font>
+            </td>
+            <td>
+                <font color=@item.font_Color>
+                    @Html.DisplayFor(modelItem => item.item_name)
+                </font>
+            </td>
+            <td>
+                <font color=@item.font_Color>
+                    @Html.DisplayFor(modelItem => item.purchase_price)
+                </font>
+            </td>
+            <td>
+                <font color=@item.font_Color>
+                    @Html.DisplayFor(modelItem => item.vendor_name)
+                </font>
+            </td>
+            <td>
+                <font color=@item.font_Color>
+                    @Html.DisplayFor(modelItem => item.emp_name)
+                </font>
+            </td>
+            <td>
+                <font color=@item.font_Color>
+                    @Html.DisplayFor(modelItem => item.remark)
+                </font>
+            </td>
+            <td>
+                <input type="button" class="btn btn-warning" value="編輯" onclick="location.href='@Url.Action("HistoryEdit", "ST_Purchase", new { id = item.serno })'" />
+                <input type="button" class="btn btn-danger" value="刪除" onclick="location.href='@Url.Action("HistoryDelete", "ST_Purchase", new { id = item.serno })'" />
+            </td>
+        </tr>
+
+    }
+
+</table>
+
+
+
+
+
+

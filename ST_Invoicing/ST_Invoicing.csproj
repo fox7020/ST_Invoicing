@@ -132,6 +132,7 @@
     <Compile Include="Controllers\ST_MaterialController.cs" />
     <Compile Include="Controllers\ST_PurchaseController.cs" />
     <Compile Include="Controllers\ST_SurplusDayController.cs" />
+    <Compile Include="Controllers\ST_Surplus_MonthController.cs" />
     <Compile Include="Controllers\ST_VendorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -180,6 +181,7 @@
       <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ST_SurplusDayDAO.cs" />
+    <Compile Include="Models\ST_SurplusMonthDAO.cs" />
     <Compile Include="Models\ST_Surplus_Month.cs">
       <DependentUpon>ST_Data.tt</DependentUpon>
     </Compile>
@@ -398,6 +400,11 @@
     <Content Include="Views\ST_SurplusDay\HistoryEdit.cshtml" />
     <Content Include="Views\ST_SurplusDay\HistoryDelete.cshtml" />
     <Content Include="Views\ST_SurplusDay\HistroryIndex.cshtml" />
+    <Content Include="Views\ST_Surplus_Month\Create.cshtml" />
+    <Content Include="Views\ST_Surplus_Month\Delete.cshtml" />
+    <Content Include="Views\ST_Surplus_Month\Details.cshtml" />
+    <Content Include="Views\ST_Surplus_Month\Edit.cshtml" />
+    <Content Include="Views\ST_Surplus_Month\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

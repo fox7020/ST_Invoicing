@@ -254,8 +254,6 @@ namespace ST_Invoicing.Controllers
 
             /*計算累計盈餘*/
             SetSurplus_Month(ref dataList);
-
-
             #endregion
 
             #region DropDown List資料
@@ -370,6 +368,24 @@ namespace ST_Invoicing.Controllers
         {
             #region 取得本月之前的舊資料
             List<ST_SurplusDay> dataList = mST_SurplusDayDAO.GetDataLessThanThisMonth(false);
+            #endregion
+
+            #region 確認取得的日期Purchase資料都已經結算
+            foreach (ST_SurplusDay data in dataList)
+            {
+
+                List<ST_Purchase> purchase_List = mST_PurcahseDAO.GetDataByDate(data.rec_date);
+
+                foreach (ST_Purchase purchase in purchase_List)
+                {
+                    if (purchase.finish_yn == 0)
+                    {
+                        ModelState.AddModelError("SubErr", "有採購資料未結算");
+                        return View(dataList);
+                    }
+                }
+            }
+            #endregion
 
             SetExpenditure(ref dataList);
 
@@ -387,7 +403,6 @@ namespace ST_Invoicing.Controllers
             /*計算累計盈餘*/
             SetSurplus_Month(ref dataList);
 
-            #endregion
 
             foreach (ST_SurplusDay data in dataList)
             {

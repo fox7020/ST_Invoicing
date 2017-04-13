@@ -10,11 +10,37 @@
 
 <script>
     $(document).ready(function () {
-        $("#ST_Purchase").addClass("active");   
+        $("#ST_Purchase").addClass("active");
+
+        $("#print").click(function () {
+
+            var month = $('#selMonth option:selected').text();
+
+            var title = null;
+
+            if (month == "---查看月份---") {
+                title = "所有月份採購清單";
+            } else {
+                title = month + "採購清單";
+            }
+      
+            /*抓出整個要印的區塊*/
+            var value = document.getElementsByClassName("print_parts")[0];
+
+            var printPage = window.open("", "Printing...", "");
+            printPage.document.open();
+            printPage.document.write("<HTML><head><link href='/Content/bootstrap.css' rel='stylesheet'></head><BODY onload='window.print();window.close()'>");
+            printPage.document.write("<h2 align = 'center'>" + title + "</h2>");
+
+            printPage.document.write(value.innerHTML);
+
+            printPage.document.close("</BODY></HTML>");
+        });
+
     });
 </script>
 
-<h2>採購歷史列表</h2>
+<h2>採購歷史列表 <input type="button" class="btn btn-basic" id="print" value="列印" /></h2>
 
 @using (Html.BeginForm())
 {
@@ -24,7 +50,7 @@
                 <h5> 查詢月份:</h5>
             </div>
             <div class="col-xs-6 col-md-6">
-                @Html.DropDownList("selMonth", selectQuery, "---查看月份---", new { @class = "btn btn-info dropdown-toggle" })              
+                @Html.DropDownList("selMonth", selectQuery, "---查看月份---", new { @class = "btn btn-info dropdown-toggle" })
             </div>
             <div class="col-xs-6 col-md-2">
                 <input type="submit" value="查詢" class="btn btn-success" />
@@ -33,71 +59,68 @@
     </div>
 }
 
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.purchase_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.item_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.purchase_price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.vendor_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.emp_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.remark)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-
+<div class="print_parts">
+    <table class="table">
         <tr>
-
-            <td>
-                <font color=@item.font_Color>
-                    @Html.DisplayFor(modelItem => item.display_Date)
-                </font>
-            </td>
-            <td>
-                <font color=@item.font_Color>
-                    @Html.DisplayFor(modelItem => item.item_name)
-                </font>
-            </td>
-            <td>
-                <font color=@item.font_Color>
-                    @Html.DisplayFor(modelItem => item.purchase_price)
-                </font>
-            </td>
-            <td>
-                <font color=@item.font_Color>
-                    @Html.DisplayFor(modelItem => item.vendor_name)
-                </font>
-            </td>
-            <td>
-                <font color=@item.font_Color>
-                    @Html.DisplayFor(modelItem => item.emp_name)
-                </font>
-            </td>
-            <td>
-                <font color=@item.font_Color>
-                    @Html.DisplayFor(modelItem => item.remark)
-                </font>
-            </td>     
+            <th>
+                @Html.DisplayNameFor(model => model.purchase_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.item_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.purchase_price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vendor_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.remark)
+            </th>
+            <th></th>
         </tr>
 
-    }
+        @foreach (var item in Model)
+        {
 
-</table>
+            <tr>
 
+                <td>
+                    <font color=@item.font_Color>
+                        @Html.DisplayFor(modelItem => item.display_Date)
+                    </font>
+                </td>
+                <td>
+                    <font color=@item.font_Color>
+                        @Html.DisplayFor(modelItem => item.item_name)
+                    </font>
+                </td>
+                <td>
+                    <font color=@item.font_Color>
+                        @Html.DisplayFor(modelItem => item.purchase_price)
+                    </font>
+                </td>
+                <td>
+                    <font color=@item.font_Color>
+                        @Html.DisplayFor(modelItem => item.vendor_name)
+                    </font>
+                </td>
+                <td>
+                    <font color=@item.font_Color>
+                        @Html.DisplayFor(modelItem => item.emp_name)
+                    </font>
+                </td>
+                <td>
+                    <font color=@item.font_Color>
+                        @Html.DisplayFor(modelItem => item.remark)
+                    </font>
+                </td>
+            </tr>
 
+        }
 
-
+    </table>
+</div>

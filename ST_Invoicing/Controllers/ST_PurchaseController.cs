@@ -501,6 +501,7 @@ namespace ST_Invoicing.Controllers
         {
             foreach (ST_Purchase purchase in dataList)
             {
+                #region 品項名稱
                 if (purchase.special_item != null)
                 {
                     purchase.item_name = purchase.special_item;
@@ -509,10 +510,13 @@ namespace ST_Invoicing.Controllers
                 {
                     purchase.item_name = mST_MaterialDAO.FetchByGuid(purchase.material_guid).item_name;
                 }
+                #endregion
 
+                #region 採購人員
                 purchase.emp_name = mST_EmpDAO.FetchByGuid(purchase.emp_guid).emp_name;
+                #endregion
 
-
+                #region 紅色文字標記
                 if (purchase.special_mark.Trim() == "是")
                 {
                     purchase.font_Color = "red";
@@ -521,6 +525,13 @@ namespace ST_Invoicing.Controllers
                 {
                     purchase.font_Color = "black";
                 }
+                #endregion
+
+                #region 供應商
+                ST_Material currMaterial = mST_MaterialDAO.FetchByGuid(purchase.material_guid);
+                ST_Vendor currVendor = mST_VendorDAO.FetchByGuid(currMaterial.vendor_guid);
+                purchase.vendor_name = currVendor.vendor_name;
+                #endregion
 
 
             }

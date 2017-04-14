@@ -467,7 +467,41 @@ namespace ST_Invoicing.Controllers
             return View(data);
         }
 
+        public ActionResult HistoryDetails(int ? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
+            ST_SurplusDay data = mST_SurplusDayDAO.FetchBySerno(id);
+
+            if (data == null)
+            {
+                return HttpNotFound();
+            }
+
+            #region 計算當日支出
+            List<ST_Purchase> purrchase_List = mST_PurcahseDAO.GetDataByDate(data.rec_date);
+
+            data.expenditure = 0;
+
+            foreach (ST_Purchase currPurchase in purrchase_List)
+            {
+                data.expenditure += currPurchase.purchase_price;
+            }
+            #endregion
+
+            #region 計算當日盈餘
+            data.surplus = data.turnover - data.expenditure;
+            #endregion
+
+            ViewData["user"] = Session["user"];
+
+            data.emp_name = mST_EmpDAO.FetchByGuid(data.emp_guid).emp_name;
+
+            return View(data);        
+        }
 
         public ActionResult HistoryDelete(int? id)
         {
@@ -704,6 +738,23 @@ namespace ST_Invoicing.Controllers
                 }
             }
 
+        }
+
+        public JsonResult CheckDate(ST_SurplusDay data)
+        {
+            if (data.rec_date != null)
+            {
+                if (data.rec_date > DateTime.Today)
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            return Json(false, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -122,13 +122,20 @@
           <Property Name="rice_month" Type="float" Nullable="false" />
           <Property Name="soup_month" Type="float" Nullable="false" />
           <Property Name="fish_month" Type="float" Nullable="false" />
-          <Property Name="month_700" Type="int" Nullable="false" />
-          <Property Name="month_850" Type="int" Nullable="false" />
-          <Property Name="month_meal" Type="int" Nullable="false" />
-          <Property Name="month_box" Type="int" Nullable="false" />
-          <Property Name="month_inner_xl" Type="int" Nullable="false" />
-          <Property Name="month_inner_l" Type="int" Nullable="false" />
-          <Property Name="month_inner_s" Type="int" Nullable="false" />
+          <Property Name="month_700_am" Type="int" Nullable="false" />
+          <Property Name="month_700_pm" Type="int" Nullable="false" />
+          <Property Name="month_850_am" Type="int" Nullable="false" />
+          <Property Name="month_850_pm" Type="int" Nullable="false" />
+          <Property Name="month_meal_am" Type="int" Nullable="false" />
+          <Property Name="month_meal_pm" Type="int" Nullable="false" />
+          <Property Name="month_box_am" Type="int" Nullable="false" />
+          <Property Name="month_box_pm" Type="int" Nullable="false" />
+          <Property Name="month_inner_xl_am" Type="int" Nullable="false" />
+          <Property Name="month_inner_xl_pm" Type="int" Nullable="false" />
+          <Property Name="month_inner_l_am" Type="int" Nullable="false" />
+          <Property Name="month_inner_l_pm" Type="int" Nullable="false" />
+          <Property Name="month_inner_s_am" Type="int" Nullable="false" />
+          <Property Name="month_inner_s_pm" Type="int" Nullable="false" />
           <Property Name="food_month" Type="int" Nullable="false" />
           <Property Name="supplie_month" Type="int" Nullable="false" />
           <Property Name="other_month" Type="int" Nullable="false" />
@@ -384,13 +391,20 @@
           <Property Name="rice_month" Type="Double" Nullable="false" />
           <Property Name="soup_month" Type="Double" Nullable="false" />
           <Property Name="fish_month" Type="Double" Nullable="false" />
-          <Property Name="month_700" Type="Int32" Nullable="false" />
-          <Property Name="month_850" Type="Int32" Nullable="false" />
-          <Property Name="month_meal" Type="Int32" Nullable="false" />
-          <Property Name="month_box" Type="Int32" Nullable="false" />
-          <Property Name="month_inner_xl" Type="Int32" Nullable="false" />
-          <Property Name="month_inner_l" Type="Int32" Nullable="false" />
-          <Property Name="month_inner_s" Type="Int32" Nullable="false" />
+          <Property Name="month_700_am" Type="Int32" Nullable="false" />
+          <Property Name="month_700_pm" Type="Int32" Nullable="false" />
+          <Property Name="month_850_am" Type="Int32" Nullable="false" />
+          <Property Name="month_850_pm" Type="Int32" Nullable="false" />
+          <Property Name="month_meal_am" Type="Int32" Nullable="false" />
+          <Property Name="month_meal_pm" Type="Int32" Nullable="false" />
+          <Property Name="month_box_am" Type="Int32" Nullable="false" />
+          <Property Name="month_box_pm" Type="Int32" Nullable="false" />
+          <Property Name="month_inner_xl_am" Type="Int32" Nullable="false" />
+          <Property Name="month_inner_xl_pm" Type="Int32" Nullable="false" />
+          <Property Name="month_inner_l_am" Type="Int32" Nullable="false" />
+          <Property Name="month_inner_l_pm" Type="Int32" Nullable="false" />
+          <Property Name="month_inner_s_am" Type="Int32" Nullable="false" />
+          <Property Name="month_inner_s_pm" Type="Int32" Nullable="false" />
           <Property Name="food_month" Type="Int32" Nullable="false" />
           <Property Name="supplie_month" Type="Int32" Nullable="false" />
           <Property Name="other_month" Type="Int32" Nullable="false" />
@@ -578,13 +592,20 @@
                 <ScalarProperty Name="other_month" ColumnName="other_month" />
                 <ScalarProperty Name="supplie_month" ColumnName="supplie_month" />
                 <ScalarProperty Name="food_month" ColumnName="food_month" />
-                <ScalarProperty Name="month_inner_s" ColumnName="month_inner_s" />
-                <ScalarProperty Name="month_inner_l" ColumnName="month_inner_l" />
-                <ScalarProperty Name="month_inner_xl" ColumnName="month_inner_xl" />
-                <ScalarProperty Name="month_box" ColumnName="month_box" />
-                <ScalarProperty Name="month_meal" ColumnName="month_meal" />
-                <ScalarProperty Name="month_850" ColumnName="month_850" />
-                <ScalarProperty Name="month_700" ColumnName="month_700" />
+                <ScalarProperty Name="month_inner_s_pm" ColumnName="month_inner_s_pm" />
+                <ScalarProperty Name="month_inner_s_am" ColumnName="month_inner_s_am" />
+                <ScalarProperty Name="month_inner_l_pm" ColumnName="month_inner_l_pm" />
+                <ScalarProperty Name="month_inner_l_am" ColumnName="month_inner_l_am" />
+                <ScalarProperty Name="month_inner_xl_pm" ColumnName="month_inner_xl_pm" />
+                <ScalarProperty Name="month_inner_xl_am" ColumnName="month_inner_xl_am" />
+                <ScalarProperty Name="month_box_pm" ColumnName="month_box_pm" />
+                <ScalarProperty Name="month_box_am" ColumnName="month_box_am" />
+                <ScalarProperty Name="month_meal_pm" ColumnName="month_meal_pm" />
+                <ScalarProperty Name="month_meal_am" ColumnName="month_meal_am" />
+                <ScalarProperty Name="month_850_pm" ColumnName="month_850_pm" />
+                <ScalarProperty Name="month_850_am" ColumnName="month_850_am" />
+                <ScalarProperty Name="month_700_pm" ColumnName="month_700_pm" />
+                <ScalarProperty Name="month_700_am" ColumnName="month_700_am" />
                 <ScalarProperty Name="fish_month" ColumnName="fish_month" />
                 <ScalarProperty Name="soup_month" ColumnName="soup_month" />
                 <ScalarProperty Name="rice_month" ColumnName="rice_month" />

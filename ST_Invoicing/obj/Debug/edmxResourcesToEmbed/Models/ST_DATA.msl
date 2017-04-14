@@ -174,13 +174,20 @@
           <ScalarProperty Name="other_month" ColumnName="other_month" />
           <ScalarProperty Name="supplie_month" ColumnName="supplie_month" />
           <ScalarProperty Name="food_month" ColumnName="food_month" />
-          <ScalarProperty Name="month_inner_s" ColumnName="month_inner_s" />
-          <ScalarProperty Name="month_inner_l" ColumnName="month_inner_l" />
-          <ScalarProperty Name="month_inner_xl" ColumnName="month_inner_xl" />
-          <ScalarProperty Name="month_box" ColumnName="month_box" />
-          <ScalarProperty Name="month_meal" ColumnName="month_meal" />
-          <ScalarProperty Name="month_850" ColumnName="month_850" />
-          <ScalarProperty Name="month_700" ColumnName="month_700" />
+          <ScalarProperty Name="month_inner_s_pm" ColumnName="month_inner_s_pm" />
+          <ScalarProperty Name="month_inner_s_am" ColumnName="month_inner_s_am" />
+          <ScalarProperty Name="month_inner_l_pm" ColumnName="month_inner_l_pm" />
+          <ScalarProperty Name="month_inner_l_am" ColumnName="month_inner_l_am" />
+          <ScalarProperty Name="month_inner_xl_pm" ColumnName="month_inner_xl_pm" />
+          <ScalarProperty Name="month_inner_xl_am" ColumnName="month_inner_xl_am" />
+          <ScalarProperty Name="month_box_pm" ColumnName="month_box_pm" />
+          <ScalarProperty Name="month_box_am" ColumnName="month_box_am" />
+          <ScalarProperty Name="month_meal_pm" ColumnName="month_meal_pm" />
+          <ScalarProperty Name="month_meal_am" ColumnName="month_meal_am" />
+          <ScalarProperty Name="month_850_pm" ColumnName="month_850_pm" />
+          <ScalarProperty Name="month_850_am" ColumnName="month_850_am" />
+          <ScalarProperty Name="month_700_pm" ColumnName="month_700_pm" />
+          <ScalarProperty Name="month_700_am" ColumnName="month_700_am" />
           <ScalarProperty Name="fish_month" ColumnName="fish_month" />
           <ScalarProperty Name="soup_month" ColumnName="soup_month" />
           <ScalarProperty Name="rice_month" ColumnName="rice_month" />

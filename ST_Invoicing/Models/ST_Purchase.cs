@@ -17,8 +17,8 @@ namespace ST_Invoicing.Models
     {
         public int serno { get; set; }
         public System.Guid guid { get; set; }
-
-        [Display(Name = "採購日期")]
+      
+        [Display(Name = "採購日期")]     
         public System.DateTime purchase_date { get; set; }
         public System.Guid material_guid { get; set; }
 

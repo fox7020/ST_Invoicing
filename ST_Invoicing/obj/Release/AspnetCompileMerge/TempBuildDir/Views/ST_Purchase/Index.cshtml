@@ -7,10 +7,39 @@
 <script>
     $(document).ready(function () {
         $("#ST_Purchase").addClass("active");
+
+        $("#print").click(function () {
+
+            var d = new Date();
+            var curr_month = d.getMonth() + 1;
+            var curr_year = d.getFullYear();
+
+            var title = curr_year + "年" + curr_month + "月採購清單";
+
+            /*先找出不要列印的區塊*/
+            var no_Prints = document.getElementsByClassName("no_print");
+
+            /*設定不列印的區塊為不顯示*/
+            for (var i = 0; i < no_Prints.length; i++) {
+                no_Prints[i].style.display = "none";
+            }
+
+            /*抓出整個要印的區塊*/
+            var value = document.getElementsByClassName("print_parts")[0];
+
+            var printPage = window.open("", "Printing...", "");
+            printPage.document.open();
+            printPage.document.write("<HTML><head><link href='/Content/bootstrap.css' rel='stylesheet'></head><BODY onload='window.print();window.close()'>");
+            printPage.document.write("<h2 align = 'center'>" + title + "</h2>");
+
+            printPage.document.write(value.innerHTML);
+
+            printPage.document.close("</BODY></HTML>");
+        });
     });
 </script>
 
-<h2>採購列表</h2>
+<h2>採購列表 <input type="button" class="btn btn-basic" id="print" value="列印" /></h2>
 
 <p>
     <input type="button" class="btn btn-primary" value="新增採購" onclick="location.href='@Url.Action("Create", "ST_Purchase")'" />
@@ -34,75 +63,77 @@
 }
 <br />
 
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.purchase_date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.item_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.purchase_price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.vendor_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.emp_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.remark)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-
+<div class="print_parts">
+    <table class="table">
         <tr>
-
-            <td>
-                <font color=@item.font_Color>
-                    @Html.DisplayFor(modelItem => item.display_Date)
-                </font>
-            </td>
-            <td>
-                <font color=@item.font_Color>
-                    @Html.DisplayFor(modelItem => item.item_name)
-                </font>
-            </td>
-            <td>
-                <font color=@item.font_Color>
-                    @Html.DisplayFor(modelItem => item.purchase_price)
-                </font>
-            </td>
-            <td>
-                <font color=@item.font_Color>
-                    @Html.DisplayFor(modelItem => item.vendor_name)
-                </font>
-            </td>
-            <td>
-                <font color=@item.font_Color>
-                    @Html.DisplayFor(modelItem => item.emp_name)
-                </font>
-            </td>
-            <td>
-                <font color=@item.font_Color>
-                    @Html.DisplayFor(modelItem => item.remark)
-                </font>
-            </td>
-            <td>
-                <input type="button" class="btn btn-warning" value="編輯" onclick="location.href='@Url.Action("Edit", "ST_Purchase", new { id = item.serno })'" />
-                <input type="button" class="btn btn-danger" value="刪除" onclick="location.href='@Url.Action("Delete", "ST_Purchase", new { id = item.serno })'" />
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.purchase_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.item_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.purchase_price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vendor_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.remark)
+            </th>
+            <th></th>
         </tr>
 
-    }
+        @foreach (var item in Model)
+        {
 
-</table>
+            <tr>
 
+                <td>
+                    <font color=@item.font_Color>
+                        @Html.DisplayFor(modelItem => item.display_Date)
+                    </font>
+                </td>
+                <td>
+                    <font color=@item.font_Color>
+                        @Html.DisplayFor(modelItem => item.item_name)
+                    </font>
+                </td>
+                <td>
+                    <font color=@item.font_Color>
+                        @Html.DisplayFor(modelItem => item.purchase_price)
+                    </font>
+                </td>
+                <td>
+                    <font color=@item.font_Color>
+                        @Html.DisplayFor(modelItem => item.vendor_name)
+                    </font>
+                </td>
+                <td>
+                    <font color=@item.font_Color>
+                        @Html.DisplayFor(modelItem => item.emp_name)
+                    </font>
+                </td>
+                <td>
+                    <font color=@item.font_Color>
+                        @Html.DisplayFor(modelItem => item.remark)
+                    </font>
+                </td>
+                <td>
+                    <div class="no_print">
+                        <input type="button" class="btn btn-warning" value="編輯" onclick="location.href='@Url.Action("Edit", "ST_Purchase", new { id = item.serno })'" />
+                        <input type="button" class="btn btn-danger" value="刪除" onclick="location.href='@Url.Action("Delete", "ST_Purchase", new { id = item.serno })'" />
+                    </div>
+                </td>
+            </tr>
+
+        }
+
+    </table>
+</div>
 
 
 

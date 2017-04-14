@@ -187,6 +187,7 @@ namespace ST_Invoicing.Controllers
 
             if (data.account != null)
             {
+                /*Edit時不為0*/
                 if (data.serno != 0)
                 {
                     return Json(true, JsonRequestBehavior.AllowGet);

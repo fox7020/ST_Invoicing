@@ -10,6 +10,7 @@ using ST_Invoicing.Models;
 
 namespace ST_Invoicing.Controllers
 {
+    [Authorize]
     public class ST_Surplus_MonthController : Controller
     {
         private ST_SurplusMonthDAO mST_SurplusMonthDAO = new ST_SurplusMonthDAO();
@@ -21,11 +22,11 @@ namespace ST_Invoicing.Controllers
         public ActionResult Index()
         {
             #region 檢查是否有未製作的月報表
-            List<ST_SurplusDay> dataList = mST_SurplusDayDAO.GetDataLessThanThisMonth(true);
+            List<ST_SurplusDay> dataList_day = mST_SurplusDayDAO.GetDataLessThanThisMonth(true);
 
-            List<DateTime> month_List = GetMonthList(dataList);
+            List<DateTime> month_List_day = GetMonthList(dataList_day);
 
-            foreach (DateTime month in month_List)
+            foreach (DateTime month in month_List_day)
             {
                 if (mST_SurplusMonthDAO.FetchByMonth(month) == null)
                 {
@@ -37,7 +38,92 @@ namespace ST_Invoicing.Controllers
                 }
             }
             #endregion
-            return View();
+
+            #region
+            List<ST_Surplus_Month> dataList_Month = mST_SurplusMonthDAO.GetDataListNotDel();
+
+            /*依照月份排序*/
+            dataList_Month.OrderBy(o => o.rec_month).ToList();
+            #endregion
+
+            #region DropDown List資料
+
+            List<string> queryItems = new List<string>();
+
+            foreach (ST_Surplus_Month data in dataList_Month)
+            {
+                string strMonth = data.rec_month.ToString("yyyy-MM");
+
+                queryItems.Add(strMonth);
+            }
+
+            ViewData["query_Item"] = queryItems;
+            #endregion
+
+            List<string> select_Draw = new List<string>();
+
+            select_Draw.Add("支出比重");
+            select_Draw.Add("日收入與支出");
+
+
+            ViewData["draw_item"] = select_Draw;
+
+            ViewData["user"] = Session["user"];
+
+            return View(dataList_Month[0]);
+        }
+
+        [HttpPost]
+        public ActionResult Index(string selMonth)
+        {
+            ViewData["user"] = Session["user"];
+
+            #region
+            List<ST_Surplus_Month> dataList_Month = mST_SurplusMonthDAO.GetDataListNotDel();
+
+            /*依照月份排序*/
+            dataList_Month.OrderBy(o => o.rec_month).ToList();
+            #endregion
+
+            #region DropDown List資料
+
+            List<string> queryItems = new List<string>();
+
+            foreach (ST_Surplus_Month data in dataList_Month)
+            {
+                string strMonth = data.rec_month.ToString("yyyy-MM");
+
+                queryItems.Add(strMonth);
+            }
+
+            ViewData["query_Item"] = queryItems;
+            #endregion
+
+            List<string> select_Draw = new List<string>();
+
+            select_Draw.Add("支出比重");
+            select_Draw.Add("日收入與支出");
+
+
+            ViewData["draw_item"] = select_Draw;
+
+            if (selMonth != "")
+            {
+                string year = selMonth.Substring(0, 4);
+                string month = selMonth.Substring(5, 2);
+
+                string rec_Month = year + "-" + month + "-01";
+
+                DateTime recMonth = DateTime.Parse(rec_Month);
+
+                ST_Surplus_Month data = mST_SurplusMonthDAO.FetchByMonth(recMonth);
+                      
+                return View(data);
+            }
+
+
+
+            return View(dataList_Month[0]);
         }
 
         // GET: ST_Surplus_Month/Details/5
@@ -47,12 +133,75 @@ namespace ST_Invoicing.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             ST_Surplus_Month data = mST_SurplusMonthDAO.FetchBySerno(id);
+
             if (data == null)
             {
                 return HttpNotFound();
             }
             return View(data);
+        }
+
+        public JsonResult Draw(string selMonth, string method)
+        {
+            /*取得查看的年月份&要畫的圖表 =>使用引數*/
+            //string selMonth
+
+            List<int> rslt = new List<int>();
+
+            if (selMonth != "---查看月份---")
+            {
+                string year = selMonth.Substring(0, 4);
+                string month = selMonth.Substring(5, 2);
+
+                string rec_Month = year + "-" + month + "-01";
+
+                DateTime recMonth = DateTime.Parse(rec_Month);
+
+                ST_Surplus_Month currData = mST_SurplusMonthDAO.FetchByMonth(recMonth);
+
+                switch (method)
+                {
+                    case "支出比重":
+                        List<int> expenditure_List = new List<int>();
+
+                        /*食材*/
+                        rslt.Add(currData.food_month);
+
+                        /*耗材*/
+                        rslt.Add(currData.supplie_month);
+
+                        /*其他*/
+                        rslt.Add(currData.other_month);
+                        break;
+                    case "日收入與支出":
+                        #region 取得整月每天的資料
+                        DateTime firstDay = new DateTime(recMonth.Year, recMonth.Month, 1);
+                        DateTime lastDay = new DateTime(recMonth.AddMonths(1).Year, recMonth.AddMonths(1).Month, 1).AddDays(-1);
+
+                        List<ST_SurplusDay> day_List = mST_SurplusDayDAO.GetDataByDateRange(firstDay, lastDay);
+
+                        #region 計算每日支出
+                        foreach (ST_SurplusDay data in day_List)
+                        {
+                            List<ST_Purchase> purrchase_List = mST_PurcahseDAO.GetDataByDate(data.rec_date);
+
+                            data.expenditure = 0;
+
+                            foreach (ST_Purchase currPurchase in purrchase_List)
+                            {
+                                data.expenditure += currPurchase.purchase_price;
+                            }
+                        }
+                        #endregion
+                        #endregion
+                        return Json(day_List, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+
+            return Json(rslt, JsonRequestBehavior.AllowGet);
         }
 
         private List<DateTime> GetMonthList(List<ST_SurplusDay> dataList)
@@ -116,26 +265,47 @@ namespace ST_Invoicing.Controllers
             /*計算魚數量*/
             newData.fish_month = GetFish_month(dataList);
 
-            /*計算850cc數量*/
-            newData.month_850 = GetMonth_850(dataList);
+            /*計算早班850cc數量*/
+            newData.month_850_am = GetMonth_850(dataList, "am");
 
-            /*計算700cc數量*/
-            newData.month_700 = GetMonth_700(dataList);
+            /*計算晚班850cc數量*/
+            newData.month_850_pm = GetMonth_850(dataList, "pm");
 
-            /*計算點心盒數量*/
-            newData.month_meal = GetMonth_Meal(dataList);
+            /*計算早班700cc數量*/
+            newData.month_700_am = GetMonth_700(dataList, "am");
 
-            /*計算便當盒數量*/
-            newData.month_box = GetMonth_Box(dataList);
+            /*計算晚班700cc數量*/
+            newData.month_700_pm = GetMonth_700(dataList, "pm");
 
-            /*計算內用大大碗*/
-            newData.month_inner_xl = GetInner_XL(dataList);
+            /*計算早班點心盒數量*/
+            newData.month_meal_am = GetMonth_Meal(dataList, "am");
 
-            /*計算內用大碗*/
-            newData.month_inner_l = GetInner_L(dataList);
+            /*計算晚班點心盒數量*/
+            newData.month_meal_pm = GetMonth_Meal(dataList, "pm");
 
-            /*計算內用小碗*/
-            newData.month_inner_s = GetInner_S(dataList);
+            /*計算早班便當盒數量*/
+            newData.month_box_am = GetMonth_Box(dataList, "am");
+
+            /*計算晚班便當盒數量*/
+            newData.month_box_pm = GetMonth_Box(dataList, "pm");
+
+            /*計算早班內用大大碗*/
+            newData.month_inner_xl_am = GetInner_XL(dataList, "am");
+
+            /*計算晚班內用大大碗*/
+            newData.month_inner_xl_pm = GetInner_XL(dataList, "pm");
+
+            /*計算早班內用大碗*/
+            newData.month_inner_l_am = GetInner_L(dataList, "am");
+
+            /*計算晚班內用大碗*/
+            newData.month_inner_l_pm = GetInner_L(dataList, "pm");
+
+            /*計算早班內用小碗*/
+            newData.month_inner_s_am = GetInner_S(dataList, "am");
+
+            /*計算晚班內用小碗*/
+            newData.month_inner_s_pm = GetInner_S(dataList, "pm");
 
             /*計算支出食材費用*/
             newData.food_month = GetPurchase_Month(firstDay, lastDay, "食材");
@@ -153,7 +323,7 @@ namespace ST_Invoicing.Controllers
         }
 
         public int GetExpenditure_Month(List<ST_SurplusDay> dataList)
-        {           
+        {
             #region 計算每日支出
             foreach (ST_SurplusDay data in dataList)
             {
@@ -169,11 +339,11 @@ namespace ST_Invoicing.Controllers
             #endregion
 
             #region  加總月份總支出
-            #endregion 
+            #endregion
             int total_Expenditure = 0;
 
             for (int i = 0; i < dataList.Count; i++)
-            {  
+            {
                 total_Expenditure += dataList[i].expenditure;
             }
 
@@ -228,93 +398,164 @@ namespace ST_Invoicing.Controllers
             return tota_Count;
         }
 
-        public int GetMonth_850(List<ST_SurplusDay> dataList)
+        public int GetMonth_850(List<ST_SurplusDay> dataList, string timeSection)
         {
             int tota_Count = 0;
 
-            for (int i = 0; i < dataList.Count; i++)
+            if (timeSection == "am")
             {
-                tota_Count += dataList[i].count_850_use_am;
-                tota_Count += dataList[i].count_850_use_pm;
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].count_850_use_am;
+                }
             }
+            else if (timeSection == "pm")
+            {
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].count_850_use_pm;
+                }
+            }
+
 
             return tota_Count;
         }
 
-        public int GetMonth_700(List<ST_SurplusDay> dataList)
+        public int GetMonth_700(List<ST_SurplusDay> dataList, string timeSection)
         {
             int tota_Count = 0;
 
-            for (int i = 0; i < dataList.Count; i++)
+            if (timeSection == "am")
             {
-                tota_Count += dataList[i].count_700_use_am;
-                tota_Count += dataList[i].count_700_use_pm;
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].count_700_use_am;
+                }
             }
+            else if (timeSection == "pm")
+            {
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].count_700_use_pm;
+                }
+            }
+
 
             return tota_Count;
         }
 
-        public int GetMonth_Meal(List<ST_SurplusDay> dataList)
+        public int GetMonth_Meal(List<ST_SurplusDay> dataList, string timeSection)
         {
             int tota_Count = 0;
 
-            for (int i = 0; i < dataList.Count; i++)
+            if (timeSection == "am")
             {
-                tota_Count += dataList[i].count_meal_use_pm;
-                tota_Count += dataList[i].count_meal_use_am;
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].count_meal_use_am;
+                }
             }
+            else if (timeSection == "pm")
+            {
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].count_meal_use_pm;
+                }
+            }
+
 
             return tota_Count;
         }
 
-        public int GetMonth_Box(List<ST_SurplusDay> dataList)
+        public int GetMonth_Box(List<ST_SurplusDay> dataList, string timeSection)
         {
             int tota_Count = 0;
 
-            for (int i = 0; i < dataList.Count; i++)
+            if (timeSection == "am")
             {
-                tota_Count += dataList[i].count_box_use_pm;
-                tota_Count += dataList[i].count_box_use_am;
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].count_box_use_am;
+                }
             }
+            else if (timeSection == "pm")
+            {
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].count_box_use_pm;
+                }
+            }
+
 
             return tota_Count;
         }
 
-        public int GetInner_XL(List<ST_SurplusDay> dataList)
+        public int GetInner_XL(List<ST_SurplusDay> dataList, string timeSection)
         {
             int tota_Count = 0;
 
-            for (int i = 0; i < dataList.Count; i++)
+            if (timeSection == "am")
             {
-                tota_Count += dataList[i].inner_xl_am;
-                tota_Count += dataList[i].inner_xl_pm;
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].inner_xl_am;
+                }
+
             }
+            else if (timeSection == "pm")
+            {
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].inner_xl_pm;
+                }
+            }
+
 
             return tota_Count;
         }
 
-        public int GetInner_L(List<ST_SurplusDay> dataList)
+        public int GetInner_L(List<ST_SurplusDay> dataList, string timeSection)
         {
             int tota_Count = 0;
 
-            for (int i = 0; i < dataList.Count; i++)
+            if (timeSection == "am")
             {
-                tota_Count += dataList[i].inner_l_am;
-                tota_Count += dataList[i].inner_l_pm;
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].inner_l_am;
+                }
             }
+            else if (timeSection == "pm")
+            {
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].inner_l_pm;
+                }
+            }
+
 
             return tota_Count;
         }
 
-        public int GetInner_S(List<ST_SurplusDay> dataList)
+        public int GetInner_S(List<ST_SurplusDay> dataList, string timeSection)
         {
             int tota_Count = 0;
 
-            for (int i = 0; i < dataList.Count; i++)
+            if (timeSection == "am")
             {
-                tota_Count += dataList[i].inner_s_am;
-                tota_Count += dataList[i].inner_s_pm;
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].inner_s_am;
+                }
             }
+            else if (timeSection == "pm")
+            {
+                for (int i = 0; i < dataList.Count; i++)
+                {
+                    tota_Count += dataList[i].inner_s_pm;
+                }
+            }
+
 
             return tota_Count;
         }

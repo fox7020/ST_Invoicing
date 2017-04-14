@@ -9,6 +9,7 @@ namespace ST_Invoicing.Models
     {
         [Required]
         [Display(Name = "採購日期")]
+        [System.Web.Mvc.Remote("CheckDate", "ST_Purchase", ErrorMessage = "日期不可以是未來")]
         public DateTime rec_date { get; set; }
 
       

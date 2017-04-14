@@ -94,29 +94,43 @@
                     <li id="ST_Material">
                         <a href="~/ST_Material/Index"><i class="fa fa-fw fa-table"></i>原物料</a>
                     </li>
-                    <li id="ST_Purchase">
-                        <a href="~/ST_Purchase/Index"><i class="fa fa-fw fa-table"></i>採購</a>
-                    </li>
                     <li id="ST_InStock">
                         <a href="~/ST_InStock/Index"><i class="fa fa-fw fa-table"></i>庫存</a>
                     </li>
-                    <li id="ST_SurplusDay">
-                        <a href="~/ST_SurplusDay/Index"><i class="fa fa-fw fa-table"></i>日帳表</a>
-                    </li>
                     <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#ST_Purchase"><i class="fa fa-fw fa-arrows-v"></i>採購<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="ST_Purchase" class="collapse">
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a href="~/ST_Purchase/Index">本月紀錄</a>
                             </li>
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a href="~/ST_Purchase/HistroryIndex">歷史紀錄</a>
+                            </li>
+                            <li>
+                                <a href="~/ST_Purchase/Unsettlement">未結算清單</a>
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#ST_SurplusDay"><i class="fa fa-fw fa-arrows-v"></i>日帳表<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="ST_SurplusDay" class="collapse">
+                            <li>
+                                <a href="~/ST_SurplusDay/Index">本月紀錄</a>
+                            </li>
+                            <li>
+                                <a href="~/ST_SurplusDay/HistroryIndex">歷史紀錄</a>
+                            </li>
+                            <li>
+                                <a href="~/ST_SurplusDay/Unsettlement">未結算清單</a>
+                            </li>
+                        </ul>
+                    </li>                          
+                    <li id="ST_Surplus_Month">
+                        <a href="~/ST_Surplus_Month/Index"><i class="fa fa-fw fa-dashboard"></i>月報表</a>
+                    </li>
+                    <li>
+                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                    </li>                 
                     <li>
                         <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
                     </li>

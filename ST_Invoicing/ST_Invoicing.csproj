@@ -307,6 +307,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\ST_invoicing_Publish.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -340,6 +341,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Home\login.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -400,11 +402,9 @@
     <Content Include="Views\ST_SurplusDay\HistoryEdit.cshtml" />
     <Content Include="Views\ST_SurplusDay\HistoryDelete.cshtml" />
     <Content Include="Views\ST_SurplusDay\HistroryIndex.cshtml" />
-    <Content Include="Views\ST_Surplus_Month\Create.cshtml" />
-    <Content Include="Views\ST_Surplus_Month\Delete.cshtml" />
     <Content Include="Views\ST_Surplus_Month\Details.cshtml" />
-    <Content Include="Views\ST_Surplus_Month\Edit.cshtml" />
     <Content Include="Views\ST_Surplus_Month\Index.cshtml" />
+    <Content Include="Views\ST_SurplusDay\HistoryDetails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -180,13 +180,20 @@
     <Property Name="rice_month" Type="Double" Nullable="false" />
     <Property Name="soup_month" Type="Double" Nullable="false" />
     <Property Name="fish_month" Type="Double" Nullable="false" />
-    <Property Name="month_700" Type="Int32" Nullable="false" />
-    <Property Name="month_850" Type="Int32" Nullable="false" />
-    <Property Name="month_meal" Type="Int32" Nullable="false" />
-    <Property Name="month_box" Type="Int32" Nullable="false" />
-    <Property Name="month_inner_xl" Type="Int32" Nullable="false" />
-    <Property Name="month_inner_l" Type="Int32" Nullable="false" />
-    <Property Name="month_inner_s" Type="Int32" Nullable="false" />
+    <Property Name="month_700_am" Type="Int32" Nullable="false" />
+    <Property Name="month_700_pm" Type="Int32" Nullable="false" />
+    <Property Name="month_850_am" Type="Int32" Nullable="false" />
+    <Property Name="month_850_pm" Type="Int32" Nullable="false" />
+    <Property Name="month_meal_am" Type="Int32" Nullable="false" />
+    <Property Name="month_meal_pm" Type="Int32" Nullable="false" />
+    <Property Name="month_box_am" Type="Int32" Nullable="false" />
+    <Property Name="month_box_pm" Type="Int32" Nullable="false" />
+    <Property Name="month_inner_xl_am" Type="Int32" Nullable="false" />
+    <Property Name="month_inner_xl_pm" Type="Int32" Nullable="false" />
+    <Property Name="month_inner_l_am" Type="Int32" Nullable="false" />
+    <Property Name="month_inner_l_pm" Type="Int32" Nullable="false" />
+    <Property Name="month_inner_s_am" Type="Int32" Nullable="false" />
+    <Property Name="month_inner_s_pm" Type="Int32" Nullable="false" />
     <Property Name="food_month" Type="Int32" Nullable="false" />
     <Property Name="supplie_month" Type="Int32" Nullable="false" />
     <Property Name="other_month" Type="Int32" Nullable="false" />

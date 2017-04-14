@@ -20,6 +20,7 @@ namespace ST_Invoicing.Models
 
         [Required]
         [Display(Name = "日期")]
+        [System.Web.Mvc.Remote("CheckDate", "ST_SurplusDay", ErrorMessage = "日期不可以是未來")]
         public System.DateTime rec_date { get; set; }
 
         [Required]

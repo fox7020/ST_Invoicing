@@ -41,6 +41,15 @@ namespace ST_Invoicing.Models
             return null;
         }
 
+        public List<ST_Surplus_Month> GetDataListNotDel()
+        {
+            List<ST_Surplus_Month> rslt = new List<ST_Surplus_Month>();
+
+            rslt = dao.ST_Surplus_Month.Where(currdata => currdata.del_yn == 0).ToList();
+
+            return rslt;
+        }
+
         public void Dispose()
         {
             dao.Dispose();

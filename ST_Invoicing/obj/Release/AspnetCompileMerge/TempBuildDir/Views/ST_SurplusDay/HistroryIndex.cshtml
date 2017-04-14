@@ -1,0 +1,142 @@
+﻿@model IEnumerable<ST_Invoicing.Models.ST_SurplusDay>
+
+@{
+    ViewBag.Title = "南臺灣-日帳表歷史列表";
+
+    var queryItem = ViewData["query_Item"] as IEnumerable<string>;
+
+    var selectQuery = new SelectList(queryItem);
+}
+
+<script>
+    $(document).ready(function () {
+        $("#ST_SurplusDay").addClass("active");
+
+        $("#print").click(function () {
+
+            var month = $('#selMonth option:selected').text();
+
+            var title = null;
+
+            if (month == "---查看月份---") {
+                title = "所有月份日帳表清單";
+            } else {
+                title = month + "日帳表清單";
+            }
+
+            /*先找出不要列印的區塊*/
+            var no_Prints = document.getElementsByClassName("no_print");
+
+            /*設定不列印的區塊為不顯示*/
+            for (var i = 0; i < no_Prints.length; i++) {
+                no_Prints[i].style.display = "none";
+            }
+
+            /*抓出整個要印的區塊*/
+            var value = document.getElementsByClassName("print_parts")[0];
+
+            var printPage = window.open("", "Printing...", "");
+            printPage.document.open();
+            printPage.document.write("<HTML><head><link href='/Content/bootstrap.css' rel='stylesheet'></head><BODY onload='window.print();window.close()'>");
+            printPage.document.write("<h2 align = 'center'>" + title + "</h2>");
+
+            printPage.document.write(value.innerHTML);
+
+            printPage.document.close("</BODY></HTML>");
+        });
+    });
+</script>
+
+<h2>日帳表歷史列表 <input type="button" class="btn btn-basic" id="print" value="列印" /></h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-inline">
+        <div class="form-group">
+            <div class="col-xs-6 col-md-4">
+                <h5> 查詢月份:</h5>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                @Html.DropDownList("selMonth", selectQuery, "---查看月份---", new { @class = "btn btn-info dropdown-toggle" })
+            </div>
+            <div class="col-xs-6 col-md-2">
+                <input type="submit" value="查詢" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<br />
+<div class="print_parts">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.rec_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.turnover)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.turnover_month)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.expenditure)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.expenditure_month)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.surplus_month)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.count_soup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.count_rice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.remark)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.display_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.turnover)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.turnover_month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.expenditure)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.expenditure_month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.surplus_month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.count_soup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.count_rice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.remark)
+                </td>
+                <td>
+                    <div class="no_print">
+                        <input type="button" class="btn btn-success" value="查看" onclick="location.href='@Url.Action("HistoryDetails", "ST_SurplusDay", new { id = item.serno })'" />
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

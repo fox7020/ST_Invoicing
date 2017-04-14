@@ -117,13 +117,20 @@
     <Property Name="rice_month" Type="float" Nullable="false" />
     <Property Name="soup_month" Type="float" Nullable="false" />
     <Property Name="fish_month" Type="float" Nullable="false" />
-    <Property Name="month_700" Type="int" Nullable="false" />
-    <Property Name="month_850" Type="int" Nullable="false" />
-    <Property Name="month_meal" Type="int" Nullable="false" />
-    <Property Name="month_box" Type="int" Nullable="false" />
-    <Property Name="month_inner_xl" Type="int" Nullable="false" />
-    <Property Name="month_inner_l" Type="int" Nullable="false" />
-    <Property Name="month_inner_s" Type="int" Nullable="false" />
+    <Property Name="month_700_am" Type="int" Nullable="false" />
+    <Property Name="month_700_pm" Type="int" Nullable="false" />
+    <Property Name="month_850_am" Type="int" Nullable="false" />
+    <Property Name="month_850_pm" Type="int" Nullable="false" />
+    <Property Name="month_meal_am" Type="int" Nullable="false" />
+    <Property Name="month_meal_pm" Type="int" Nullable="false" />
+    <Property Name="month_box_am" Type="int" Nullable="false" />
+    <Property Name="month_box_pm" Type="int" Nullable="false" />
+    <Property Name="month_inner_xl_am" Type="int" Nullable="false" />
+    <Property Name="month_inner_xl_pm" Type="int" Nullable="false" />
+    <Property Name="month_inner_l_am" Type="int" Nullable="false" />
+    <Property Name="month_inner_l_pm" Type="int" Nullable="false" />
+    <Property Name="month_inner_s_am" Type="int" Nullable="false" />
+    <Property Name="month_inner_s_pm" Type="int" Nullable="false" />
     <Property Name="food_month" Type="int" Nullable="false" />
     <Property Name="supplie_month" Type="int" Nullable="false" />
     <Property Name="other_month" Type="int" Nullable="false" />

@@ -579,5 +579,22 @@ namespace ST_Invoicing.Controllers
 
         }
 
+        public JsonResult CheckDate(Purchase_DayAll data)
+        {
+            if(data.rec_date != null)
+            {
+                if (data.rec_date > DateTime.Today)
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

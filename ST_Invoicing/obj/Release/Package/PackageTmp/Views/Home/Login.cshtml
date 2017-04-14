@@ -3,7 +3,6 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,13 +10,13 @@
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
     <title>南臺灣進銷存管理-登入</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
     <style type="text/css">
         body {
             background: url('https://c1.staticflickr.com/8/7338/11288105174_071e59f729_k.jpg') fixed;
             background-size: cover;
             padding: 0;
-            margin: 0;         
+            margin: 0;
         }
 
         .wrap {
@@ -185,16 +184,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-
                 <div class="wrap">
                     <p class="form-title">
                         南臺灣進銷存管理系統
                     </p>
                     @using (Html.BeginForm("Login", "Home", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post, new { autocomplete = "off", @class = "login" }))
                     {
-                        @Html.TextBoxFor(m => m.Account, new { placeholder = "請輸入帳號" }) @Html.ValidationMessageFor(m => m.Account)
+                        @Html.TextBoxFor(m => m.Account, new { placeholder = "請輸入帳號" }) @Html.ValidationMessageFor(m => m.Account, null, new { @class = "text-danger" })
                         <br />
-                        @Html.PasswordFor(m => m.Password, new { placeholder = "請輸入密碼" }) @Html.ValidationMessageFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "請輸入密碼" }) @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
                         <br />
                         <input type="submit" value="登入" class="btn btn-success btn-sm" />
                     }
@@ -203,7 +201,6 @@
         </div>
         <div class="posted-by">Powered By Wayne Lai</div>
     </div>
-
     <script type="text/javascript">
         $(document).ready(function () {
             $('.forgot-pass').click(function (event) {

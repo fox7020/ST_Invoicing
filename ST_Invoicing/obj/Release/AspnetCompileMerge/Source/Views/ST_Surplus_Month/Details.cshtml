@@ -1,0 +1,125 @@
+﻿@model ST_Invoicing.Models.ST_Surplus_Month
+
+@{
+    ViewBag.Title = "南臺灣-檢視月報表";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#ST_SurplusDay").addClass("active");
+
+        $("#print").click(function () {
+
+            var title = @Html.Raw(Json.Encode(Model.displayMonth)) + "-月報表";
+
+            var d = new Date();
+            var curr_month = d.getMonth() + 1;
+            var curr_year = d.getFullYear();
+
+            /*抓出整個要印的區塊*/
+            var value = document.getElementsByClassName("print_parts")[0];
+
+            var printPage = window.open("", "Printing...", "");
+            printPage.document.open();
+            printPage.document.write("<HTML><head><link href='/Content/bootstrap.css' rel='stylesheet'></head><BODY onload='window.print();window.close()'>");
+            printPage.document.write("<h2 align = 'center'>" + title + "</h2>");
+            printPage.document.write(value.innerHTML);
+
+            printPage.document.close("</BODY></HTML>");
+        });
+    });
+</script>
+
+
+<h2>檢視月報表 <input type="button" class="btn btn-basic" id="print" value="列印" /></h2>
+
+
+
+<div class="print_parts">
+    <table class="table table-bordered" style="table-layout:fixed">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.displayMonth)</th>
+            <td colspan="3">@Html.DisplayFor(model => model.displayMonth)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.work_days)</th>
+            <td colspan="3">@Html.DisplayFor(model => model.work_days)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.food_month)</th>
+            <td colspan="3">@Html.DisplayFor(model => model.food_month)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.supplie_month)</th>
+            <td colspan="3">@Html.DisplayFor(model => model.supplie_month)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.other_month)</th>
+            <td colspan="3">@Html.DisplayFor(model => model.other_month)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.expenditure_month)</th>
+            <td colspan="3">@Html.DisplayFor(model => model.expenditure_month)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.turnover_month)</th>
+            <td colspan="3">@Html.DisplayFor(model => model.turnover_month)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.surplus_month)</th>
+            <td colspan="3">@Html.DisplayFor(model => model.surplus_month)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.rice_month)</th>
+            <td colspan="3">@Html.DisplayFor(model => model.rice_month)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.soup_month)</th>
+            <td colspan="3">@Html.DisplayFor(model => model.soup_month)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.month_700_am)</th>
+            <td>@Html.DisplayFor(model => model.month_700_am)</td>
+            <th>@Html.DisplayNameFor(model => model.month_700_pm)</th>
+            <td>@Html.DisplayFor(model => model.month_700_pm)</td>              
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.month_850_am)</th>
+            <td>@Html.DisplayFor(model => model.month_850_am)</td> 
+            <th>@Html.DisplayNameFor(model => model.month_850_pm)</th>
+            <td>@Html.DisplayFor(model => model.month_850_pm)</td>      
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.month_meal_am)</th>
+            <td>@Html.DisplayFor(model => model.month_meal_am)</td>   
+            <th>@Html.DisplayNameFor(model => model.month_meal_pm)</th>
+            <td>@Html.DisplayFor(model => model.month_meal_pm)</td>         
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.month_box_am)</th>
+            <td>@Html.DisplayFor(model => model.month_box_am)</td>    
+            <th>@Html.DisplayNameFor(model => model.month_box_pm)</th>
+            <td>@Html.DisplayFor(model => model.month_box_pm)</td>     
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.month_inner_xl_am)</th>
+            <td>@Html.DisplayFor(model => model.month_inner_xl_am)</td>  
+            <th>@Html.DisplayNameFor(model => model.month_inner_xl_pm)</th>
+            <td>@Html.DisplayFor(model => model.month_inner_xl_pm)</td>  
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.month_inner_l_am)</th>
+            <td>@Html.DisplayFor(model => model.month_inner_l_am)</td>
+            <th>@Html.DisplayNameFor(model => model.month_inner_l_pm)</th>
+            <td>@Html.DisplayFor(model => model.month_inner_l_pm)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.month_inner_s_am)</th>
+            <td>@Html.DisplayFor(model => model.month_inner_s_am)</td>
+            <th>@Html.DisplayNameFor(model => model.month_inner_s_pm)</th>
+            <td>@Html.DisplayFor(model => model.month_inner_s_pm)</td>
+        </tr>
+    </table>
+</div>
+<p>
+    <input type="button" class="btn btn-info" value="返回" onclick="location.href='@Url.Action("Index", "ST_Surplus_Month")'" />
+</p>

@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ST_Invoicing.Models.ST_SurplusDay>
+
+@{
+    ViewBag.Title = "南臺灣-未結算日帳表";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#ST_SurplusDay").addClass("active");
+
+    });
+
+    function Settlement() {
+        alert();
+    }
+</script>
+
+<h2>未結算日帳表</h2>
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-actions no-color">
+        <input type="submit" value="確認結算" class="btn btn-success">
+    </div>
+}
+
+
+<br />
+@Html.ValidationMessage("SubErr", new { @class = "text-danger" })
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.rec_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.turnover)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.turnover_month)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.expenditure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.expenditure_month)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.surplus_month)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.count_soup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.count_rice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.remark)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.display_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.turnover)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.turnover_month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.expenditure)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.expenditure_month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.surplus_month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.count_soup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.count_rice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.remark)
+            </td>
+            <td>
+                <input type="button" class="btn btn-warning" value="編輯" onclick="location.href='@Url.Action("HistoryEdit", "ST_SurplusDay", new { id = item.serno })'" />
+                <input type="button" class="btn btn-success" value="查看" onclick="location.href='@Url.Action("Details", "ST_SurplusDay", new { id = item.serno })'" />
+                <input type="button" class="btn btn-danger" value="刪除" onclick="location.href='@Url.Action("HistoryDelete", "ST_SurplusDay", new { id = item.serno })'" />
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+

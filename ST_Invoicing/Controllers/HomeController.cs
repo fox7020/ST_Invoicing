@@ -19,20 +19,7 @@ namespace ST_Invoicing.Controllers
 
         private ST_InStockDAO mST_InStockDAO = new ST_InStockDAO();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
+      
         // <summary>
         /// 呈現後台使用者登入頁
         /// </summary>
@@ -114,12 +101,7 @@ namespace ST_Invoicing.Controllers
             }
 
             return View();
-        }
-
-        public ActionResult Index2()
-        {
-            return View();
-        }
+        }  
 
         protected override void Dispose(bool disposing)
         {

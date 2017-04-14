@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "南台灣進銷存系統-首頁";
 }
 <script>
     $( document ).ready(function() {     
@@ -8,29 +8,40 @@
 </script>
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>南台灣進銷存管理系統(學甲店)</h1>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <h2>廠商資訊</h2>
+        <p>查詢與編輯原物料提供商</p>   
+        <p><a class="btn btn-info" href="/ST_Vendor/Index">檢視廠商</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>原物料</h2>
+        <p>依照廠商提供的原物料進行分類查詢與編輯</p>
+        <p><a class="btn btn-info" href="/ST_Material/Index">檢視原物料</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>庫存</h2>
+        <p>檢視各種外帶餐盒庫存量</p>
+        <p><a class="btn btn-info" href="/ST_InStock/Index">檢視庫存</a></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>採購</h2>
+        <p>檢視本月採購紀錄</p>
+        <p><a class="btn btn-warning" href="/ST_Purchase/Index">檢視本月採購</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>日報表</h2>
+        <p>檢視本月日報表</p>
+        <p><a class="btn btn-warning" href="/ST_SurplusDay/Index">檢視本月日報表</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>月報表</h2>
+        <p>檢視本月以前的月報紀錄</p>
+        <p><a class="btn btn-warning" href="/ST_Surplus_Month/Index">檢視月報表</a></p>
     </div>
 </div>

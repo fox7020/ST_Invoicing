@@ -270,7 +270,7 @@ namespace ST_Invoicing.Controllers
             #region 取得本月之前的舊資料
             List<ST_Purchase> purchase_List = mST_PurcahseDAO.GetDataLessThanThisMonth(true);
 
-            SetOtherProperty(ref purchase_List);
+           // SetOtherProperty(ref purchase_List);
 
             purchase_List = purchase_List.OrderBy(o => o.purchase_date).ToList();
             #endregion
@@ -290,6 +290,9 @@ namespace ST_Invoicing.Controllers
             ViewData["query_Item"] = queryItems;
             #endregion
 
+            /*資料量過大，在GET未選擇任何月份前都先清除不顯示資料*/
+            purchase_List.Clear();
+
             return View(purchase_List);
         }
 
@@ -300,18 +303,6 @@ namespace ST_Invoicing.Controllers
             #region 取得本月之前的舊資料
             List<ST_Purchase> purchase_List = mST_PurcahseDAO.GetDataLessThanThisMonth(true);          
             #endregion
-
-            #region 設定要查詢的月份資料
-            if (selMonth != "")
-            {
-                string strMonth = selMonth + "-1";
-
-                DateTime Month = DateTime.Parse(strMonth);
-
-                GetSelMonthData(ref purchase_List, Month);
-            }
-            #endregion
-
 
             #region DropDown List資料
             List<DateTime> month_List = GetMonthList(purchase_List);
@@ -327,6 +318,17 @@ namespace ST_Invoicing.Controllers
 
             ViewData["query_Item"] = queryItems;
             #endregion
+
+            #region 設定要查詢的月份資料
+            if (selMonth != "")
+            {
+                string strMonth = selMonth + "-1";
+
+                DateTime Month = DateTime.Parse(strMonth);
+
+                GetSelMonthData(ref purchase_List, Month);
+            }
+            #endregion          
 
             SetOtherProperty(ref purchase_List);
 
@@ -376,7 +378,7 @@ namespace ST_Invoicing.Controllers
                 mST_PurcahseDAO.Update(data);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("HistroryIndex");
         }
 
 
@@ -538,29 +540,31 @@ namespace ST_Invoicing.Controllers
         }
 
         private List<DateTime> GetMonthList(List<ST_Purchase> dataList)
-        {
-            List<DateTime> dates = new List<DateTime>();
+        {         
+            List<DateTime> dateList = new List<DateTime>();
 
-            foreach (ST_Purchase data in dataList)
+            #region 將所有日報表資料日期先轉成當月的1號
+            foreach (ST_Purchase Purchase in dataList)
             {
+                dateList.Add(new DateTime(Purchase.purchase_date.Year, Purchase.purchase_date.Month, 1));
+            }
+            #endregion
 
-                DateTime recMonth = new DateTime(data.purchase_date.Year, data.purchase_date.Month, 1);
+            #region 取得總共幾個月份
+            Dictionary<DateTime, int> uniqueStore = new Dictionary<DateTime, int>();
+            List<DateTime> finalList = new List<DateTime>();
 
-                if (dates.Count == 0)
+            foreach (DateTime currValue in dateList)
+            {
+                if (!uniqueStore.ContainsKey(currValue))
                 {
-                    dates.Add(recMonth);
-                }
-
-                foreach (DateTime date in dates)
-                {
-                    if (date != recMonth)
-                    {
-                        dates.Add(recMonth);
-                    }
+                    uniqueStore.Add(currValue, 0);
+                    finalList.Add(currValue);
                 }
             }
+            #endregion
 
-            return dates;
+            return finalList;
         }
 
         private void GetSelMonthData(ref List<ST_Purchase> rslt, DateTime selMonth)

@@ -206,28 +206,30 @@ namespace ST_Invoicing.Controllers
 
         private List<DateTime> GetMonthList(List<ST_SurplusDay> dataList)
         {
-            List<DateTime> dates = new List<DateTime>();
+            List<DateTime> dateList = new List<DateTime>();
 
-            foreach (ST_SurplusDay data in dataList)
+            #region 將所有日報表資料日期先轉成當月的1號
+            foreach (ST_SurplusDay SurplusDay in dataList)
             {
+                dateList.Add(new DateTime(SurplusDay.rec_date.Year, SurplusDay.rec_date.Month, 1));
+            }
+            #endregion
 
-                DateTime recMonth = new DateTime(data.rec_date.Year, data.rec_date.Month, 1);
+            #region 取得總共幾個月份
+            Dictionary<DateTime, int> uniqueStore = new Dictionary<DateTime, int>();
+            List<DateTime> finalList = new List<DateTime>();
 
-                if (dates.Count == 0)
+            foreach (DateTime currValue in dateList)
+            {
+                if (!uniqueStore.ContainsKey(currValue))
                 {
-                    dates.Add(recMonth);
-                }
-
-                foreach (DateTime date in dates)
-                {
-                    if (date != recMonth)
-                    {
-                        dates.Add(recMonth);
-                    }
+                    uniqueStore.Add(currValue, 0);
+                    finalList.Add(currValue);
                 }
             }
+            #endregion
 
-            return dates;
+            return finalList;
         }
 
         public ST_Surplus_Month CreateNewMonthData(DateTime rec_Month)
